@@ -15,6 +15,9 @@
   --success:#1A5C3A;
   --warning:#7A5C1A;
 
+  --amber: #C49A6C;
+  --deep:  #0d2035;
+
   --font-serif: 'Lora', Georgia, 'Times New Roman', serif;
   --font-sans:  'Source Sans 3', 'Source Sans Pro', system-ui, sans-serif;
 
@@ -47,6 +50,18 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+/* ── Paper texture overlay ───────────────────────────────────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.028;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
 }
 
 img { max-width: 100%; height: auto; display: block; }
@@ -327,6 +342,202 @@ main { flex: 1; }
   height: 120px;
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120' preserveAspectRatio='none'%3E%3Cpath fill='%23F5F0E8' d='M0,80 C180,20 360,100 540,60 C720,20 900,90 1080,50 C1260,10 1350,70 1440,80 L1440,120 L0,120 Z'/%3E%3C/svg%3E") no-repeat bottom center;
   background-size: cover;
+}
+
+/* ── Hero animations ─────────────────────────────────────────────────────────── */
+
+/* Three independent fog drift cycles so layers move at different rates */
+@keyframes fog-drift-a {
+  0%   { transform: translateX(0); }
+  50%  { transform: translateX(-11%); }
+  100% { transform: translateX(0); }
+}
+@keyframes fog-drift-b {
+  0%   { transform: translateX(0); }
+  50%  { transform: translateX(13%); }
+  100% { transform: translateX(0); }
+}
+@keyframes fog-drift-c {
+  0%   { transform: translateX(0); }
+  50%  { transform: translateX(-7%); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes wave-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ── Hero fog layer (homepage) ───────────────────────────────────────────────── */
+.hero__fog {
+  position: absolute;
+  inset: 0;
+  z-index: 2;      /* above silhouette (z-index:1), below content (z-index:3) */
+  pointer-events: none;
+}
+
+/* ── Island silhouette SVG (homepage) ───────────────────────────────────────── */
+.hero__island-silhouette {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 120px;
+  display: block;
+  z-index: 1;      /* above image-slot, below fog */
+}
+
+/* ── Per-page hero treatments ───────────────────────────────────────────────── */
+
+/* Homepage: ocean meeting sky at dusk */
+.hero--home .hero__image-slot {
+  background: linear-gradient(
+    to bottom,
+    #0d2035 0%,
+    #1A3A5C 28%,
+    #1e5068 52%,
+    #2A6B7C 70%,
+    #3d8fa4 86%,
+    #5aacbf 100%
+  );
+  opacity: 1;
+}
+/* Homepage fog: three overlapping mist layers, each animating independently */
+.hero--home .hero__fog {
+  /* Layer 1: large haze bank drifting left from harbour */
+  background: radial-gradient(ellipse 140% 65% at 18% 82%, rgba(220,235,242,0.20) 0%, transparent 62%);
+  animation: fog-drift-a 38s ease-in-out infinite;
+}
+.hero--home .hero__fog::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  /* Layer 2: mid-harbour drift going right */
+  background: radial-gradient(ellipse 120% 58% at 58% 78%, rgba(230,242,248,0.17) 0%, transparent 58%);
+  animation: fog-drift-b 30s ease-in-out infinite;
+}
+.hero--home .hero__fog::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  /* Layer 3: lighter wisp on the right, slow drift */
+  background: radial-gradient(ellipse 100% 50% at 88% 86%, rgba(215,232,240,0.14) 0%, transparent 55%);
+  animation: fog-drift-c 44s ease-in-out infinite;
+}
+
+/* Bump content above the fog layer on the homepage */
+.hero--home .hero__content { z-index: 3; }
+
+/* The Island: golden hour warmth on granite */
+.hero--island .hero__image-slot {
+  background: linear-gradient(
+    to bottom,
+    #0d2035 0%,
+    #1A3A5C 35%,
+    #2d3a48 55%,
+    #4a3828 72%,
+    #7a5035 88%,
+    #8a5a3c 100%
+  );
+  opacity: 1;
+}
+
+/* Flora & Fauna: forest canopy, overlapping greens */
+.hero--flora .hero__image-slot {
+  background:
+    radial-gradient(ellipse 62% 80% at 12% 35%, rgba(12,38,18,0.96) 0%, transparent 58%),
+    radial-gradient(ellipse 72% 65% at 88% 28%, rgba(18,48,22,0.92) 0%, transparent 55%),
+    radial-gradient(ellipse 85% 75% at 50% 72%, rgba(8,28,14,0.88) 0%, transparent 62%),
+    linear-gradient(160deg, #090f0b 0%, #0a1f0f 40%, #0e2a14 65%, #0a1e20 100%);
+  opacity: 1;
+}
+
+/* Activities: bright, clear day on open water with animated wave */
+.hero--activities .hero__image-slot {
+  background: linear-gradient(
+    to bottom,
+    #092030 0%,
+    #0d3248 22%,
+    #184e68 48%,
+    #2A6B7C 72%,
+    #4a9ab0 100%
+  );
+  opacity: 1;
+}
+.hero--activities::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 200%;
+  height: 50px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 50'%3E%3Cpath fill='%23F5F0E8' d='M0,25 C133,2 267,48 400,25 C533,2 667,48 800,25 L800,50 L0,50 Z'/%3E%3C/svg%3E") repeat-x bottom;
+  background-size: 50% 100%;
+  animation: wave-scroll 10s linear infinite;
+  z-index: 2;
+  pointer-events: none;
+}
+/* Hide static silhouette on activities (wave replaces it) */
+.hero--activities .hero__silhouette { display: none; }
+
+/* Bearing Witness: darkest, contemplative */
+.hero--witness .hero__image-slot {
+  background: linear-gradient(
+    to bottom,
+    #040b12 0%,
+    #081622 40%,
+    #0d2035 78%,
+    #101e2e 100%
+  );
+  opacity: 1;
+}
+
+/* The Naming: dignified, with amber horizon line at ~1/3 */
+.hero--naming .hero__image-slot {
+  background: linear-gradient(
+    to bottom,
+    #0d2035 0%,
+    #112642 30.5%,
+    #c49a6c 31.5%,
+    #c49a6c 32.5%,
+    #112642 33.5%,
+    #1A3A5C 55%,
+    #0d2035 100%
+  );
+  opacity: 1;
+}
+
+/* Community: warmest — dark earthy tones */
+.hero--community .hero__image-slot {
+  background: linear-gradient(
+    to bottom,
+    #1a1408 0%,
+    #2a2010 28%,
+    #3d2e18 55%,
+    #5a4228 78%,
+    #7a5a36 100%
+  );
+  opacity: 1;
+}
+
+/* About: clean, minimal enhancement */
+.hero--about .hero__image-slot {
+  background: linear-gradient(
+    135deg,
+    #0d2035 0%,
+    #1A3A5C 55%,
+    #1e4268 100%
+  );
+  opacity: 1;
+}
+
+/* ── Footer wave ─────────────────────────────────────────────────────────────── */
+.footer-wave {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
 }
 
 /* ── Buttons ─────────────────────────────────────────────────────────────────── */
@@ -768,7 +979,7 @@ main { flex: 1; }
   font-family: var(--font-serif);
   font-size: clamp(3rem, 8vw, 5rem);
   font-weight: 700;
-  color: var(--teal-light);
+  color: var(--amber);
   line-height: 1;
   margin-bottom: .5rem;
 }
@@ -948,6 +1159,81 @@ main { flex: 1; }
   clip: rect(0,0,0,0);
   white-space: nowrap;
   border: 0;
+}
+
+/* ── SVG Section Dividers ────────────────────────────────────────────────────── */
+.section-divider {
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  color: var(--teal);
+  opacity: 0.45;
+  margin: -1px 0;
+  pointer-events: none;
+}
+.section-divider--centered {
+  display: flex;
+  justify-content: center;
+  opacity: 0.4;
+}
+.svg-divider { display: block; width: 100%; }
+.svg-divider--wave { height: 44px; }
+.svg-divider--shore { height: 48px; }
+.svg-divider--trees { height: 65px; width: auto; max-width: 720px; }
+.svg-divider--birds { height: 55px; width: auto; max-width: 620px; }
+
+/* Dividers on dark backgrounds use cream stroke */
+.section--dark .section-divider,
+.section--dark + .section-divider,
+.section-divider + .section--dark { color: var(--cream); }
+
+/* ── SVG Illustrations ───────────────────────────────────────────────────────── */
+.svg-illustration {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  color: var(--teal);
+  opacity: 0.7;
+}
+.svg-illustration--sm { max-width: 320px; }
+.svg-illustration--md { max-width: 520px; }
+.svg-illustration--lg { max-width: 760px; }
+.svg-illustration--center { margin: 0 auto; }
+.svg-illustration--cream { color: var(--cream); }
+.svg-illustration--amber { color: var(--amber); }
+
+/* Illustration wrapper — replaces img-placeholder in editorial slots */
+.illustration-slot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 220px;
+  padding: 2rem;
+  color: var(--teal);
+  opacity: 0.75;
+}
+
+/* ── SVG Wildlife Icons ──────────────────────────────────────────────────────── */
+.card__icon {
+  display: block;
+  width: 52px;
+  height: 52px;
+  color: var(--teal);
+  opacity: 0.7;
+  margin-bottom: .75rem;
+}
+.card__icon--sm { width: 36px; height: 36px; }
+.card__icon--lg { width: 72px; height: 72px; }
+
+/* Icon SVGs used inside card bodies */
+.card__body .svg-icon {
+  display: block;
+  width: 52px;
+  height: 52px;
+  color: var(--teal);
+  opacity: 0.65;
+  margin-bottom: .75rem;
+  flex-shrink: 0;
 }
 
 /* ── Responsive ─────────────────────────────────────────────────────────────── */

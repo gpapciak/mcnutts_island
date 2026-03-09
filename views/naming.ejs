@@ -10,7 +10,7 @@
 <main>
 
   <!-- ── Hero ─────────────────────────────────────────────────────────────── -->
-  <section class="hero" style="padding: 3.5rem 0;">
+  <section class="hero hero--naming" style="padding: 3.5rem 0;">
     <div class="hero__image-slot" aria-hidden="true"></div>
     <div class="container">
       <div class="hero__content">
@@ -33,9 +33,14 @@
   </div>
   <% } %>
 
+  <%- include('partials/svg/divider-wave') %>
+
   <!-- ── Context ───────────────────────────────────────────────────────────── -->
   <section class="section">
     <div class="container container--narrow">
+      <div style="text-align:center; margin-bottom: 2rem;">
+        <%- include('partials/svg/illus-compass') %>
+      </div>
       <span class="section__eyebrow">The Question</span>
       <h2>Why This Conversation Matters</h2>
       <p>
@@ -227,6 +232,8 @@
     </div>
   </section>
 
+  <%- include('partials/svg/divider-shore') %>
+
   <!-- ── Results Section ────────────────────────────────────────────────────── -->
   <section class="section" id="results-section">
     <div class="container container--narrow">
@@ -364,6 +371,8 @@
       </div><!-- /results-content -->
     </div>
   </section>
+
+  <%- include('partials/svg/divider-birds') %>
 
   <!-- ── Further reading ────────────────────────────────────────────────────── -->
   <section class="section section--alt">

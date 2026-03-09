@@ -10,7 +10,7 @@
 <main>
 
   <!-- ── Hero ─────────────────────────────────────────────────────────────── -->
-  <section class="hero" style="padding: 3rem 0;">
+  <section class="hero hero--community" style="padding: 3rem 0;">
     <div class="hero__image-slot" aria-hidden="true"></div>
     <div class="container">
       <div class="hero__content">
@@ -33,6 +33,8 @@
     </div>
   </div>
   <% } %>
+
+  <%- include('partials/svg/divider-wave') %>
 
   <!-- ── Join form ─────────────────────────────────────────────────────────── -->
   <% if (typeof joined === 'undefined' || !joined) { %>
@@ -154,6 +156,8 @@
     </div>
   </section>
   <% } %>
+
+  <%- include('partials/svg/divider-shore') %>
 
   <!-- ── Member directory ───────────────────────────────────────────────────── -->
   <% if (typeof members !== 'undefined' && members.length > 0) { %>

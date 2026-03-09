@@ -10,7 +10,7 @@
 <main>
 
   <!-- ── Hero ─────────────────────────────────────────────────────────────── -->
-  <section class="hero" style="padding: 3.5rem 0;">
+  <section class="hero hero--flora" style="padding: 3.5rem 0;">
     <div class="hero__image-slot" aria-hidden="true"></div>
     <div class="container">
       <div class="hero__content">
@@ -24,6 +24,8 @@
       </div>
     </div>
   </section>
+
+  <%- include('partials/svg/divider-treeline') %>
 
   <!-- ── Acadian Forest ────────────────────────────────────────────────────── -->
   <section class="section">
@@ -56,6 +58,8 @@
     </div>
   </section>
 
+  <%- include('partials/svg/divider-shore') %>
+
   <!-- ── Bogs ──────────────────────────────────────────────────────────────── -->
   <section class="section section--alt">
     <div class="container">
@@ -86,6 +90,8 @@
     </div>
   </section>
 
+  <%- include('partials/svg/divider-birds') %>
+
   <!-- ── Wildlife grid ─────────────────────────────────────────────────────── -->
   <section class="section">
     <div class="container">
@@ -100,6 +106,7 @@
             <img src="/images/bald_eagle.png" alt="Bald eagle on McNutt's Island" style="width:100%; height:100%; object-fit:cover;">
           </div>
           <div class="card__body">
+            <%- include('partials/svg/icon-eagle') %>
             <h3 class="card__title">Bald Eagles</h3>
             <p class="card__excerpt">
               Bald eagles nest on McNutt's Island and are a frequent sight along the shoreline
@@ -115,6 +122,7 @@
             <img src="/images/harbor_seal.jpg" alt="Harbour seal on McNutt's Island" style="width:100%; height:100%; object-fit:cover;">
           </div>
           <div class="card__body">
+            <%- include('partials/svg/icon-seal') %>
             <h3 class="card__title">Harbour Seals</h3>
             <p class="card__excerpt">
               Harbour seals haul out on the island's cobble beaches and exposed ledges,
@@ -129,6 +137,7 @@
             <img src="/images/migratory songbirds.png" alt="Migratory songbirds on McNutt's Island" style="width:100%; height:100%; object-fit:cover;">
           </div>
           <div class="card__body">
+            <%- include('partials/svg/icon-songbird') %>
             <h3 class="card__title">Migratory Songbirds</h3>
             <p class="card__excerpt">
               The island sits on the Atlantic flyway and provides critical stopover habitat
@@ -143,6 +152,7 @@
             <img src="/images/intertidal_zone.jpg" alt="Intertidal zones on McNutt's Island" style="width:100%; height:100%; object-fit:cover;">
           </div>
           <div class="card__body">
+            <%- include('partials/svg/icon-starfish') %>
             <h3 class="card__title">Intertidal Zones</h3>
             <p class="card__excerpt">
               The island's rocky intertidal zones support diverse communities of barnacles,
@@ -157,6 +167,7 @@
             <img src="/images/mushroom-berries.png" alt="Mushrooms, berries and edible plants on McNutt's Island" style="width:100%; height:100%; object-fit:cover;">
           </div>
           <div class="card__body">
+            <%- include('partials/svg/icon-mushroom') %>
             <h3 class="card__title">Mushrooms, Berries &amp; Edible Plants</h3>
             <p class="card__excerpt">
               Wild foods occur across the island but vary by season and habitat. Forests may yield
@@ -172,6 +183,7 @@
             <img src="/images/snake.jpg" alt="Eastern garter snake on McNutt's Island" style="width:100%; height:100%; object-fit:cover;">
           </div>
           <div class="card__body">
+            <%- include('partials/svg/icon-snake') %>
             <h3 class="card__title">Snakes &amp; Amphibians</h3>
             <p class="card__excerpt">
               The harmless Eastern garter snake is the only snake commonly encountered on McNutt's Island.
@@ -186,6 +198,7 @@
             <img src="/images/insects.png" alt="Biting insects on McNutt's Island" style="width:100%; height:100%; object-fit:cover;">
           </div>
           <div class="card__body">
+            <%- include('partials/svg/icon-mosquito') %>
             <h3 class="card__title">Biting Insects</h3>
             <p class="card__excerpt">
               All biting insects have been unofficially banned from the island, but so far have refused
@@ -201,6 +214,7 @@
             <span class="img-placeholder__label">Osprey photograph</span>
           </div>
           <div class="card__body">
+            <%- include('partials/svg/icon-osprey') %>
             <h3 class="card__title">Osprey &amp; Shore Birds</h3>
             <p class="card__excerpt">
               Osprey nest and hunt over the harbour throughout the summer months.
@@ -214,6 +228,8 @@
       </div>
     </div>
   </section>
+
+  <%- include('partials/svg/divider-wave') %>
 
   <!-- ── Southwest Nova Biosphere ─────────────────────────────────────────── -->
   <section class="section section--alt">

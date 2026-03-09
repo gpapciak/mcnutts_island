@@ -10,7 +10,7 @@
 <main>
 
   <!-- ── Hero ─────────────────────────────────────────────────────────────── -->
-  <section class="hero" style="padding: 3.5rem 0;">
+  <section class="hero hero--witness" style="padding: 3.5rem 0;">
     <div class="hero__image-slot" aria-hidden="true"></div>
     <div class="container">
       <div class="hero__content">
@@ -34,6 +34,8 @@
     </div>
   </div>
   <% } %>
+
+  <%- include('partials/svg/divider-shore') %>
 
   <!-- ── About this section ────────────────────────────────────────────────── -->
   <section class="section">
@@ -60,13 +62,14 @@
             are moderated before appearing publicly.
           </p>
         </div>
-        <div class="editorial__image img-placeholder" style="min-height: 300px;">
-          <span class="img-placeholder__icon" aria-hidden="true">&#128218;</span>
-          <span class="img-placeholder__label">Historical photograph</span>
+        <div class="illustration-slot" style="min-height: 260px;">
+          <%- include('partials/svg/illus-journal') %>
         </div>
       </div>
     </div>
   </section>
+
+  <%- include('partials/svg/divider-birds') %>
 
   <!-- ── Submit form ────────────────────────────────────────────────────────── -->
   <section class="section section--alt">

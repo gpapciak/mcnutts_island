@@ -10,9 +10,56 @@
 <main>
 
   <!-- ── Hero ──────────────────────────────────────────────────────────────── -->
-  <section class="hero">
+  <section class="hero hero--home">
     <div class="hero__image-slot" aria-hidden="true"></div>
-    <div class="hero__silhouette" aria-hidden="true"></div>
+    <div class="hero__fog" aria-hidden="true"></div>
+    <svg class="hero__island-silhouette" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+
+      <!-- Water: dark cool teal — visible on far left, far right, and between island taper -->
+      <path fill="#15354d" d="M0,120 L0,86 C240,79 480,87 720,81 C960,75 1200,82 1440,78 L1440,120 Z"/>
+
+      <!-- Island land mass: warm dark green, x≈35 to x≈980 -->
+      <!-- Shore rises from sea, lighthouse headland, spruce forest tapering right -->
+      <path fill="#1a2e20" d="
+        M35,120 L35,99 C50,95 63,92 76,89
+        L84,86 L90,84 L93,75 L151,75 L156,83
+        L161,50 L170,83 L175,47 L184,83 L189,44 L198,83 L203,41 L212,83 L217,39 L226,83
+        L231,37 L240,83 L245,39 L254,83 L259,37 L268,83 L273,35 L282,83 L287,37 L296,83
+        L301,35 L310,83 L315,33 L324,83 L329,35 L338,83 L343,33 L352,83 L357,35 L366,83
+        L371,33 L380,83 L385,35 L394,83 L399,33 L408,83 L413,35 L422,83 L427,33 L436,83
+        L441,35 L450,83 L455,37 L464,83 L469,38 L478,83 L483,40 L492,83 L497,42 L506,84
+        L511,44 L520,84 L525,47 L534,84 L539,51 L548,84 L553,54 L562,84 L567,56 L576,85
+        L581,59 L590,85 L595,61 L604,85 L609,63 L618,86 L623,65 L632,86 L637,67 L646,86
+        L651,69 L660,87 L665,71 L674,87 L679,73 L688,87 L693,75 L702,87 L707,77 L716,87
+        L721,79 L730,88 L735,81 L744,88 L749,83 L758,88 L763,84 L772,88 L777,85 L786,89
+        L800,89 L820,89 L840,89 L860,90 L876,90
+        L880,91 Q916,94 948,98 Q974,102 998,109 L998,120 Z"/>
+
+      <!-- Lighthouse: tapered tower, gallery, lantern room, cap — on the headland -->
+
+      <!-- Foundation: wide trapezoidal base -->
+      <path fill="#0d1c12" d="M88,84 L154,84 L143,75 L99,75 Z"/>
+
+      <!-- Tower body: tapered — wide at base, narrow at top -->
+      <path fill="#142618" d="M101,75 L141,75 L130,51 L112,51 Z"/>
+
+      <!-- Gallery / railing ledge: protrudes wider than tower top -->
+      <rect fill="#0d1c12" x="108" y="48" width="26" height="3.5"/>
+
+      <!-- Lantern room: box, wider than tower shaft -->
+      <rect fill="#1c3422" x="111" y="37" width="20" height="11"/>
+
+      <!-- Lantern window: amber warm glow -->
+      <rect fill="rgba(196,154,108,0.62)" x="115" y="39" width="12" height="7"/>
+
+      <!-- Cap / roof: pointed triangle -->
+      <polygon fill="#0d1c12" points="110,37 132,37 121,28"/>
+
+      <!-- Light beams: two amber fan rays from lantern room -->
+      <path fill="rgba(196,154,108,0.18)" d="M119,36 L272,1 L280,10 Z"/>
+      <path fill="rgba(196,154,108,0.12)" d="M121,40 L268,18 L275,28 Z"/>
+
+    </svg>
     <div class="container">
       <div class="hero__content">
         <span class="hero__eyebrow">McNutt's Island, Nova Scotia</span>
@@ -63,6 +110,8 @@
   </section>
   <% } %>
 
+  <%- include('partials/svg/divider-treeline') %>
+
   <!-- ── Island snapshot ──────────────────────────────────────────────────────── -->
   <section class="section section--alt">
     <div class="container">
@@ -83,13 +132,14 @@
           </p>
           <a href="/island" class="btn btn--outline-dark mt-3">Read the Full History</a>
         </div>
-        <div class="editorial__image img-placeholder" style="min-height: 320px;">
-          <span class="img-placeholder__icon" aria-hidden="true">&#9968;</span>
-          <span class="img-placeholder__label">Island photograph</span>
+        <div class="illustration-slot" style="min-height: 220px; align-items: flex-end;">
+          <%- include('partials/svg/illus-panorama') %>
         </div>
       </div>
     </div>
   </section>
+
+  <%- include('partials/svg/divider-shore') %>
 
   <!-- ── Explore sections ──────────────────────────────────────────────────────── -->
   <section class="section">
@@ -163,6 +213,8 @@
   </section>
   <% } %>
 
+  <%- include('partials/svg/divider-birds') %>
+
   <!-- ── Member count + CTA ────────────────────────────────────────────────────── -->
   <section class="section section--dark">
     <div class="container">
@@ -180,6 +232,8 @@
       </div>
     </div>
   </section>
+
+  <%- include('partials/svg/divider-wave') %>
 
   <!-- ── Naming poll teaser ────────────────────────────────────────────────────── -->
   <section class="section">

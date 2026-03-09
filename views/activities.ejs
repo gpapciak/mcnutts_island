@@ -10,7 +10,7 @@
 <main>
 
   <!-- ── Hero ─────────────────────────────────────────────────────────────── -->
-  <section class="hero" style="padding: 3.5rem 0;">
+  <section class="hero hero--activities" style="padding: 3.5rem 0;">
     <div class="hero__image-slot" aria-hidden="true"></div>
     <div class="container">
       <div class="hero__content">
@@ -23,6 +23,8 @@
       </div>
     </div>
   </section>
+
+  <%- include('partials/svg/divider-wave') %>
 
   <!-- ── Getting Here ──────────────────────────────────────────────────────── -->
   <section class="section">
@@ -74,6 +76,8 @@
     </div>
   </section>
 
+  <%- include('partials/svg/divider-shore') %>
+
   <!-- ── Activities grid ───────────────────────────────────────────────────── -->
   <section class="section section--alt">
     <div class="container">
@@ -103,8 +107,8 @@
         </div>
 
         <div class="editorial">
-          <div class="editorial__image img-placeholder" style="min-height: 220px; max-width: 280px;">
-            <span class="img-placeholder__label">Kayak photograph</span>
+          <div class="illustration-slot" style="min-height: 180px; max-width: 360px; padding: 1rem 0;">
+            <%- include('partials/svg/illus-kayak') %>
           </div>
           <div>
             <h3>Kayaking</h3>
@@ -161,6 +165,8 @@
     </div>
   </section>
 
+  <%- include('partials/svg/divider-birds') %>
+
   <!-- ── Accommodations & Visitor Info ─────────────────────────────────────── -->
   <section class="section">
     <div class="container">
@@ -210,6 +216,8 @@
       </div>
     </div>
   </section>
+
+  <%- include('partials/svg/divider-treeline') %>
 
   <!-- ── Responsible visiting ──────────────────────────────────────────────── -->
   <section class="section section--dark">
