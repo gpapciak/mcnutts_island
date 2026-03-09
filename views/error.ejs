@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('partials/head') %>
+</head>
+<body>
+
+<%- include('partials/header') %>
+
+<main>
+  <section class="section">
+    <div class="container container--narrow text-center">
+      <p style="font-size: 5rem; line-height:1; margin-bottom: 1rem;" aria-hidden="true">&#9992;</p>
+      <h1>Something Went Wrong</h1>
+      <p class="lead">
+        <% if (typeof status !== 'undefined') { %>Error <%= status %>: <% } %>
+        <%= typeof message !== 'undefined' ? message : 'An unexpected error occurred.' %>
+      </p>
+      <p class="mt-3">
+        <a href="/" class="btn btn--primary">Return Home</a>
+      </p>
+    </div>
+  </section>
+</main>
+
+<%- include('partials/footer') %>
+<script src="/js/main.js"></script>
+</body>
+</html>

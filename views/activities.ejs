@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('partials/head') %>
+</head>
+<body>
+
+<%- include('partials/header') %>
+
+<main>
+
+  <!-- ── Hero ─────────────────────────────────────────────────────────────── -->
+  <section class="hero" style="padding: 3.5rem 0;">
+    <div class="hero__image-slot" aria-hidden="true"></div>
+    <div class="container">
+      <div class="hero__content">
+        <span class="hero__eyebrow">Visiting &amp; Exploring</span>
+        <h1>Activities on the Island</h1>
+        <p class="hero__description">
+          Hiking the lighthouse trail, kayaking the harbour, foraging wild berries,
+          birding the headlands. McNutt's Island rewards those who make the crossing.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Getting Here ──────────────────────────────────────────────────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="editorial">
+        <div>
+          <span class="section__eyebrow">First Things First</span>
+          <h2>Getting to the Island</h2>
+          <p>
+            McNutt's Island is accessible only by water. There is no public ferry service —
+            visitors arrive by private boat, kayak, or chartered water taxi from the
+            Gunning Cove boat launch, approximately 15 minutes from Shelburne town centre.
+          </p>
+          <p>
+            The crossing from Gunning Cove is roughly 800 metres across sheltered water.
+            Conditions in Shelburne Harbour are generally calm, but weather can change quickly,
+            particularly in spring and fall. Check the forecast and tide tables before crossing.
+          </p>
+          <p>
+            <strong>Gunning Cove</strong> has a public boat launch and limited parking.
+            From Shelburne, take Highway 3 west, turn onto Gunning Cove Road, and follow
+            to the water.
+          </p>
+          <blockquote>
+            There are no services on McNutt's Island — no convenience store, no cell service,
+            no medical facilities. Come prepared with everything you need.
+          </blockquote>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:1rem;">
+          <div class="editorial__image img-placeholder" style="min-height: 200px;">
+            <span class="img-placeholder__icon" aria-hidden="true">&#9973;</span>
+            <span class="img-placeholder__label">Boat launch photograph</span>
+          </div>
+          <div class="card card--sand">
+            <div class="card__body">
+              <h4 style="margin-bottom:.5rem;">Quick Facts</h4>
+              <ul style="font-size:.875rem; line-height:2;">
+                <li>Launch: Gunning Cove, Shelburne</li>
+                <li>Crossing: ~800m, 15 min by kayak</li>
+                <li>Services: None — self-sufficient</li>
+                <li>Cell service: None</li>
+                <li>Season: Year-round access</li>
+                <li>Camping: Permitted with care</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Activities grid ───────────────────────────────────────────────────── -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section__header text-center">
+        <span class="section__eyebrow">What to Do</span>
+        <h2>Activities</h2>
+      </div>
+      <div class="grid grid--2">
+
+        <div class="editorial">
+          <div class="editorial__image img-placeholder" style="min-height: 220px; max-width: 280px;">
+            <span class="img-placeholder__label">Trail photograph</span>
+          </div>
+          <div>
+            <h3>Hiking</h3>
+            <p>
+              The lighthouse trail winds through Acadian forest and along the island's western
+              shore to the 1788 lighthouse at McNutt's Head. The round trip is approximately
+              6 kilometres of moderate walking, with excellent views of the Atlantic and
+              the harbour approaches.
+            </p>
+            <p>
+              The trail is informal — bring good footwear and be prepared for wet ground
+              in the bog sections. The lighthouse grounds are open to visitors.
+            </p>
+          </div>
+        </div>
+
+        <div class="editorial">
+          <div class="editorial__image img-placeholder" style="min-height: 220px; max-width: 280px;">
+            <span class="img-placeholder__label">Kayak photograph</span>
+          </div>
+          <div>
+            <h3>Kayaking</h3>
+            <p>
+              Sea kayaking around McNutt's Island is one of the finest paddles on the South Shore.
+              The sheltered harbour side is suitable for beginners; the outer coast requires
+              more experience and attention to weather.
+            </p>
+            <p>
+              Kayak rentals are available in Shelburne. Paddlers should be comfortable
+              self-rescuing in cold water and aware of tidal currents at the island's points.
+            </p>
+          </div>
+        </div>
+
+        <div class="editorial">
+          <div class="editorial__image img-placeholder" style="min-height: 220px; max-width: 280px;">
+            <span class="img-placeholder__label">Berries photograph</span>
+          </div>
+          <div>
+            <h3>Foraging</h3>
+            <p>
+              The island's open areas produce an abundance of wild blueberries, raspberries,
+              and wild strawberries in summer. Chanterelle mushrooms are found throughout
+              the forest after rain. Beach pea and sea rocket are edible coastal plants.
+            </p>
+            <p>
+              Forage lightly and knowledgeably. Take only what you'll use; leave the rest
+              for the animals and for next season. Never harvest from unfamiliar plants.
+            </p>
+          </div>
+        </div>
+
+        <div class="editorial">
+          <div class="editorial__image img-placeholder" style="min-height: 220px; max-width: 280px;">
+            <span class="img-placeholder__label">Binoculars/birding photograph</span>
+          </div>
+          <div>
+            <h3>Birding</h3>
+            <p>
+              McNutt's Island is exceptional birding territory — bald eagles year-round,
+              migratory songbirds in spring and fall, nesting osprey and great blue herons
+              through summer, and wintering sea ducks offshore.
+            </p>
+            <p>
+              Bring binoculars and a field guide. Spring migration (late April–May) and
+              fall migration (August–October) are the most productive times for warbler
+              and shorebird diversity.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Accommodations & Visitor Info ─────────────────────────────────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__eyebrow">Plan Your Visit</span>
+        <h2>Visitor Information</h2>
+      </div>
+      <div class="grid grid--2">
+        <div>
+          <h3>Staying on the Island</h3>
+          <p>
+            There are no commercial accommodations on McNutt's Island. Camping is possible
+            with appropriate preparation — you are responsible for carrying in everything
+            you need and carrying out all waste. There are no facilities.
+          </p>
+          <p>
+            Several island residents and property owners provide seasonal accommodation;
+            contact the McNutt's Island Alliance for referrals to properties that may be
+            available for short-term rental.
+          </p>
+          <h3 class="mt-3">Staying in Shelburne</h3>
+          <p>
+            The town of Shelburne, 15 minutes from Gunning Cove, offers a full range of
+            accommodations from B&amp;Bs to motels. Shelburne is a heritage town with
+            excellent restaurants, the Shelburne County Museum, and the historic waterfront.
+          </p>
+        </div>
+        <div>
+          <h3>What to Bring</h3>
+          <ul style="line-height: 2.2; font-size: .95rem;">
+            <li>Water — at least 2L per person</li>
+            <li>Food for the day (nothing available on island)</li>
+            <li>Rain gear — weather changes quickly</li>
+            <li>Warm layers, even in summer</li>
+            <li>Bug repellent (summer blackflies and mosquitoes)</li>
+            <li>Sunscreen and hat</li>
+            <li>First aid kit</li>
+            <li>A charged GPS device or downloaded offline map</li>
+            <li>VHF marine radio if boating</li>
+            <li>A bag for your waste</li>
+          </ul>
+          <p class="mt-2 text-muted" style="font-size:.875rem;">
+            There is no cell service on the island. Let someone onshore know your plan
+            and expected return time before you cross.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Responsible visiting ──────────────────────────────────────────────── -->
+  <section class="section section--dark">
+    <div class="container container--narrow text-center">
+      <h2>Visit Responsibly</h2>
+      <p style="color:var(--sand); max-width:520px; margin: 1rem auto 0;">
+        McNutt's Island is a working landscape — fishing families depend on it,
+        wildlife nests on it, and a fragile ecosystem depends on visitors who
+        tread lightly. Leave no trace. Respect nesting areas. Stay on established
+        paths where possible. Take only photographs.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<%- include('partials/footer') %>
+<script src="/js/main.js"></script>
+</body>
+</html>

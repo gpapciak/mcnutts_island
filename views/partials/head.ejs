@@ -1,0 +1,27 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title><%= title || "McNutt's Island Alliance" %></title>
+
+<% if (typeof meta !== 'undefined') { %>
+  <% if (meta.description) { %><meta name="description" content="<%= meta.description %>"><% } %>
+  <% if (meta.canonical) { %><link rel="canonical" href="<%= meta.canonical %>"><% } %>
+  <% if (meta.og) { %>
+    <meta property="og:type"        content="<%= meta.og.type || 'website' %>">
+    <meta property="og:url"         content="<%= meta.og.url || siteUrl %>">
+    <meta property="og:title"       content="<%= meta.og.title || title %>">
+    <meta property="og:description" content="<%= meta.og.description || meta.description || '' %>">
+    <meta property="og:site_name"   content="McNutt's Island Alliance">
+  <% } %>
+<% } %>
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta name="theme-color" content="#1A3A5C">
+<meta name="robots" content="index, follow">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+
+<!-- Stylesheet -->
+<link rel="stylesheet" href="/css/main.css">

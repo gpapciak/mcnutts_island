@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('partials/head') %>
+</head>
+<body>
+
+<%- include('partials/header') %>
+
+<main>
+
+  <!-- ── Hero ─────────────────────────────────────────────────────────────── -->
+  <section class="hero" style="padding: 3.5rem 0;">
+    <div class="hero__image-slot" aria-hidden="true"></div>
+    <div class="container">
+      <div class="hero__content">
+        <span class="hero__eyebrow">Natural History</span>
+        <h1>Flora &amp; Fauna</h1>
+        <p class="hero__description">
+          Acadian forest, coastal bogs, nesting bald eagles, harbour seals,
+          and an intertidal zone teeming with life. McNutt's Island is a landscape
+          worth knowing and worth protecting.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Acadian Forest ────────────────────────────────────────────────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="editorial">
+        <div>
+          <span class="section__eyebrow">The Forest</span>
+          <h2>Acadian Forest</h2>
+          <p>
+            McNutt's Island supports a classic Acadian forest — a mixed forest type unique
+            to the Maritime provinces, combining boreal and deciduous species in a mosaic
+            shaped by glaciation, climate, and centuries of succession.
+          </p>
+          <p>
+            Red spruce and balsam fir dominate the interior, with yellow birch, sugar maple,
+            and red maple in the more sheltered areas. White pine stands tall on the drier
+            ridges. The forest floor is a deep carpet of sphagnum moss, ferns, and the
+            occasional carnivorous sundew.
+          </p>
+          <p>
+            Much of the island's forest has never been logged commercially, giving it a
+            structural complexity — standing deadwood, downed logs, multilayered canopy —
+            that is increasingly rare on the Nova Scotia mainland.
+          </p>
+        </div>
+        <div class="editorial__image" style="min-height: 300px;">
+          <img src="/images/acadian_forest.jpg" alt="Acadian forest on McNutt's Island" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Bogs ──────────────────────────────────────────────────────────────── -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="editorial editorial--reverse">
+        <div>
+          <span class="section__eyebrow">Wetlands</span>
+          <h2>Bogs &amp; Wetlands</h2>
+          <p>
+            The island's interior contains extensive bog ecosystems — peat-forming wetlands
+            that are among the most carbon-dense ecosystems on the planet. Sphagnum mosses
+            grow in great hummocks, their living surfaces bright green and gold.
+          </p>
+          <p>
+            Pitcher plants, sundews, and bog laurel grow here alongside leatherleaf and
+            Labrador tea. These carnivorous plants have evolved to thrive in nutrient-poor,
+            acidic conditions — catching insects rather than absorbing nutrients from soil.
+          </p>
+          <p>
+            The bogs are also critical habitat for nesting waterfowl and amphibians,
+            and they filter water flowing toward the harbour. Their intact condition
+            makes McNutt's Island an important reference ecosystem for the region.
+          </p>
+        </div>
+        <div class="editorial__image" style="min-height: 300px;">
+          <img src="/images/wetland.jpg" alt="Bogs and wetlands on McNutt's Island" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Wildlife grid ─────────────────────────────────────────────────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header text-center">
+        <h2>The Living Island</h2>
+        <span class="section__eyebrow">What You'll Find Here</span>
+      </div>
+      <div class="grid grid--auto-3">
+
+        <article class="card">
+          <div class="card__image-slot">
+            <img src="/images/bald_eagle.png" alt="Bald eagle on McNutt's Island" style="width:100%; height:100%; object-fit:cover;">
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">Bald Eagles</h3>
+            <p class="card__excerpt">
+              Bald eagles nest on McNutt's Island and are a frequent sight along the shoreline
+              and over the harbour. Nova Scotia has one of the highest bald eagle densities
+              in Eastern North America, and the island's undisturbed forest provides ideal
+              nesting habitat.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card__image-slot">
+            <img src="/images/harbor_seal.jpg" alt="Harbour seal on McNutt's Island" style="width:100%; height:100%; object-fit:cover;">
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">Harbour Seals</h3>
+            <p class="card__excerpt">
+              Harbour seals haul out on the island's cobble beaches and exposed ledges,
+              particularly in late summer and fall. They feed on the abundant fish in
+              Shelburne Harbour and are often visible from the lighthouse point.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card__image-slot">
+            <img src="/images/migratory songbirds.png" alt="Migratory songbirds on McNutt's Island" style="width:100%; height:100%; object-fit:cover;">
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">Migratory Songbirds</h3>
+            <p class="card__excerpt">
+              The island sits on the Atlantic flyway and provides critical stopover habitat
+              for dozens of migratory songbird species each spring and fall. Warblers,
+              thrushes, vireos, and sparrows use the island's forest edges in significant numbers.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card__image-slot">
+            <img src="/images/intertidal_zone.jpg" alt="Intertidal zones on McNutt's Island" style="width:100%; height:100%; object-fit:cover;">
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">Intertidal Zones</h3>
+            <p class="card__excerpt">
+              The island's rocky intertidal zones support diverse communities of barnacles,
+              mussels, periwinkles, sea stars, and sea urchins. The kelp beds offshore
+              provide habitat for juvenile fish and are themselves a rich ecosystem.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card__image-slot">
+            <img src="/images/mushroom-berries.png" alt="Mushrooms, berries and edible plants on McNutt's Island" style="width:100%; height:100%; object-fit:cover;">
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">Mushrooms, Berries &amp; Edible Plants</h3>
+            <p class="card__excerpt">
+              Wild foods occur across the island but vary by season and habitat. Forests may yield
+              chanterelles and boletes after summer rains; openings support wild blueberries,
+              blackberries, strawberries and raspberries; the rocky shores can host edible seaweeds;
+              and wetter ground may hold fiddleheads and other edible plants.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card__image-slot">
+            <img src="/images/snake.jpg" alt="Eastern garter snake on McNutt's Island" style="width:100%; height:100%; object-fit:cover;">
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">Snakes &amp; Amphibians</h3>
+            <p class="card__excerpt">
+              The harmless Eastern garter snake is the only snake commonly encountered on McNutt's Island.
+              Often seen basking on rocks or moving through grass and coastal vegetation, it helps control
+              insects, worms, and amphibians. Frogs, toads, and salamanders are also present in wetter habitats.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card__image-slot">
+            <img src="/images/insects.png" alt="Biting insects on McNutt's Island" style="width:100%; height:100%; object-fit:cover;">
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">Biting Insects</h3>
+            <p class="card__excerpt">
+              All biting insects have been unofficially banned from the island, but so far have refused
+              to comply. So, mosquitoes, and black/deer flies continue to be a part of island life.
+              They're most noticeable in early summer and decline after that. Though annoying, they play
+              roles as pollinators, decomposers, and important food for birds, fish, frogs, and dragonflies.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card__image-slot img-placeholder">
+            <span class="img-placeholder__label">Osprey photograph</span>
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">Osprey &amp; Shore Birds</h3>
+            <p class="card__excerpt">
+              Osprey nest and hunt over the harbour throughout the summer months.
+              Great blue herons wade the shallows. Common eiders, black ducks, and
+              mergansers are present year-round. The outer headlands host nesting
+              storm petrels in season.
+            </p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Southwest Nova Biosphere ─────────────────────────────────────────── -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="editorial">
+        <div>
+          <span class="section__eyebrow">Bigger Picture</span>
+          <h2>Part of a UNESCO Biosphere Region</h2>
+          <p>
+            McNutt's Island sits within the
+            <a href="https://swnovabiosphere.ca/" target="_blank" rel="noopener noreferrer">Southwest Nova Biosphere Region</a>
+            — a UNESCO-designated territory spanning more than 1.54 million hectares across five
+            Nova Scotia counties: Annapolis, Digby, Queens, Shelburne, and Yarmouth. Recognized
+            under UNESCO's Man and the Biosphere Programme in 2001, it is one of only 19 such
+            designations in Canada, and the largest wilderness area in the Maritimes.
+          </p>
+          <p>
+            The biosphere designation exists to balance conservation with sustainable human
+            activity — and Shelburne County, with its working harbours, intact forests, and
+            coastal ecosystems, is core to that purpose. McNutt's Island is a small but
+            representative piece of what the designation is meant to protect: Acadian forest
+            largely undisturbed by logging, intact peat bogs, productive intertidal habitat,
+            and a coastline where eagles, seals, and migratory birds are still a daily fact
+            of life.
+          </p>
+          <p>
+            The broader region contains an estimated 75% of Nova Scotia's species at risk,
+            the most diverse amphibian and reptile populations east of Ontario, and some of the
+            most ecologically significant wetlands in Atlantic Canada. McNutt's Island contributes
+            to that richness. Its relative inaccessibility has kept it intact at a moment when
+            intact means something.
+          </p>
+          <p>
+            The island is not formally protected within the biosphere's core zones — its future
+            depends on the choices of those who own it, visit it, and care about it. The
+            Southwest Nova Biosphere designation is a reminder of what is at stake, and of
+            the wider ecological community this island is part of.
+          </p>
+        </div>
+        <div class="editorial__image img-placeholder" style="min-height: 300px;">
+          <span class="img-placeholder__icon" aria-hidden="true">&#127758;</span>
+          <span class="img-placeholder__label">Biosphere region map or landscape photograph</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Environmental Threats ─────────────────────────────────────────────── -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="editorial">
+        <div>
+          <span class="section__eyebrow">What's at Stake</span>
+          <h2>Environmental Threats</h2>
+          <p>
+            McNutt's Island's relative isolation has been its protection — but that protection
+            is not complete, and the threats it faces are the same ones facing coastal ecosystems
+            globally: climate change, invasive species, and development pressure.
+          </p>
+          <p>
+            <strong>Rising seas and coastal erosion</strong> are accelerating along the island's
+            western shore. Storm surge events are becoming more frequent and intense, threatening
+            the lighthouse, the historic structures, and the ecology of the upper beach zones.
+          </p>
+          <p>
+            <strong>Invasive species</strong> — particularly common reed (Phragmites) and
+            Japanese knotweed — have established footholds in some areas and require ongoing
+            monitoring and management.
+          </p>
+          <p>
+            <strong>Recreational pressure</strong>, while currently modest, has the potential
+            to increase as the island becomes better known. Responsible visitation practices
+            matter.
+          </p>
+        </div>
+        <div class="editorial__image img-placeholder" style="min-height: 300px;">
+          <span class="img-placeholder__icon" aria-hidden="true">&#127754;</span>
+          <span class="img-placeholder__label">Coastal erosion photograph</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ───────────────────────────────────────────────────────────────── -->
+  <section class="section section--dark">
+    <div class="container container--narrow text-center">
+      <h2>Help Protect This Place</h2>
+      <p style="color:var(--sand); max-width:480px; margin: 1rem auto 2rem;">
+        The McNutt's Island Alliance is committed to the long-term ecological health
+        of the island. Join us.
+      </p>
+      <a href="/community" class="btn btn--primary">Join the Alliance</a>
+    </div>
+  </section>
+
+</main>
+
+<%- include('partials/footer') %>
+<script src="/js/main.js"></script>
+</body>
+</html>

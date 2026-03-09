@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('partials/head') %>
+</head>
+<body>
+
+<%- include('partials/header') %>
+
+<main>
+
+  <!-- ── Hero ─────────────────────────────────────────────────────────────── -->
+  <section class="hero" style="padding: 3.5rem 0;">
+    <div class="hero__image-slot" aria-hidden="true"></div>
+    <div class="container">
+      <div class="hero__content">
+        <span class="hero__eyebrow">Personal Histories</span>
+        <h1>Bearing Witness</h1>
+        <p class="hero__description">
+          The island's history is made of many voices. This is the space for yours —
+          stories, memories, connections, and reflections. What does McNutt's Island
+          mean to you?
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Flash messages ────────────────────────────────────────────────────── -->
+  <% if (typeof flash !== 'undefined' && flash) { %>
+  <div class="container" style="padding-top: 1.5rem;">
+    <div class="flash flash--<%= flash.type || 'info' %>">
+      <span><%= flash.message %></span>
+      <button class="flash__dismiss" aria-label="Dismiss">&times;</button>
+    </div>
+  </div>
+  <% } %>
+
+  <!-- ── About this section ────────────────────────────────────────────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="editorial">
+        <div>
+          <span class="section__eyebrow">Why This Matters</span>
+          <h2>The Island's Layered History</h2>
+          <p>
+            McNutt's Island is not one story — it is many. Mi'kmaq presence for ten thousand
+            years. Black Loyalist families who arrived in 1783 with promises of freedom and land.
+            The lighthouse keepers who lived through Atlantic winters. The fishing families
+            who still return each spring. The seasonal residents. The researchers. The people
+            who crossed once in a kayak and never forgot the afternoon.
+          </p>
+          <p>
+            These stories are historical documents. They are also invitations to connection —
+            to a place, to a community, and to an ongoing conversation about what this island
+            has meant and what it might become.
+          </p>
+          <p>
+            We ask only that submissions be genuine. Stories, memories, and reflections —
+            about the island in any era, from any perspective — are welcome. All submissions
+            are moderated before appearing publicly.
+          </p>
+        </div>
+        <div class="editorial__image img-placeholder" style="min-height: 300px;">
+          <span class="img-placeholder__icon" aria-hidden="true">&#128218;</span>
+          <span class="img-placeholder__label">Historical photograph</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Submit form ────────────────────────────────────────────────────────── -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="grid grid--2" style="align-items: start; gap: 3rem;">
+        <div>
+          <span class="section__eyebrow">Add to the Record</span>
+          <h2>Share Your Story</h2>
+          <p>
+            Submit a story, memory, or reflection about McNutt's Island. It can be brief
+            or long, historical or personal, celebratory or difficult.
+          </p>
+          <p class="text-muted" style="font-size:.875rem;">
+            All submissions are reviewed before appearing publicly. Your email address
+            will not be displayed.
+          </p>
+        </div>
+
+        <form action="/bearing-witness/submit" method="POST" data-submitting>
+
+          <div class="form-group">
+            <label class="form-label" for="author_name">
+              Your Name <span class="required" aria-hidden="true">*</span>
+            </label>
+            <input
+              type="text"
+              id="author_name"
+              name="author_name"
+              class="form-input"
+              required
+              maxlength="120"
+              autocomplete="name"
+              placeholder="First and last name"
+            >
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="author_email">
+              Email <span class="required" aria-hidden="true">*</span>
+            </label>
+            <input
+              type="email"
+              id="author_email"
+              name="author_email"
+              class="form-input"
+              required
+              maxlength="254"
+              autocomplete="email"
+              placeholder="you@example.com"
+            >
+            <p class="form-help">Not publicly displayed.</p>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="subject">
+              Title <span class="required" aria-hidden="true">*</span>
+            </label>
+            <input
+              type="text"
+              id="subject"
+              name="subject"
+              class="form-input"
+              required
+              maxlength="200"
+              placeholder="A brief title for your story"
+            >
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="body">
+              Your Story <span class="required" aria-hidden="true">*</span>
+            </label>
+            <textarea
+              id="body"
+              name="body"
+              class="form-textarea"
+              rows="8"
+              required
+              maxlength="3000"
+              data-maxlength="3000"
+              placeholder="Write your story, memory, or reflection here…"
+            ></textarea>
+            <div class="char-count" id="body-count" aria-live="polite"></div>
+          </div>
+
+          <div class="form-submit-group">
+            <button type="submit" class="btn btn--primary" data-loading="Submitting…">
+              Submit My Story
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Approved stories ───────────────────────────────────────────────────── -->
+  <% if (typeof stories !== 'undefined' && stories.length > 0) { %>
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__eyebrow">From the Community</span>
+        <h2>Stories &amp; Reflections</h2>
+      </div>
+      <div class="grid grid--auto-2">
+        <% stories.forEach(story => { %>
+        <article class="story-card">
+          <h3 class="story-card__subject"><%= story.subject %></h3>
+          <div class="story-card__body">
+            <% const bodyText = story.body.length > 400 ? story.body.substring(0, 400) + '…' : story.body; %>
+            <p style="white-space: pre-line;"><%= bodyText %></p>
+          </div>
+          <div class="story-card__meta">
+            By <%= story.author_name %> &middot;
+            <%= new Date(story.created_at).toLocaleDateString('en-CA', { year: 'numeric', month: 'long' }) %>
+          </div>
+        </article>
+        <% }) %>
+      </div>
+    </div>
+  </section>
+  <% } %>
+
+</main>
+
+<%- include('partials/footer') %>
+<script src="/js/main.js"></script>
+</body>
+</html>

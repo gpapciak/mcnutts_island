@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('partials/head') %>
+</head>
+<body>
+
+<%- include('partials/header') %>
+
+<main>
+
+  <!-- ── Hero ─────────────────────────────────────────────────────────────── -->
+  <section class="hero" style="padding: 3rem 0;">
+    <div class="hero__image-slot" aria-hidden="true"></div>
+    <div class="container">
+      <div class="hero__content">
+        <span class="hero__eyebrow">The Alliance</span>
+        <h1>Community</h1>
+        <p class="hero__description">
+          McNutt's Island has always been a community — residents, fishers, lighthouse keepers,
+          seasonal visitors, and people connected across distance. Add your name to the record.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Flash messages ────────────────────────────────────────────────────── -->
+  <% if (typeof flash !== 'undefined' && flash) { %>
+  <div class="container" style="padding-top: 1.5rem;">
+    <div class="flash flash--<%= flash.type || 'info' %>">
+      <span><%= flash.message %></span>
+      <button class="flash__dismiss" aria-label="Dismiss">&times;</button>
+    </div>
+  </div>
+  <% } %>
+
+  <!-- ── Join form ─────────────────────────────────────────────────────────── -->
+  <% if (typeof joined === 'undefined' || !joined) { %>
+  <section class="section">
+    <div class="container">
+      <div class="grid grid--2" style="align-items: start; gap: 3rem;">
+        <div>
+          <span class="section__eyebrow">Join the Alliance</span>
+          <h2>Add Your Name</h2>
+          <p>
+            Alliance membership is open to anyone with a connection to McNutt's Island.
+            There are no fees and no obligations. This is simply a record that you are
+            part of this community.
+          </p>
+          <p>
+            After submitting, you'll receive a confirmation email. Once confirmed, your
+            listing will be reviewed and added to the directory. The whole process takes
+            a few minutes.
+          </p>
+          <blockquote>
+            "No fees, no obligations — just a record that you're part of this community."
+          </blockquote>
+        </div>
+
+        <div>
+          <form
+            action="/community/join"
+            method="POST"
+            class="form form--wide"
+            data-submitting
+          >
+
+            <div class="form-group">
+              <label class="form-label" for="name">
+                Your Name <span class="required" aria-hidden="true">*</span>
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                class="form-input"
+                required
+                maxlength="120"
+                autocomplete="name"
+                placeholder="First and last name"
+              >
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="email">
+                Email Address <span class="required" aria-hidden="true">*</span>
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="form-input"
+                required
+                maxlength="254"
+                autocomplete="email"
+                placeholder="you@example.com"
+              >
+              <p class="form-help">Used for confirmation only. Not publicly displayed.</p>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="connection_type">
+                Your Connection to the Island <span class="required" aria-hidden="true">*</span>
+              </label>
+              <select id="connection_type" name="connection_type" class="form-select" required>
+                <option value="" disabled selected>Select your connection…</option>
+                <option value="resident">Current resident</option>
+                <option value="former-resident">Former resident</option>
+                <option value="property-owner">Property owner</option>
+                <option value="fisher">Fisher / fishing family</option>
+                <option value="researcher">Researcher / historian</option>
+                <option value="visitor">Frequent visitor</option>
+                <option value="descendant">Descendant of island community</option>
+                <option value="advocate">Advocate / supporter</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="note">A Note About Your Connection</label>
+              <textarea
+                id="note"
+                name="note"
+                class="form-textarea"
+                rows="4"
+                maxlength="500"
+                data-maxlength="500"
+                placeholder="Optional — share a bit about your connection to the island…"
+              ></textarea>
+              <div class="char-count" id="note-count" aria-live="polite"></div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-checkbox">
+                <input type="checkbox" name="public_listing" value="1">
+                <span class="form-checkbox__label">
+                  List me publicly in the member directory
+                  <span class="form-help" style="display:block; margin-top:.1rem;">
+                    Your name and connection type will be shown. Your email will never be displayed.
+                  </span>
+                </span>
+              </label>
+            </div>
+
+            <div class="form-submit-group">
+              <button type="submit" class="btn btn--primary" data-loading="Submitting…">
+                Join the Alliance
+              </button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  <% } %>
+
+  <!-- ── Member directory ───────────────────────────────────────────────────── -->
+  <% if (typeof members !== 'undefined' && members.length > 0) { %>
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__eyebrow">The Alliance</span>
+        <h2>Member Directory</h2>
+        <p class="text-muted">Community members who have opted into the public directory.</p>
+      </div>
+      <div class="member-grid">
+        <% members.forEach(member => { %>
+        <div class="member-card">
+          <div class="member-card__name"><%= member.name %></div>
+          <div class="member-card__type"><%= member.connection_type.replace(/-/g,' ') %></div>
+          <% if (member.note) { %>
+          <div class="member-card__note"><%= member.note.substring(0, 100) %><%= member.note.length > 100 ? '…' : '' %></div>
+          <% } %>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+  </section>
+  <% } %>
+
+</main>
+
+<%- include('partials/footer') %>
+<script src="/js/main.js"></script>
+</body>
+</html>

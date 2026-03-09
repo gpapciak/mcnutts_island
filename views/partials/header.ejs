@@ -1,0 +1,39 @@
+<header class="site-header">
+  <div class="container">
+    <div class="site-header__inner">
+
+      <a href="/" class="site-logo" aria-label="McNutt's Island Alliance — Home">
+        <span class="site-logo__name">McNutt's Island</span>
+        <span class="site-logo__sub">Alliance</span>
+      </a>
+
+      <button
+        class="nav-toggle"
+        id="nav-toggle"
+        aria-expanded="false"
+        aria-controls="site-nav"
+        aria-label="Toggle navigation"
+      >
+        <span class="nav-toggle__icon" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+        <a href="/"             <%= currentPath === '/'              ? 'aria-current="page"' : '' %>>Home</a>
+        <a href="/island"       <%= currentPath === '/island'        ? 'aria-current="page"' : '' %>>The Island</a>
+        <a href="/flora-fauna"  <%= currentPath === '/flora-fauna'   ? 'aria-current="page"' : '' %>>Flora &amp; Fauna</a>
+        <a href="/activities"   <%= currentPath === '/activities'    ? 'aria-current="page"' : '' %>>Activities</a>
+        <a href="/community"    <%= currentPath === '/community'     ? 'aria-current="page"' : '' %>>Community</a>
+        <a href="/naming"       <%= currentPath === '/naming'        ? 'aria-current="page"' : '' %>>The Naming</a>
+        <a href="/about"        <%= currentPath === '/about'         ? 'aria-current="page"' : '' %>>About</a>
+        <% if (isAdmin) { %>
+          <a href="/admin"      <%= currentPath.startsWith('/admin') ? 'aria-current="page"' : '' %>>Admin</a>
+        <% } %>
+      </nav>
+
+    </div>
+  </div>
+</header>

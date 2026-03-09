@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard — McNutt's Island Alliance</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+  <meta name="robots" content="noindex, nofollow">
+</head>
+<body>
+
+<div class="admin-layout">
+
+  <!-- Sidebar -->
+  <aside class="admin-sidebar">
+    <div class="admin-sidebar__logo">
+      <div class="admin-sidebar__title">McNutt's Island</div>
+      <div class="admin-sidebar__sub">Administration</div>
+    </div>
+    <nav class="admin-nav">
+      <a href="/admin" class="active">&#9632; Dashboard</a>
+      <a href="/admin/members">
+        &#128101; Members
+        <% if (typeof pending !== 'undefined' && pending.members > 0) { %>
+        <span class="admin-nav__badge"><%= pending.members %></span>
+        <% } %>
+      </a>
+      <a href="/admin/board">
+        &#128220; Board Posts
+        <% if (typeof pending !== 'undefined' && pending.board > 0) { %>
+        <span class="admin-nav__badge"><%= pending.board %></span>
+        <% } %>
+      </a>
+      <a href="/admin/events">&#128197; Events</a>
+      <a href="/admin/naming">
+        &#127758; Naming Poll
+        <% if (typeof pending !== 'undefined' && pending.comments > 0) { %>
+        <span class="admin-nav__badge"><%= pending.comments %></span>
+        <% } %>
+      </a>
+      <a href="/admin/logout" style="margin-top:auto; border-top: 1px solid rgba(255,255,255,.1); padding-top: 1rem;">&#9099; Sign Out</a>
+    </nav>
+  </aside>
+
+  <!-- Main content -->
+  <div class="admin-content">
+    <div class="admin-header">
+      <h1>Dashboard</h1>
+      <p style="color:var(--text-muted); font-size:.875rem;">
+        Welcome back. Here's what needs attention.
+      </p>
+    </div>
+
+    <!-- Pending counts -->
+    <div class="admin-stat-grid">
+      <a href="/admin/members" class="admin-stat <%= pending.members > 0 ? 'admin-stat--alert' : '' %>">
+        <div class="admin-stat__num"><%= pending.members %></div>
+        <div class="admin-stat__label">Pending Members</div>
+      </a>
+      <a href="/admin/board" class="admin-stat <%= pending.board > 0 ? 'admin-stat--alert' : '' %>">
+        <div class="admin-stat__num"><%= pending.board %></div>
+        <div class="admin-stat__label">Pending Board Items</div>
+      </a>
+      <a href="/admin/events" class="admin-stat <%= pending.proposals > 0 ? 'admin-stat--alert' : '' %>">
+        <div class="admin-stat__num"><%= pending.proposals %></div>
+        <div class="admin-stat__label">Event Proposals</div>
+      </a>
+      <a href="/admin/naming" class="admin-stat <%= pending.comments > 0 ? 'admin-stat--alert' : '' %>">
+        <div class="admin-stat__num"><%= pending.comments %></div>
+        <div class="admin-stat__label">Poll Comments</div>
+      </a>
+      <div class="admin-stat">
+        <div class="admin-stat__num"><%= counts.totalMembers %></div>
+        <div class="admin-stat__label">Confirmed Members</div>
+      </div>
+      <div class="admin-stat">
+        <div class="admin-stat__num"><%= counts.totalVotes %></div>
+        <div class="admin-stat__label">Poll Votes</div>
+      </div>
+    </div>
+
+    <!-- Quick links -->
+    <div class="admin-section">
+      <div class="admin-section__header">
+        <h2 class="admin-section__title">Quick Links</h2>
+      </div>
+      <div class="admin-section__body">
+        <div style="display:flex; gap:.75rem; flex-wrap:wrap;">
+          <a href="/admin/members" class="btn btn--outline-dark btn--sm">Review Members</a>
+          <a href="/admin/board"   class="btn btn--outline-dark btn--sm">Moderate Board</a>
+          <a href="/admin/events"  class="btn btn--outline-dark btn--sm">Manage Events</a>
+          <a href="/admin/naming"  class="btn btn--outline-dark btn--sm">Naming Poll</a>
+          <a href="/" target="_blank" class="btn btn--outline-dark btn--sm">View Site &#8599;</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="/js/main.js"></script>
+</body>
+</html>

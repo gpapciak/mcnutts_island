@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Board Posts — Admin — McNutt's Island Alliance</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+  <meta name="robots" content="noindex, nofollow">
+</head>
+<body>
+
+<div class="admin-layout">
+
+  <aside class="admin-sidebar">
+    <div class="admin-sidebar__logo">
+      <div class="admin-sidebar__title">McNutt's Island</div>
+      <div class="admin-sidebar__sub">Administration</div>
+    </div>
+    <nav class="admin-nav">
+      <a href="/admin">&#9632; Dashboard</a>
+      <a href="/admin/members">&#128101; Members</a>
+      <a href="/admin/board" class="active">&#128220; Board Posts</a>
+      <a href="/admin/events">&#128197; Events</a>
+      <a href="/admin/naming">&#127758; Naming Poll</a>
+      <a href="/admin/logout" style="margin-top:auto; border-top: 1px solid rgba(255,255,255,.1); padding-top: 1rem;">&#9099; Sign Out</a>
+    </nav>
+  </aside>
+
+  <div class="admin-content">
+    <div class="admin-header">
+      <h1>Board Posts</h1>
+    </div>
+
+    <% if (typeof flash !== 'undefined' && flash) { %>
+    <div class="flash flash--<%= flash.type || 'info' %>" style="margin-bottom:1.5rem;">
+      <span><%= flash.message %></span>
+      <button class="flash__dismiss" aria-label="Dismiss">&times;</button>
+    </div>
+    <% } %>
+
+    <!-- Pending posts -->
+    <div class="admin-section">
+      <div class="admin-section__header">
+        <h2 class="admin-section__title">Pending Posts (<%= pendingPosts.length %>)</h2>
+      </div>
+      <div class="admin-section__body">
+        <% if (pendingPosts.length === 0) { %>
+        <p class="text-muted">No posts pending.</p>
+        <% } else { %>
+        <% pendingPosts.forEach(post => { %>
+        <div style="border: 1px solid var(--sand); border-radius: var(--radius); padding: 1rem; margin-bottom: 1rem;">
+          <div style="display:flex; justify-content:space-between; align-items:start; gap:1rem; flex-wrap:wrap;">
+            <div>
+              <p style="font-size:.8rem; color:var(--text-muted); margin-bottom:.25rem;">
+                <strong><%= post.category %></strong> &middot;
+                <%= post.author_name %> &lt;<%= post.author_email %>&gt; &middot;
+                <%= new Date(post.created_at).toLocaleDateString('en-CA') %>
+              </p>
+              <h4 style="margin-bottom:.5rem;"><%= post.subject %></h4>
+              <p style="font-size:.875rem; white-space:pre-line;"><%= post.body.substring(0, 300) %><%= post.body.length > 300 ? '…' : '' %></p>
+            </div>
+            <div class="action-row" style="flex-shrink:0;">
+              <form action="/admin/board/posts/<%= post.id %>/approve" method="POST">
+                <button class="btn btn--success btn--sm">Approve</button>
+              </form>
+              <form action="/admin/board/posts/<%= post.id %>/reject" method="POST"
+                onsubmit="return confirm('Delete this post?')">
+                <button class="btn btn--danger btn--sm">Reject</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <% }) %>
+        <% } %>
+      </div>
+    </div>
+
+    <!-- Pending replies -->
+    <div class="admin-section">
+      <div class="admin-section__header">
+        <h2 class="admin-section__title">Pending Replies (<%= pendingReplies.length %>)</h2>
+      </div>
+      <div class="admin-section__body">
+        <% if (pendingReplies.length === 0) { %>
+        <p class="text-muted">No replies pending.</p>
+        <% } else { %>
+        <% pendingReplies.forEach(reply => { %>
+        <div style="border: 1px solid var(--sand); border-radius: var(--radius); padding: 1rem; margin-bottom: 1rem;">
+          <div style="display:flex; justify-content:space-between; align-items:start; gap:1rem; flex-wrap:wrap;">
+            <div>
+              <p style="font-size:.8rem; color:var(--text-muted); margin-bottom:.25rem;">
+                Reply to: <em><%= reply.post_subject %></em> &middot;
+                <%= reply.author_name %> &lt;<%= reply.author_email %>&gt; &middot;
+                <%= new Date(reply.created_at).toLocaleDateString('en-CA') %>
+              </p>
+              <p style="font-size:.875rem;"><%= reply.body.substring(0, 200) %><%= reply.body.length > 200 ? '…' : '' %></p>
+            </div>
+            <div class="action-row" style="flex-shrink:0;">
+              <form action="/admin/board/replies/<%= reply.id %>/approve" method="POST">
+                <button class="btn btn--success btn--sm">Approve</button>
+              </form>
+              <form action="/admin/board/replies/<%= reply.id %>/reject" method="POST"
+                onsubmit="return confirm('Delete this reply?')">
+                <button class="btn btn--danger btn--sm">Reject</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <% }) %>
+        <% } %>
+      </div>
+    </div>
+
+    <!-- Approved posts list -->
+    <div class="admin-section">
+      <div class="admin-section__header">
+        <h2 class="admin-section__title">Approved Posts (<%= approvedPosts.length %>)</h2>
+      </div>
+      <div class="admin-section__body">
+        <% if (approvedPosts.length === 0) { %>
+        <p class="text-muted">No approved posts yet.</p>
+        <% } else { %>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Subject</th>
+                <th>Category</th>
+                <th>Author</th>
+                <th>Replies</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% approvedPosts.forEach(post => { %>
+              <tr>
+                <td><%= post.subject %></td>
+                <td><%= post.category %></td>
+                <td><%= post.author_name %></td>
+                <td><%= post.reply_count %></td>
+                <td style="white-space:nowrap; font-size:.8rem;"><%= new Date(post.created_at).toLocaleDateString('en-CA') %></td>
+              </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+        <% } %>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="/js/main.js"></script>
+</body>
+</html>

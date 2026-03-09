@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('partials/head') %>
+</head>
+<body>
+
+<%- include('partials/header') %>
+
+<main>
+  <section class="section">
+    <div class="container container--narrow text-center">
+      <p style="font-size: 5rem; line-height:1; margin-bottom: 1rem;" aria-hidden="true">&#127748;</p>
+      <h1>Page Not Found</h1>
+      <p class="lead">
+        The page you were looking for has drifted out to sea, or perhaps it never existed.
+        McNutt's Island is still here, though.
+      </p>
+      <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;" class="mt-3">
+        <a href="/"          class="btn btn--primary">Return Home</a>
+        <a href="/island"    class="btn btn--outline-dark">The Island</a>
+        <a href="/community" class="btn btn--outline-dark">Community</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<%- include('partials/footer') %>
+<script src="/js/main.js"></script>
+</body>
+</html>

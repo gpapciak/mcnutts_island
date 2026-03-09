@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('partials/head') %>
+</head>
+<body>
+
+<%- include('partials/header') %>
+
+<main>
+
+  <!-- ── Hero ─────────────────────────────────────────────────────────────── -->
+  <section class="hero" style="padding: 3.5rem 0;">
+    <div class="hero__image-slot" aria-hidden="true"></div>
+    <div class="container">
+      <div class="hero__content">
+        <span class="hero__eyebrow">A Community Conversation</span>
+        <h1>The Naming</h1>
+        <p class="hero__description">
+          McNutt's Island — twenty-four hundred acres of spruce, granite, and open Atlantic — carries the name of a British colonial officer. Ten thousand years of Mi'kmaq presence in these waters, 240 years of Black Loyalist history, generations of lighthouse keepers, a wartime garrison, and a living fishing community also have a claim. This is the community's conversation to have.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Flash messages ────────────────────────────────────────────────────── -->
+  <% if (typeof flash !== 'undefined' && flash) { %>
+  <div class="container" style="padding-top: 1.5rem;">
+    <div class="flash flash--<%= flash.type || 'info' %>">
+      <span><%= flash.message %></span>
+      <button class="flash__dismiss" aria-label="Dismiss">&times;</button>
+    </div>
+  </div>
+  <% } %>
+
+  <!-- ── Context ───────────────────────────────────────────────────────────── -->
+  <section class="section">
+    <div class="container container--narrow">
+      <span class="section__eyebrow">The Question</span>
+      <h2>Why This Conversation Matters</h2>
+      <p>
+        <a href="https://www.biographi.ca/bio.php?id=mcnutt_alexander_5E.html" target="_blank" rel="noopener noreferrer">Colonel Alexander McNutt</a> received the island as a land grant in 1765. He was a relentless self-promoter and land speculator who proposed grandiose settlement schemes that collapsed under the weight of his own unreliability. He left little behind but his name — and that name, blunt and possessive, has sat on this island for 260 years like an uncashed cheque.
+      </p>
+      <p>
+        It is a name that tells you nothing about the place. Nothing about the spruce and granite, the open Atlantic, the seals and eagles. Nothing about the Mi'kmaq people who navigated these waters and coastlines for ten thousand years before any European arrived with a surveyor's map. Nothing about the Black Loyalist families who came in 1783 seeking freedom they were largely denied, and who built lives here anyway. Nothing about the lighthouse keepers, the wartime garrison, the fishing families whose boats still work these waters.
+      </p>
+      <p>
+        The McNutt's Island Alliance is not calling for an immediate name change. We are creating space for the community — area residents, property owners, researchers, the fishing community, Mi'kmaq voices and others touched by the island — to engage with the question seriously. An island of this history and beauty deserves a name that carries some of that weight, or at least doesn't actively misrepresent it. Whatever the community decides, the decision should be made with full awareness of the history.
+      </p>
+      <p>
+        The poll below is one data point among many. It is not a binding referendum. Results will be shared with the community as part of an ongoing conversation.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── Vote Section ───────────────────────────────────────────────────────── -->
+  <section class="section section--alt" id="vote-section">
+    <div class="container container--narrow">
+
+      <% if (hasVoted) { %>
+      <div class="flash flash--info" style="margin-bottom: 1.5rem;">
+        <span>
+          You've already participated in this poll from this device. Thank you for your voice.
+        </span>
+      </div>
+      <p style="margin-bottom: 1rem;">
+        <button class="btn btn--outline-dark" id="results-toggle-voted">See current results ↓</button>
+      </p>
+      <% } else { %>
+
+      <form id="naming-form" action="/naming/vote" method="POST">
+        <input type="hidden" name="wants_change"    id="wants_change_input" value="">
+        <input type="hidden" name="theme"           id="theme_input"        value="">
+
+        <!-- ── Step 1: Yes / No ──────────────────────────────────────────── -->
+        <div id="step-1" class="vote-step">
+          <span class="section__eyebrow">Your Voice</span>
+          <h2>Should McNutt's Island be renamed?</h2>
+          <p class="text-muted" style="margin-bottom: 1.5rem; font-size: .9rem;">
+            One response per device. Your answer is anonymous unless you choose to add your email.
+          </p>
+          <div class="vote-step__choices">
+            <button type="button" class="btn btn--primary btn--lg" id="btn-yes">
+              Yes, I support a name change
+            </button>
+            <button type="button" class="btn btn--outline-dark btn--lg" id="btn-no">
+              No, keep the name McNutt's Island
+            </button>
+          </div>
+        </div>
+
+        <!-- ── Step 2: Theme ─────────────────────────────────────────────── -->
+        <div id="step-2" class="vote-step" hidden>
+          <button type="button" class="vote-back" id="back-to-1">← Back</button>
+          <span class="section__eyebrow">Step 2 of 3</span>
+          <h2>What theme should guide the new name?</h2>
+          <p class="text-muted" style="margin-bottom: 1.5rem; font-size: .9rem;">
+            Select a category — you'll choose a specific name (or suggest your own) in the next step.
+          </p>
+          <div class="theme-cards">
+            <button type="button" class="theme-card" data-theme="mikmaq">
+              <span class="theme-card__title">Mi'kmaq Heritage</span>
+              <span class="theme-card__desc">A name drawn from the Mi'kmaq language, reflecting ten thousand years of presence before European contact.</span>
+            </button>
+            <button type="button" class="theme-card" data-theme="black-loyalist">
+              <span class="theme-card__title">Black Loyalist History</span>
+              <span class="theme-card__desc">A name honouring the Black Loyalist settlers of 1783 and the nearby Birchtown community.</span>
+            </button>
+            <button type="button" class="theme-card" data-theme="geographic">
+              <span class="theme-card__title">Geographic Character</span>
+              <span class="theme-card__desc">A name rooted in the island's position at the mouth of Shelburne Harbour.</span>
+            </button>
+            <button type="button" class="theme-card" data-theme="ecological">
+              <span class="theme-card__title">Ecological Identity</span>
+              <span class="theme-card__desc">A name drawn from the island's distinctive bogs, coastline, and wildlife.</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- ── Step 3: Specific name ─────────────────────────────────────── -->
+        <div id="step-3" class="vote-step" hidden>
+          <button type="button" class="vote-back" id="back-to-2">← Change theme</button>
+          <span class="section__eyebrow">Step 3 of 3</span>
+          <h2 id="step-3-heading">Choose or suggest a name:</h2>
+
+          <%
+            const themeLabels = {
+              mikmaq: "Mi'kmaq Heritage",
+              'black-loyalist': 'Black Loyalist History',
+              geographic: 'Geographic Character',
+              ecological: 'Ecological Identity'
+            };
+            const themes = ['mikmaq', 'black-loyalist', 'geographic', 'ecological'];
+          %>
+
+          <% themes.forEach(function(themeKey) { %>
+          <div id="candidates-<%= themeKey %>" class="candidate-group" hidden>
+            <div role="radiogroup" aria-label="Name options">
+              <% (candidatesByTheme[themeKey] || []).forEach(function(c) { %>
+              <label class="poll-candidate">
+                <div style="display:flex; align-items:center; gap:.75rem;">
+                  <input type="radio" name="candidate_id" value="<%= c.id %>" data-theme="<%= themeKey %>">
+                  <span class="poll-candidate__name"><%= c.name %></span>
+                </div>
+                <p class="poll-candidate__desc" style="margin: .5rem 0 0 1.75rem;">
+                  <%= c.description %>
+                </p>
+              </label>
+              <% }) %>
+              <label class="poll-candidate">
+                <div style="display:flex; align-items:center; gap:.75rem;">
+                  <input type="radio" name="candidate_id" value="custom" data-theme="<%= themeKey %>">
+                  <span class="poll-candidate__name">Write my own suggestion</span>
+                </div>
+                <p class="poll-candidate__desc" style="margin: .5rem 0 0 1.75rem;">
+                  Suggest a different name within this theme.
+                </p>
+              </label>
+            </div>
+          </div>
+          <% }) %>
+
+          <div id="custom-input" hidden style="margin-top: 1rem;">
+            <label class="form-label" for="custom_suggestion_input">Your suggested name:</label>
+            <input
+              type="text"
+              id="custom_suggestion_input"
+              name="custom_suggestion"
+              class="form-input"
+              maxlength="200"
+              placeholder="Enter a name you'd like to suggest…"
+            >
+          </div>
+
+          <!-- Optional extras -->
+          <details style="margin-top: 1.5rem;">
+            <summary style="cursor:pointer; color:var(--teal); font-size:.9rem; margin-bottom:.75rem;">
+              Add email for verification or leave a comment (optional)
+            </summary>
+            <div class="form-group" style="margin-top:.75rem;">
+              <label class="form-label" for="email">Email for Verified Voter status</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="form-input"
+                maxlength="254"
+                placeholder="you@example.com"
+              >
+              <p class="form-help">
+                We'll send a verification link. Verified votes are counted separately and carry
+                more weight in how results are reported. Your email will not be publicly displayed.
+              </p>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="comment">A comment (optional)</label>
+              <textarea
+                id="comment"
+                name="comment"
+                class="form-textarea"
+                rows="3"
+                maxlength="400"
+                data-maxlength="400"
+                placeholder="Share a thought about the naming question…"
+              ></textarea>
+              <div class="char-count" id="comment-count" aria-live="polite"></div>
+              <p class="form-help">Comments are moderated before appearing publicly.</p>
+            </div>
+          </details>
+
+          <div class="form-submit-group" style="margin-top: 1.5rem;">
+            <button type="submit" id="submit-btn" class="btn btn--primary" disabled>
+              Submit My Response
+            </button>
+          </div>
+        </div>
+
+      </form>
+
+      <p style="margin-top: 1.5rem; font-size: .875rem;">
+        <a href="#results-section" id="results-link" class="text-muted">
+          Already voted? See current results →
+        </a>
+      </p>
+
+      <% } %>
+    </div>
+  </section>
+
+  <!-- ── Results Section ────────────────────────────────────────────────────── -->
+  <section class="section" id="results-section">
+    <div class="container container--narrow">
+      <button
+        id="results-toggle"
+        class="btn btn--outline-dark"
+        aria-expanded="<%= autoOpenResults ? 'true' : 'false' %>"
+        style="margin-bottom: 1.5rem;"
+      >
+        <span id="results-toggle-label">
+          <%= autoOpenResults ? 'Hide results ▲' : 'See current results ▼' %>
+        </span>
+      </button>
+
+      <div id="results-content" <%- autoOpenResults ? '' : 'hidden' %>>
+
+        <p class="text-muted" style="font-size:.875rem; margin-bottom: 1.5rem;">
+          Total responses: <strong><%= totalVotes %></strong>.
+          This poll is not a binding referendum — it is a starting point for conversation.
+        </p>
+
+        <!-- Level 1: Overall Yes / No -->
+        <h3 style="margin-bottom: 1rem;">Overall: Support for renaming</h3>
+        <% const overall = overallResults; %>
+        <% const yesPercent = overall.total > 0 ? Math.round((overall.wantChange / overall.total) * 100) : 0; %>
+        <% const noPercent  = overall.total > 0 ? Math.round((overall.keepName  / overall.total) * 100) : 0; %>
+
+        <div class="results-bar">
+          <div class="results-bar__label">
+            <span class="results-bar__name">Yes — support a name change</span>
+            <span class="results-bar__count"><%= overall.wantChange %> (<%= yesPercent %>%)</span>
+          </div>
+          <div class="results-bar__track">
+            <div class="results-bar__fill results-bar__fill--yes"
+              data-width="<%= yesPercent %>" style="width:0%"
+              role="img" aria-label="<%= overall.wantChange %> of <%= overall.total %> votes"></div>
+          </div>
+        </div>
+        <div class="results-bar">
+          <div class="results-bar__label">
+            <span class="results-bar__name">No — keep McNutt's Island</span>
+            <span class="results-bar__count"><%= overall.keepName %> (<%= noPercent %>%)</span>
+          </div>
+          <div class="results-bar__track">
+            <div class="results-bar__fill results-bar__fill--no"
+              data-width="<%= noPercent %>" style="width:0%"
+              role="img" aria-label="<%= overall.keepName %> of <%= overall.total %> votes"></div>
+          </div>
+        </div>
+
+        <% if (overall.wantChange > 0) { %>
+        <!-- Level 2: Theme breakdown (yes voters only) -->
+        <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Theme preference (among yes voters)</h3>
+        <%
+          const themeNames = {
+            'mikmaq': "Mi'kmaq Heritage",
+            'black-loyalist': 'Black Loyalist History',
+            'geographic': 'Geographic Character',
+            'ecological': 'Ecological Identity'
+          };
+        %>
+        <% themeResults.forEach(function(t) { %>
+        <% const themePercent = overall.wantChange > 0 ? Math.round((t.count / overall.wantChange) * 100) : 0; %>
+        <div class="results-bar">
+          <div class="results-bar__label">
+            <span class="results-bar__name"><%= themeNames[t.theme] || t.theme %></span>
+            <span class="results-bar__count"><%= t.count %> (<%= themePercent %>%)</span>
+          </div>
+          <div class="results-bar__track">
+            <div class="results-bar__fill"
+              data-width="<%= themePercent %>" style="width:0%"
+              role="img" aria-label="<%= t.count %> votes"></div>
+          </div>
+        </div>
+        <% }) %>
+
+        <!-- Level 3: Per-candidate by theme -->
+        <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Name preferences by theme</h3>
+        <%
+          const resultsByTheme = {};
+          candidateResults.forEach(function(r) {
+            if (!resultsByTheme[r.category]) resultsByTheme[r.category] = [];
+            resultsByTheme[r.category].push(r);
+          });
+          const themeOrder = ['mikmaq', 'black-loyalist', 'geographic', 'ecological'];
+        %>
+        <% themeOrder.forEach(function(themeKey) { %>
+        <% const themeRows = resultsByTheme[themeKey]; %>
+        <% if (themeRows && themeRows.length > 0) { %>
+        <% const themeTotal = themeRows.reduce(function(sum, r) { return sum + r.total_votes; }, 0); %>
+        <%
+          const writeInEntry = customCounts.find(function(cc) { return cc.theme === themeKey; });
+          const writeInCount = writeInEntry ? writeInEntry.count : 0;
+          const themeTotalWithWriteins = themeTotal + writeInCount;
+        %>
+        <% if (themeTotalWithWriteins > 0) { %>
+        <h4 style="margin: 1.25rem 0 .75rem; font-size: .95rem; color: var(--text-muted);">
+          <%= themeNames[themeKey] || themeKey %>
+        </h4>
+        <% themeRows.forEach(function(r) { %>
+        <% const candPercent = themeTotalWithWriteins > 0 ? Math.round((r.total_votes / themeTotalWithWriteins) * 100) : 0; %>
+        <div class="results-bar" style="margin-bottom: .75rem;">
+          <div class="results-bar__label">
+            <span class="results-bar__name" style="font-size:.875rem;"><%= r.name %></span>
+            <span class="results-bar__count"><%= r.total_votes %> (<%= candPercent %>%)</span>
+          </div>
+          <div class="results-bar__track" style="height:16px;">
+            <div class="results-bar__fill"
+              data-width="<%= candPercent %>" style="width:0%"></div>
+          </div>
+        </div>
+        <% }) %>
+        <% if (writeInCount > 0) { %>
+        <% const wiPercent = themeTotalWithWriteins > 0 ? Math.round((writeInCount / themeTotalWithWriteins) * 100) : 0; %>
+        <div class="results-bar" style="margin-bottom: .75rem;">
+          <div class="results-bar__label">
+            <span class="results-bar__name" style="font-size:.875rem; font-style:italic;">Write-in suggestions</span>
+            <span class="results-bar__count"><%= writeInCount %> (<%= wiPercent %>%)</span>
+          </div>
+          <div class="results-bar__track" style="height:16px;">
+            <div class="results-bar__fill results-bar__fill--writein"
+              data-width="<%= wiPercent %>" style="width:0%"></div>
+          </div>
+        </div>
+        <% } %>
+        <% } %>
+        <% } %>
+        <% }) %>
+        <% } %>
+
+        <p style="font-size:.8rem; color:var(--text-muted); margin-top:1.5rem;">
+          Results update in real time. The Alliance will share analysis of these results as the conversation develops.
+        </p>
+
+      </div><!-- /results-content -->
+    </div>
+  </section>
+
+  <!-- ── Further reading ────────────────────────────────────────────────────── -->
+  <section class="section section--alt">
+    <div class="container container--narrow">
+      <span class="section__eyebrow">Learn More</span>
+      <h2>The History Behind the Question</h2>
+      <p>
+        Understanding the naming question requires understanding the full history of
+        the island — the Mi'kmaq presence that predates European contact by thousands
+        of years, the Black Loyalist settlement of 1783, and what both communities
+        experienced on and around this island.
+      </p>
+      <div style="display:flex; gap:1rem; flex-wrap:wrap;" class="mt-3">
+        <a href="/island" class="btn btn--outline-dark">The Island's History</a>
+        <a href="/bearing-witness" class="btn btn--outline-dark">Share Your Connection</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<%- include('partials/footer') %>
+<script src="/js/main.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  // ── Results toggle ────────────────────────────────────────────────────────
+  function setupResultsToggle(toggleId, contentId, labelId) {
+    const btn     = document.getElementById(toggleId);
+    const content = document.getElementById(contentId);
+    if (!btn || !content) return;
+    btn.addEventListener('click', function () {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      const nowOpen  = !expanded;
+      btn.setAttribute('aria-expanded', String(nowOpen));
+      content.hidden = !nowOpen;
+      if (labelId) {
+        const lbl = document.getElementById(labelId);
+        if (lbl) lbl.textContent = nowOpen ? 'Hide results ▲' : 'See current results ▼';
+      }
+      if (nowOpen) {
+        animateBars(content);
+        content.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  }
+
+  setupResultsToggle('results-toggle', 'results-content', 'results-toggle-label');
+
+  // "Already voted" button wires to same toggle
+  const votedBtn = document.getElementById('results-toggle-voted');
+  if (votedBtn) {
+    votedBtn.addEventListener('click', function () {
+      const toggle = document.getElementById('results-toggle');
+      if (toggle) toggle.click();
+    });
+  }
+
+  // "See results" link for non-voted users
+  const resultsLink = document.getElementById('results-link');
+  if (resultsLink) {
+    resultsLink.addEventListener('click', function (e) {
+      e.preventDefault();
+      const toggle = document.getElementById('results-toggle');
+      if (toggle && toggle.getAttribute('aria-expanded') !== 'true') toggle.click();
+      document.getElementById('results-section').scrollIntoView({ behavior: 'smooth' });
+    });
+  }
+
+  // Auto-open results if flag set (after successful vote)
+  <% if (autoOpenResults) { %>
+  (function () {
+    const content = document.getElementById('results-content');
+    if (content) animateBars(content);
+  })();
+  <% } %>
+
+  // ── Animate bar fills ─────────────────────────────────────────────────────
+  function animateBars(root) {
+    (root || document).querySelectorAll('.results-bar__fill[data-width]').forEach(function (el) {
+      if (el.dataset.animated) return;
+      el.dataset.animated = '1';
+      const target = parseFloat(el.dataset.width) || 0;
+      el.style.transition = 'width 600ms ease';
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          el.style.width = target + '%';
+        });
+      });
+    });
+  }
+
+  // ── Multi-step vote form ──────────────────────────────────────────────────
+  const form = document.getElementById('naming-form');
+  if (!form) return;
+
+  const step1 = document.getElementById('step-1');
+  const step2 = document.getElementById('step-2');
+  const step3 = document.getElementById('step-3');
+  const wantsChangeInput = document.getElementById('wants_change_input');
+  const themeInput       = document.getElementById('theme_input');
+  const submitBtn        = document.getElementById('submit-btn');
+  const customInput      = document.getElementById('custom-input');
+  const customTextField  = document.getElementById('custom_suggestion_input');
+  const step3Heading     = document.getElementById('step-3-heading');
+
+  const themeLabels = {
+    'mikmaq':        "Mi'kmaq Heritage",
+    'black-loyalist': 'Black Loyalist History',
+    'geographic':    'Geographic Character',
+    'ecological':    'Ecological Identity'
+  };
+
+  function showStep(n) {
+    step1.hidden = (n !== 1);
+    step2.hidden = (n !== 2);
+    step3.hidden = (n !== 3);
+  }
+
+  // Step 1 buttons
+  document.getElementById('btn-yes').addEventListener('click', function () {
+    wantsChangeInput.value = '1';
+    showStep(2);
+  });
+
+  document.getElementById('btn-no').addEventListener('click', function () {
+    wantsChangeInput.value = '0';
+    themeInput.value = '';
+    // Submit immediately
+    form.submit();
+  });
+
+  // Back buttons
+  document.getElementById('back-to-1').addEventListener('click', function () {
+    themeInput.value = '';
+    clearCandidateGroups();
+    showStep(1);
+  });
+
+  document.getElementById('back-to-2').addEventListener('click', function () {
+    clearCandidateGroups();
+    // Uncheck any selected radios
+    form.querySelectorAll('input[name="candidate_id"]').forEach(function (r) { r.checked = false; });
+    customInput.hidden = true;
+    if (customTextField) customTextField.value = '';
+    updateSubmitBtn();
+    showStep(2);
+  });
+
+  // Theme card selection
+  document.querySelectorAll('.theme-card').forEach(function (card) {
+    card.addEventListener('click', function () {
+      var theme = card.dataset.theme;
+      themeInput.value = theme;
+
+      // Uncheck any radios from previous theme
+      form.querySelectorAll('input[name="candidate_id"]').forEach(function (r) { r.checked = false; });
+      customInput.hidden = true;
+      if (customTextField) customTextField.value = '';
+      updateSubmitBtn();
+
+      clearCandidateGroups();
+      var group = document.getElementById('candidates-' + theme);
+      if (group) group.hidden = false;
+
+      step3Heading.textContent = 'Choose a ' + (themeLabels[theme] || theme) + ' name, or suggest your own:';
+      showStep(3);
+    });
+  });
+
+  function clearCandidateGroups() {
+    document.querySelectorAll('.candidate-group').forEach(function (g) { g.hidden = true; });
+  }
+
+  // Radio change handler
+  form.addEventListener('change', function (e) {
+    if (e.target.name === 'candidate_id') {
+      if (e.target.value === 'custom') {
+        customInput.hidden = false;
+        if (customTextField) customTextField.focus();
+      } else {
+        customInput.hidden = true;
+        if (customTextField) customTextField.value = '';
+      }
+      updateSubmitBtn();
+    }
+    if (e.target.id === 'custom_suggestion_input') {
+      updateSubmitBtn();
+    }
+  });
+
+  customTextField && customTextField.addEventListener('input', updateSubmitBtn);
+
+  function updateSubmitBtn() {
+    var selected = form.querySelector('input[name="candidate_id"]:checked');
+    if (!selected) { submitBtn.disabled = true; return; }
+    if (selected.value === 'custom') {
+      submitBtn.disabled = !(customTextField && customTextField.value.trim().length > 0);
+    } else {
+      submitBtn.disabled = false;
+    }
+  }
+
+})();
+</script>
+</body>
+</html>

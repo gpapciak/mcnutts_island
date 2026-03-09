@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('partials/head') %>
+</head>
+<body>
+
+<%- include('partials/header') %>
+
+<main>
+
+  <!-- ── Hero ──────────────────────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="hero__image-slot" aria-hidden="true"></div>
+    <div class="hero__silhouette" aria-hidden="true"></div>
+    <div class="container">
+      <div class="hero__content">
+        <span class="hero__eyebrow">McNutt's Island, Nova Scotia</span>
+        <h1>A Place Worth<br>Knowing &amp; Protecting</h1>
+        <p class="hero__description">
+          Ten thousand years of human history. Acadian forest, bald eagles, and lobster grounds.
+          An island at the mouth of Shelburne Harbour, and a community that cares about its future.
+        </p>
+        <div class="hero__cta">
+          <a href="/community" class="btn btn--primary">Join the Alliance</a>
+          <a href="/island"    class="btn btn--outline">Discover the Island</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Upcoming Events ────────────────────────────────────────────────────── -->
+  <% if (upcomingEvents && upcomingEvents.length > 0) { %>
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__eyebrow">What's Coming</span>
+        <h2>Upcoming Events</h2>
+      </div>
+      <div class="grid grid--auto-3">
+        <% upcomingEvents.forEach(ev => { %>
+        <article class="card">
+          <div class="card__image-slot img-placeholder">
+            <span class="img-placeholder__label">Event</span>
+          </div>
+          <div class="card__body">
+            <p class="card__meta">
+              <%= new Date(ev.event_date).toLocaleDateString('en-CA', { year: 'numeric', month: 'long', day: 'numeric' }) %>
+              <% if (ev.location) { %> &middot; <%= ev.location %><% } %>
+            </p>
+            <h3 class="card__title"><%= ev.title %></h3>
+            <p class="card__excerpt"><%= ev.description.substring(0, 120) %><%= ev.description.length > 120 ? '…' : '' %></p>
+          </div>
+          <% if (ev.link) { %>
+          <div class="card__footer">
+            <a href="<%= ev.link %>" class="btn btn--outline-dark btn--sm" target="_blank" rel="noopener">More info</a>
+          </div>
+          <% } %>
+        </article>
+        <% }) %>
+      </div>
+    </div>
+  </section>
+  <% } %>
+
+  <!-- ── Island snapshot ──────────────────────────────────────────────────────── -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="editorial">
+        <div>
+          <span class="section__eyebrow">About the Island</span>
+          <h2>A Small Island with a Long Memory</h2>
+          <p>
+            McNutt's Island sits at the mouth of Shelburne Harbour on Nova Scotia's South Shore —
+            five kilometres of headlands, bogs, Acadian forest, and cobble beach. Its lighthouse has
+            guided ships since 1788. Its history spans Mi'kmaq presence, Black Loyalist settlement,
+            and two World Wars.
+          </p>
+          <p>
+            The island is accessible only by boat, which has kept it largely intact. No permanent
+            road. No services. A working lobster fishery, a seasonal community, and a landscape
+            that rewards those who make the crossing.
+          </p>
+          <a href="/island" class="btn btn--outline-dark mt-3">Read the Full History</a>
+        </div>
+        <div class="editorial__image img-placeholder" style="min-height: 320px;">
+          <span class="img-placeholder__icon" aria-hidden="true">&#9968;</span>
+          <span class="img-placeholder__label">Island photograph</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Explore sections ──────────────────────────────────────────────────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header text-center">
+        <span class="section__eyebrow">Explore</span>
+        <h2>What Brings People Here</h2>
+      </div>
+      <div class="grid grid--auto-3">
+
+        <a href="/flora-fauna" class="card" style="text-decoration:none; color:inherit;">
+          <div class="card__image-slot img-placeholder">
+            <span class="img-placeholder__label">Bald eagle photograph</span>
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">Flora &amp; Fauna</h3>
+            <p class="card__excerpt">Acadian forest, coastal bogs, nesting bald eagles, harbour seals, and the delicate ecosystems that make this island a place worth protecting.</p>
+          </div>
+        </a>
+
+        <a href="/activities" class="card" style="text-decoration:none; color:inherit;">
+          <div class="card__image-slot img-placeholder">
+            <span class="img-placeholder__label">Kayak photograph</span>
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">Activities &amp; Visiting</h3>
+            <p class="card__excerpt">Hiking the lighthouse trail, kayaking the harbour, foraging for wild berries, birding the headlands — and how to get here in the first place.</p>
+          </div>
+        </a>
+
+        <a href="/bearing-witness" class="card" style="text-decoration:none; color:inherit;">
+          <div class="card__image-slot img-placeholder">
+            <span class="img-placeholder__label">Shore photograph</span>
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">Bearing Witness</h3>
+            <p class="card__excerpt">Personal stories and connections to the island — from lifelong residents to first-time visitors. Add your own to the record.</p>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Recent board posts ────────────────────────────────────────────────────── -->
+  <% if (recentPosts && recentPosts.length > 0) { %>
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__eyebrow">Community</span>
+        <h2>Recent Conversations</h2>
+      </div>
+      <div class="grid grid--auto-3">
+        <% recentPosts.forEach(post => { %>
+        <article class="card">
+          <div class="card__body">
+            <p class="card__meta">
+              <%= post.category %> &middot;
+              <%= new Date(post.created_at).toLocaleDateString('en-CA', { year: 'numeric', month: 'short', day: 'numeric' }) %>
+            </p>
+            <h3 class="card__title"><%= post.subject %></h3>
+            <p class="card__excerpt"><%= post.body.substring(0, 140) %><%= post.body.length > 140 ? '…' : '' %></p>
+            <% if (post.reply_count > 0) { %>
+            <p class="card__meta mt-2"><%= post.reply_count %> <%= post.reply_count === 1 ? 'reply' : 'replies' %></p>
+            <% } %>
+          </div>
+        </article>
+        <% }) %>
+      </div>
+    </div>
+  </section>
+  <% } %>
+
+  <!-- ── Member count + CTA ────────────────────────────────────────────────────── -->
+  <section class="section section--dark">
+    <div class="container">
+      <div class="stat-callout">
+        <div class="stat-callout__number"><%= memberCount || 0 %></div>
+        <p class="stat-callout__label">members in the McNutt's Island Alliance</p>
+      </div>
+      <div class="text-center mt-4">
+        <h2 style="color:var(--cream); margin-bottom: 1rem;">Add Your Name to the Record</h2>
+        <p style="color:var(--sand); max-width: 500px; margin: 0 auto 1.5rem;">
+          No fees, no obligations. Just a record that you're part of this community —
+          residents, property owners, researchers, and people who love this island.
+        </p>
+        <a href="/community" class="btn btn--primary">Join the Alliance</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Naming poll teaser ────────────────────────────────────────────────────── -->
+  <section class="section">
+    <div class="container container--narrow text-center">
+      <span class="section__eyebrow">An Ongoing Conversation</span>
+      <h2>The Question of the Island's Name</h2>
+      <p class="lead">
+        McNutt's Island carries the name of a British colonial officer. The Mi'kmaq were here for
+        ten thousand years before him. The Black Loyalists arrived in 1783 with promises of land and freedom.
+        The island's name is a community decision — and we're asking for your voice.
+      </p>
+      <a href="/naming" class="btn btn--primary mt-3">Join the Conversation</a>
+    </div>
+  </section>
+
+</main>
+
+<%- include('partials/footer') %>
+
+<script src="/js/main.js"></script>
+</body>
+</html>

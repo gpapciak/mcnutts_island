@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Members — Admin — McNutt's Island Alliance</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+  <meta name="robots" content="noindex, nofollow">
+</head>
+<body>
+
+<div class="admin-layout">
+
+  <aside class="admin-sidebar">
+    <div class="admin-sidebar__logo">
+      <div class="admin-sidebar__title">McNutt's Island</div>
+      <div class="admin-sidebar__sub">Administration</div>
+    </div>
+    <nav class="admin-nav">
+      <a href="/admin">&#9632; Dashboard</a>
+      <a href="/admin/members" class="active">&#128101; Members</a>
+      <a href="/admin/board">&#128220; Board Posts</a>
+      <a href="/admin/events">&#128197; Events</a>
+      <a href="/admin/naming">&#127758; Naming Poll</a>
+      <a href="/admin/logout" style="margin-top:auto; border-top: 1px solid rgba(255,255,255,.1); padding-top: 1rem;">&#9099; Sign Out</a>
+    </nav>
+  </aside>
+
+  <div class="admin-content">
+    <div class="admin-header">
+      <h1>Members</h1>
+    </div>
+
+    <% if (typeof flash !== 'undefined' && flash) { %>
+    <div class="flash flash--<%= flash.type || 'info' %>" style="margin-bottom:1.5rem;">
+      <span><%= flash.message %></span>
+      <button class="flash__dismiss" aria-label="Dismiss">&times;</button>
+    </div>
+    <% } %>
+
+    <!-- Pending members -->
+    <div class="admin-section">
+      <div class="admin-section__header">
+        <h2 class="admin-section__title">Pending Approval (<%= pending.length %>)</h2>
+      </div>
+      <div class="admin-section__body">
+        <% if (pending.length === 0) { %>
+        <p class="text-muted">No members pending approval.</p>
+        <% } else { %>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Connection</th>
+                <th>Note</th>
+                <th>Public</th>
+                <th>Confirmed</th>
+                <th>Date</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% pending.forEach(m => { %>
+              <tr>
+                <td><strong><%= m.name %></strong></td>
+                <td><a href="mailto:<%= m.email %>"><%= m.email %></a></td>
+                <td><%= m.connection_type %></td>
+                <td style="max-width:200px; font-size:.8rem;"><%= m.note ? m.note.substring(0,80) + (m.note.length > 80 ? '…' : '') : '—' %></td>
+                <td><%= m.public_listing ? 'Yes' : 'No' %></td>
+                <td>
+                  <% if (m.confirmed) { %>
+                  <span class="badge badge--success">Yes</span>
+                  <% } else { %>
+                  <span class="badge badge--warning">Pending</span>
+                  <% } %>
+                </td>
+                <td style="white-space:nowrap; font-size:.8rem;"><%= new Date(m.created_at).toLocaleDateString('en-CA') %></td>
+                <td>
+                  <div class="action-row">
+                    <form action="/admin/members/<%= m.id %>/approve" method="POST" style="display:inline;">
+                      <button class="btn btn--success btn--sm">Approve</button>
+                    </form>
+                    <form action="/admin/members/<%= m.id %>/reject" method="POST" style="display:inline;"
+                      onsubmit="return confirm('Delete this member application?')">
+                      <button class="btn btn--danger btn--sm">Reject</button>
+                    </form>
+                  </div>
+                </td>
+              </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+        <% } %>
+      </div>
+    </div>
+
+    <!-- All confirmed members -->
+    <div class="admin-section">
+      <div class="admin-section__header">
+        <h2 class="admin-section__title">All Members (<%= allMembers.length %>)</h2>
+      </div>
+      <div class="admin-section__body">
+        <% if (allMembers.length === 0) { %>
+        <p class="text-muted">No members yet.</p>
+        <% } else { %>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Connection</th>
+                <th>Public</th>
+                <th>Approved</th>
+                <th>Confirmed</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% allMembers.forEach(m => { %>
+              <tr>
+                <td><strong><%= m.name %></strong></td>
+                <td><a href="mailto:<%= m.email %>"><%= m.email %></a></td>
+                <td><%= m.connection_type %></td>
+                <td><%= m.public_listing ? 'Yes' : 'No' %></td>
+                <td><span class="badge badge--<%= m.approved ? 'success' : 'warning' %>"><%= m.approved ? 'Yes' : 'No' %></span></td>
+                <td><span class="badge badge--<%= m.confirmed ? 'success' : 'warning' %>"><%= m.confirmed ? 'Yes' : 'No' %></span></td>
+                <td style="white-space:nowrap; font-size:.8rem;"><%= new Date(m.created_at).toLocaleDateString('en-CA') %></td>
+              </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+        <% } %>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="/js/main.js"></script>
+</body>
+</html>

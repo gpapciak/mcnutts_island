@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Events — Admin — McNutt's Island Alliance</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+  <meta name="robots" content="noindex, nofollow">
+</head>
+<body>
+
+<div class="admin-layout">
+
+  <aside class="admin-sidebar">
+    <div class="admin-sidebar__logo">
+      <div class="admin-sidebar__title">McNutt's Island</div>
+      <div class="admin-sidebar__sub">Administration</div>
+    </div>
+    <nav class="admin-nav">
+      <a href="/admin">&#9632; Dashboard</a>
+      <a href="/admin/members">&#128101; Members</a>
+      <a href="/admin/board">&#128220; Board Posts</a>
+      <a href="/admin/events" class="active">&#128197; Events</a>
+      <a href="/admin/naming">&#127758; Naming Poll</a>
+      <a href="/admin/logout" style="margin-top:auto; border-top: 1px solid rgba(255,255,255,.1); padding-top: 1rem;">&#9099; Sign Out</a>
+    </nav>
+  </aside>
+
+  <div class="admin-content">
+    <div class="admin-header">
+      <h1>Events</h1>
+    </div>
+
+    <% if (typeof flash !== 'undefined' && flash) { %>
+    <div class="flash flash--<%= flash.type || 'info' %>" style="margin-bottom:1.5rem;">
+      <span><%= flash.message %></span>
+      <button class="flash__dismiss" aria-label="Dismiss">&times;</button>
+    </div>
+    <% } %>
+
+    <!-- Add event form -->
+    <div class="admin-section">
+      <div class="admin-section__header">
+        <h2 class="admin-section__title">Add New Event</h2>
+      </div>
+      <div class="admin-section__body">
+        <form action="/admin/events" method="POST" class="form form--wide">
+          <div class="grid grid--2" style="gap: 1rem;">
+            <div class="form-group">
+              <label class="form-label" for="title">Title <span class="required">*</span></label>
+              <input type="text" id="title" name="title" class="form-input" required maxlength="200">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="event_date">Date <span class="required">*</span></label>
+              <input type="date" id="event_date" name="event_date" class="form-input" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="location">Location</label>
+              <input type="text" id="location" name="location" class="form-input" maxlength="200">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="contact_info">Contact</label>
+              <input type="text" id="contact_info" name="contact_info" class="form-input" maxlength="200">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="link">Link (optional)</label>
+              <input type="url" id="link" name="link" class="form-input">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="description">Description <span class="required">*</span></label>
+            <textarea id="description" name="description" class="form-textarea" rows="3" required maxlength="2000"></textarea>
+          </div>
+          <button type="submit" class="btn btn--primary btn--sm">Add Event</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Pending proposals -->
+    <div class="admin-section">
+      <div class="admin-section__header">
+        <h2 class="admin-section__title">Pending Proposals (<%= proposals.length %>)</h2>
+      </div>
+      <div class="admin-section__body">
+        <% if (proposals.length === 0) { %>
+        <p class="text-muted">No pending proposals.</p>
+        <% } else { %>
+        <% proposals.forEach(p => { %>
+        <div style="border: 1px solid var(--sand); border-radius: var(--radius); padding: 1rem; margin-bottom: 1rem;">
+          <div style="display:flex; justify-content:space-between; align-items:start; gap:1rem; flex-wrap:wrap;">
+            <div>
+              <p style="font-size:.8rem; color:var(--text-muted); margin-bottom:.25rem;">
+                <%= p.proposer_name %> &lt;<%= p.proposer_email %>&gt; &middot;
+                Proposed date: <%= p.proposed_date || 'TBD' %> &middot;
+                Submitted: <%= new Date(p.created_at).toLocaleDateString('en-CA') %>
+              </p>
+              <h4 style="margin-bottom:.25rem;"><%= p.title %></h4>
+              <p style="font-size:.875rem;"><%= p.description.substring(0, 200) %><%= p.description.length > 200 ? '…' : '' %></p>
+            </div>
+            <div class="action-row" style="flex-shrink:0;">
+              <form action="/admin/proposals/<%= p.id %>/approve" method="POST">
+                <button class="btn btn--success btn--sm">Approve & Add</button>
+              </form>
+              <form action="/admin/proposals/<%= p.id %>/reject" method="POST"
+                onsubmit="return confirm('Delete this proposal?')">
+                <button class="btn btn--danger btn--sm">Reject</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <% }) %>
+        <% } %>
+      </div>
+    </div>
+
+    <!-- Upcoming events -->
+    <div class="admin-section">
+      <div class="admin-section__header">
+        <h2 class="admin-section__title">Upcoming Events</h2>
+      </div>
+      <div class="admin-section__body">
+        <% if (upcoming.length === 0) { %>
+        <p class="text-muted">No upcoming events.</p>
+        <% } else { %>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead><tr><th>Title</th><th>Date</th><th>Location</th><th>Actions</th></tr></thead>
+            <tbody>
+              <% upcoming.forEach(ev => { %>
+              <tr>
+                <td><strong><%= ev.title %></strong></td>
+                <td style="white-space:nowrap;"><%= ev.event_date %></td>
+                <td><%= ev.location || '—' %></td>
+                <td>
+                  <form action="/admin/events/<%= ev.id %>/delete" method="POST" style="display:inline;"
+                    onsubmit="return confirm('Delete this event?')">
+                    <button class="btn btn--danger btn--sm">Delete</button>
+                  </form>
+                </td>
+              </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+        <% } %>
+      </div>
+    </div>
+
+    <!-- Past events -->
+    <div class="admin-section">
+      <div class="admin-section__header">
+        <h2 class="admin-section__title">Past Events (recent 5)</h2>
+      </div>
+      <div class="admin-section__body">
+        <% if (past.length === 0) { %>
+        <p class="text-muted">No past events on record.</p>
+        <% } else { %>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead><tr><th>Title</th><th>Date</th><th>Location</th><th>Actions</th></tr></thead>
+            <tbody>
+              <% past.forEach(ev => { %>
+              <tr>
+                <td><strong><%= ev.title %></strong></td>
+                <td style="white-space:nowrap;"><%= ev.event_date %></td>
+                <td><%= ev.location || '—' %></td>
+                <td>
+                  <form action="/admin/events/<%= ev.id %>/delete" method="POST" style="display:inline;"
+                    onsubmit="return confirm('Delete this event record?')">
+                    <button class="btn btn--danger btn--sm">Delete</button>
+                  </form>
+                </td>
+              </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+        <% } %>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="/js/main.js"></script>
+</body>
+</html>

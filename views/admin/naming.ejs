@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Naming Poll — Admin — McNutt's Island Alliance</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+  <meta name="robots" content="noindex, nofollow">
+</head>
+<body>
+
+<div class="admin-layout">
+
+  <aside class="admin-sidebar">
+    <div class="admin-sidebar__logo">
+      <div class="admin-sidebar__title">McNutt's Island</div>
+      <div class="admin-sidebar__sub">Administration</div>
+    </div>
+    <nav class="admin-nav">
+      <a href="/admin">&#9632; Dashboard</a>
+      <a href="/admin/members">&#128101; Members</a>
+      <a href="/admin/board">&#128220; Board Posts</a>
+      <a href="/admin/events">&#128197; Events</a>
+      <a href="/admin/naming" class="active">&#127758; Naming Poll</a>
+      <a href="/admin/logout" style="margin-top:auto; border-top: 1px solid rgba(255,255,255,.1); padding-top: 1rem;">&#9099; Sign Out</a>
+    </nav>
+  </aside>
+
+  <div class="admin-content">
+    <div class="admin-header">
+      <h1>Naming Poll</h1>
+    </div>
+
+    <% if (typeof flash !== 'undefined' && flash) { %>
+    <div class="flash flash--<%= flash.type || 'info' %>" style="margin-bottom:1.5rem;">
+      <span><%= flash.message %></span>
+      <button class="flash__dismiss" aria-label="Dismiss">&times;</button>
+    </div>
+    <% } %>
+
+    <%
+      const themeNames = {
+        'mikmaq': "Mi'kmaq Heritage",
+        'black-loyalist': 'Black Loyalist History',
+        'geographic': 'Geographic Character',
+        'ecological': 'Ecological Identity'
+      };
+      const themeOrder = ['mikmaq', 'black-loyalist', 'geographic', 'ecological'];
+    %>
+
+    <!-- ── Level 1: Overall Yes / No ─────────────────────────────────────── -->
+    <div class="admin-section">
+      <div class="admin-section__header">
+        <h2 class="admin-section__title">Results — Total Votes: <%= totalVotes %></h2>
+      </div>
+      <div class="admin-section__body">
+        <h3 style="margin-bottom: 1rem; font-size: 1rem;">Overall: Support for renaming</h3>
+        <% const overall = overallResults; %>
+        <% const yesPercent = overall.total > 0 ? Math.round((overall.wantChange / overall.total) * 100) : 0; %>
+        <% const noPercent  = overall.total > 0 ? Math.round((overall.keepName  / overall.total) * 100) : 0; %>
+
+        <div class="results-bar" style="margin-bottom:1.25rem;">
+          <div class="results-bar__label">
+            <span class="results-bar__name">Yes — support a name change</span>
+            <span class="results-bar__count"><%= overall.wantChange %> (<%= yesPercent %>%)</span>
+          </div>
+          <div class="results-bar__track">
+            <div class="results-bar__fill results-bar__fill--yes"
+              data-width="<%= yesPercent %>" style="width:0%"></div>
+          </div>
+        </div>
+        <div class="results-bar" style="margin-bottom:1.25rem;">
+          <div class="results-bar__label">
+            <span class="results-bar__name">No — keep McNutt's Island</span>
+            <span class="results-bar__count"><%= overall.keepName %> (<%= noPercent %>%)</span>
+          </div>
+          <div class="results-bar__track">
+            <div class="results-bar__fill results-bar__fill--no"
+              data-width="<%= noPercent %>" style="width:0%"></div>
+          </div>
+        </div>
+
+        <!-- ── Level 2: Theme breakdown ──────────────────────────────────── -->
+        <% if (overall.wantChange > 0) { %>
+        <h3 style="margin: 1.5rem 0 1rem; font-size: 1rem;">Theme preference (yes voters only)</h3>
+        <% themeResults.forEach(function(t) { %>
+        <% const themePercent = overall.wantChange > 0 ? Math.round((t.count / overall.wantChange) * 100) : 0; %>
+        <div class="results-bar" style="margin-bottom:1rem;">
+          <div class="results-bar__label">
+            <span class="results-bar__name"><%= themeNames[t.theme] || t.theme %></span>
+            <span class="results-bar__count"><%= t.count %> (<%= themePercent %>%)</span>
+          </div>
+          <div class="results-bar__track">
+            <div class="results-bar__fill"
+              data-width="<%= themePercent %>" style="width:0%"></div>
+          </div>
+        </div>
+        <% }) %>
+
+        <!-- ── Level 3: Per-candidate by theme ───────────────────────────── -->
+        <h3 style="margin: 1.5rem 0 1rem; font-size: 1rem;">Name preferences by theme</h3>
+        <%
+          const resultsByTheme = {};
+          candidateResults.forEach(function(r) {
+            if (!resultsByTheme[r.category]) resultsByTheme[r.category] = [];
+            resultsByTheme[r.category].push(r);
+          });
+        %>
+        <% themeOrder.forEach(function(themeKey) { %>
+        <% const themeRows = resultsByTheme[themeKey]; %>
+        <% if (themeRows && themeRows.length > 0) { %>
+        <%
+          const writeInEntry = customCounts.find(function(cc) { return cc.theme === themeKey; });
+          const writeInCount = writeInEntry ? writeInEntry.count : 0;
+          const themeTotal = themeRows.reduce(function(s, r) { return s + r.total_votes; }, 0) + writeInCount;
+        %>
+        <h4 style="margin: 1rem 0 .6rem; font-size:.875rem; color:var(--text-muted);">
+          <%= themeNames[themeKey] || themeKey %>
+        </h4>
+        <% themeRows.forEach(function(r) { %>
+        <% const cp = themeTotal > 0 ? Math.round((r.total_votes / themeTotal) * 100) : 0; %>
+        <div class="results-bar" style="margin-bottom:.75rem;">
+          <div class="results-bar__label">
+            <span class="results-bar__name" style="font-size:.875rem;"><%= r.name %></span>
+            <span class="results-bar__count"><%= r.total_votes %> (<%= cp %>%)</span>
+          </div>
+          <div class="results-bar__track" style="height:16px;">
+            <div class="results-bar__fill" data-width="<%= cp %>" style="width:0%"></div>
+          </div>
+        </div>
+        <% }) %>
+        <% if (writeInCount > 0) { %>
+        <% const wip = themeTotal > 0 ? Math.round((writeInCount / themeTotal) * 100) : 0; %>
+        <div class="results-bar" style="margin-bottom:.75rem;">
+          <div class="results-bar__label">
+            <span class="results-bar__name" style="font-size:.875rem; font-style:italic;">Write-in suggestions</span>
+            <span class="results-bar__count"><%= writeInCount %> (<%= wip %>%)</span>
+          </div>
+          <div class="results-bar__track" style="height:16px;">
+            <div class="results-bar__fill results-bar__fill--writein" data-width="<%= wip %>" style="width:0%"></div>
+          </div>
+        </div>
+        <% } %>
+        <% } %>
+        <% }) %>
+        <% } %>
+
+        <!-- Reset poll -->
+        <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--sand);">
+          <h4 style="color:var(--error); margin-bottom:.5rem;">Danger Zone</h4>
+          <form action="/admin/naming/reset" method="POST"
+            onsubmit="return confirm('This will permanently delete ALL votes. This cannot be undone. Are you absolutely sure?')">
+            <div class="form-group">
+              <label class="form-label" for="reset_note">Reason for reset</label>
+              <input type="text" id="reset_note" name="note" class="form-input" placeholder="e.g. Test data cleared before launch" maxlength="200">
+            </div>
+            <button type="submit" class="btn btn--danger btn--sm">Reset All Votes</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Write-in Suggestions ───────────────────────────────────────────── -->
+    <div class="admin-section">
+      <div class="admin-section__header">
+        <h2 class="admin-section__title">Write-in Suggestions</h2>
+      </div>
+      <div class="admin-section__body">
+        <% if (customCounts.length === 0) { %>
+        <p class="text-muted">No write-in suggestions yet.</p>
+        <% } else { %>
+        <table style="width:100%; border-collapse:collapse; font-size:.875rem;">
+          <thead>
+            <tr style="border-bottom: 2px solid var(--sand);">
+              <th style="text-align:left; padding:.5rem .75rem;">Theme</th>
+              <th style="text-align:right; padding:.5rem .75rem;">Count</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% customCounts.forEach(function(cc) { %>
+            <tr style="border-bottom: 1px solid var(--sand);">
+              <td style="padding:.5rem .75rem;"><%= themeNames[cc.theme] || cc.theme %></td>
+              <td style="padding:.5rem .75rem; text-align:right;"><%= cc.count %></td>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+        <p class="text-muted" style="font-size:.8rem; margin-top:.75rem;">
+          Full write-in text is available in the export.
+        </p>
+        <% } %>
+      </div>
+    </div>
+
+    <!-- ── Candidate editor ───────────────────────────────────────────────── -->
+    <div class="admin-section">
+      <div class="admin-section__header">
+        <h2 class="admin-section__title">Candidate Descriptions</h2>
+      </div>
+      <div class="admin-section__body">
+        <% candidates.forEach(function(c) { %>
+        <form action="/admin/naming/candidates/<%= c.id %>/update" method="POST"
+          style="border: 1px solid var(--sand); border-radius: var(--radius); padding: 1rem; margin-bottom: 1rem;">
+          <p style="font-size:.75rem; color:var(--text-muted); margin-bottom:.5rem; text-transform:uppercase; letter-spacing:.05em;">
+            <%= themeNames[c.category] || c.category %>
+          </p>
+          <div class="form-group">
+            <label class="form-label">Name</label>
+            <input type="text" name="name" class="form-input" value="<%= c.name %>" required maxlength="200">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Description</label>
+            <textarea name="description" class="form-textarea" rows="4" required maxlength="2000"><%= c.description %></textarea>
+          </div>
+          <button type="submit" class="btn btn--outline-dark btn--sm">Update</button>
+        </form>
+        <% }) %>
+      </div>
+    </div>
+
+    <!-- ── Pending comments ───────────────────────────────────────────────── -->
+    <div class="admin-section">
+      <div class="admin-section__header">
+        <h2 class="admin-section__title">Pending Comments (<%= pendingComments.length %>)</h2>
+      </div>
+      <div class="admin-section__body">
+        <% if (pendingComments.length === 0) { %>
+        <p class="text-muted">No comments pending.</p>
+        <% } else { %>
+        <% pendingComments.forEach(function(c) { %>
+        <div style="border: 1px solid var(--sand); border-radius: var(--radius); padding: 1rem; margin-bottom: 1rem;">
+          <div style="display:flex; justify-content:space-between; align-items:start; gap:1rem; flex-wrap:wrap;">
+            <div>
+              <p style="font-size:.8rem; color:var(--text-muted); margin-bottom:.25rem;">
+                Vote: <strong><%= c.candidate_name %></strong>
+                <% if (c.theme) { %>&middot; Theme: <%= themeNames[c.theme] || c.theme %><% } %>
+                &middot; Verified: <%= c.email_verified ? 'Yes' : 'No' %>
+                &middot; <%= new Date(c.created_at).toLocaleDateString('en-CA') %>
+              </p>
+              <p style="font-size:.875rem;"><%= c.comment %></p>
+            </div>
+            <div class="action-row" style="flex-shrink:0;">
+              <form action="/admin/naming/comments/<%= c.id %>/approve" method="POST">
+                <button class="btn btn--success btn--sm">Approve</button>
+              </form>
+              <form action="/admin/naming/comments/<%= c.id %>/reject" method="POST">
+                <button class="btn btn--danger btn--sm">Reject</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <% }) %>
+        <% } %>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="/js/main.js"></script>
+</body>
+</html>
