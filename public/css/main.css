@@ -1402,3 +1402,231 @@ main { flex: 1; }
   .hero { padding: 3rem 0; }
   .hero__cta { flex-direction: column; align-items: center; }
 }
+
+/* ════════════════════════════════════════════════════════════════════════════
+   ANIMATIONS & MICRO-INTERACTIONS
+   ════════════════════════════════════════════════════════════════════════════ */
+
+/* ── Scroll Reveal — initial hidden states (applied by JS) ─────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  will-change: transform, opacity;
+}
+.reveal--left  { transform: translateX(-30px); }
+.reveal--right { transform: translateX(30px);  }
+.reveal.visible {
+  opacity: 1;
+  transform: translate(0, 0);
+  will-change: auto;
+}
+
+/* ── Section header stagger ─────────────────────────────────────────────────── */
+.reveal-header .section__eyebrow {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+.reveal-header h2,
+.reveal-header h3 {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.55s ease-out 0.1s, transform 0.55s ease-out 0.1s;
+}
+.reveal-header.visible .section__eyebrow,
+.reveal-header.visible h2,
+.reveal-header.visible h3 {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Card grid stagger (delays assigned per-card via JS) ────────────────────── */
+.reveal-stagger > .card,
+.reveal-stagger > article {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.55s ease-out, transform 0.55s ease-out;
+  will-change: transform, opacity;
+}
+.reveal-stagger.visible > .card,
+.reveal-stagger.visible > article {
+  opacity: 1;
+  transform: translateY(0);
+  will-change: auto;
+}
+
+/* ── Blockquote border reveal ───────────────────────────────────────────────── */
+.reveal-quote {
+  border-left-color: transparent;
+  position: relative;
+}
+.reveal-quote::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--teal);
+  border-radius: 0;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.5s ease-out 0.15s;
+}
+.reveal-quote.visible::after { transform: scaleY(1); }
+.reveal-quote.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── SVG line-draw (stroke-dashoffset animated via JS) ──────────────────────── */
+.svg-draw-ready path,
+.svg-draw-ready line,
+.svg-draw-ready polyline,
+.svg-draw-ready ellipse,
+.svg-draw-ready circle {
+  transition: stroke-dashoffset 1.8s ease-out;
+}
+/* Stagger each stroke element (index set by JS via --draw-delay custom prop) */
+.svg-draw-ready path  { transition-delay: var(--draw-delay, 0s); }
+
+/* ── Hero load-in stagger ───────────────────────────────────────────────────── */
+.hero-loading .hero__eyebrow      { opacity: 0; transform: translateY(10px); }
+.hero-loading .hero__content h1   { opacity: 0; transform: translateY(18px); }
+.hero-loading .hero__description  { opacity: 0; }
+.hero-loading .hero__cta          { opacity: 0; }
+
+.hero-loaded .hero__eyebrow {
+  opacity: 1; transform: translateY(0);
+  transition: opacity 0.5s ease-out 0.2s, transform 0.5s ease-out 0.2s;
+}
+.hero-loaded .hero__content h1 {
+  opacity: 1; transform: translateY(0);
+  transition: opacity 0.6s ease-out 0.4s, transform 0.6s ease-out 0.4s;
+}
+.hero-loaded .hero__description {
+  opacity: 1;
+  transition: opacity 0.5s ease-out 0.6s;
+}
+.hero-loaded .hero__cta {
+  opacity: 1;
+  transition: opacity 0.5s ease-out 0.8s;
+}
+
+/* ── Hero CTA pulse ─────────────────────────────────────────────────────────── */
+@keyframes cta-pulse {
+  0%   { box-shadow: var(--shadow-sm), 0 0 0 0 rgba(42,107,124,0.4); }
+  65%  { box-shadow: var(--shadow-sm), 0 0 0 11px rgba(42,107,124,0); }
+  100% { box-shadow: var(--shadow-sm), 0 0 0 0 rgba(42,107,124,0); }
+}
+.cta-pulse { animation: cta-pulse 3s ease-out 1.6s infinite; }
+
+/* ── Page transition fade ───────────────────────────────────────────────────── */
+body { transition: opacity 0.2s ease; }
+body.page-leaving { opacity: 0 !important; }
+
+/* ── Card hover lift ────────────────────────────────────────────────────────── */
+.card {
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+.card__title { transition: color 180ms ease; }
+.card:hover .card__title { color: var(--teal); }
+
+/* Cards that are links — reinforce pointer */
+a.card:hover { text-decoration: none; }
+
+/* ── Nav underline draw ─────────────────────────────────────────────────────── */
+.site-nav a {
+  position: relative;
+  /* Inherit existing padding/display */
+}
+.site-nav a::after {
+  content: '';
+  position: absolute;
+  bottom: 3px;
+  left: .75rem;
+  right: .75rem;
+  height: 1px;
+  background: var(--teal-light);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 220ms ease;
+}
+.site-nav a:hover::after { transform: scaleX(1); }
+.site-nav a[aria-current="page"]::after { transform: scaleX(1); }
+
+/* ── Button micro-interactions ──────────────────────────────────────────────── */
+.btn {
+  transition: background var(--transition), border-color var(--transition),
+              color var(--transition), box-shadow var(--transition),
+              transform 120ms ease;
+}
+.btn:hover  { transform: translateY(-1px); box-shadow: var(--shadow-sm); }
+.btn:active { transform: translateY(0);    box-shadow: none; }
+.btn:disabled { transform: none; box-shadow: none; }
+
+/* Outline-dark on light backgrounds: subtle teal tint instead of full navy fill */
+.btn--outline-dark:hover {
+  background: rgba(42,107,124,0.08);
+  color: var(--teal);
+  border-color: var(--teal);
+}
+
+/* ── prefers-reduced-motion — disable ALL motion ──────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  /* Reveal classes become instantly visible */
+  .reveal,
+  .reveal--left,
+  .reveal--right  { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  .reveal-header .section__eyebrow,
+  .reveal-header h2,
+  .reveal-header h3 { opacity: 1 !important; transform: none !important; transition: none !important; }
+
+  .reveal-stagger > .card,
+  .reveal-stagger > article { opacity: 1 !important; transform: none !important; transition: none !important; }
+
+  .reveal-quote::after { transition: none; transform: scaleY(1); }
+
+  /* Hero load-in: skip to final state */
+  .hero-loading .hero__eyebrow,
+  .hero-loading .hero__content h1,
+  .hero-loading .hero__description,
+  .hero-loading .hero__cta { opacity: 1 !important; transform: none !important; }
+  .hero-loaded .hero__eyebrow,
+  .hero-loaded .hero__content h1,
+  .hero-loaded .hero__description,
+  .hero-loaded .hero__cta { transition: none; }
+
+  /* No CTA pulse */
+  .cta-pulse { animation: none; }
+
+  /* No page fade */
+  body, body.page-leaving { transition: none !important; opacity: 1 !important; }
+
+  /* No tidal water animation */
+  .map-water-harbour,
+  .map-water-atlantic { animation: none; }
+
+  /* No fog animation */
+  .hero--home .hero__fog,
+  .hero--home .hero__fog::before,
+  .hero--home .hero__fog::after { animation: none; }
+
+  /* No card hover lift */
+  .card:hover { transform: none; }
+  .btn:hover  { transform: none; box-shadow: none; }
+
+  /* SVG draw: show immediately */
+  .svg-draw-ready path,
+  .svg-draw-ready line,
+  .svg-draw-ready polyline,
+  .svg-draw-ready ellipse,
+  .svg-draw-ready circle { transition: none; stroke-dashoffset: 0 !important; }
+}
