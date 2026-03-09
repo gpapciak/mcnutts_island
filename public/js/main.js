@@ -112,4 +112,89 @@
     });
   }
 
+  // ── Island Interactive Map ────────────────────────────────────────────────────
+  (function initIslandMap() {
+    const map    = document.getElementById('island-map');
+    const panel  = document.getElementById('map-info-panel');
+    const closeBtn = document.getElementById('map-panel-close');
+    if (!map || !panel) return;
+
+    const titleEl = document.getElementById('map-info-title');
+    const descEl  = document.getElementById('map-info-desc');
+    const linkEl  = document.getElementById('map-info-link');
+
+    let activePoi = null;
+
+    function openPanel(poi) {
+      if (activePoi) activePoi.classList.remove('active');
+      activePoi = poi;
+      poi.classList.add('active');
+
+      titleEl.textContent = poi.dataset.title  || '';
+      descEl.innerHTML    = poi.dataset.desc   || '';
+      linkEl.href         = poi.dataset.link   || '#';
+      linkEl.textContent  = 'Learn more \u2192';
+
+      panel.hidden = false;
+      // Force reflow before adding active class for transition
+      panel.getBoundingClientRect();
+      panel.classList.add('active');
+    }
+
+    function closePanel() {
+      panel.classList.remove('active');
+      if (activePoi) { activePoi.classList.remove('active'); activePoi = null; }
+      // Hide after transition
+      panel.addEventListener('transitionend', function handler() {
+        panel.hidden = true;
+        panel.removeEventListener('transitionend', handler);
+      }, { once: true });
+    }
+
+    // Click / tap on POI
+    map.querySelectorAll('.map-poi').forEach(function(poi) {
+      poi.addEventListener('click', function(e) {
+        e.stopPropagation();
+        if (poi === activePoi) { closePanel(); return; }
+        openPanel(poi);
+      });
+
+      // Keyboard accessibility
+      poi.setAttribute('tabindex', '0');
+      poi.setAttribute('role', 'button');
+      poi.setAttribute('aria-label', poi.dataset.title || 'Point of interest');
+      poi.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          poi.click();
+        }
+      });
+    });
+
+    // Close button
+    if (closeBtn) closeBtn.addEventListener('click', closePanel);
+
+    // Click outside map closes panel
+    document.addEventListener('click', function(e) {
+      if (panel.classList.contains('active') && !panel.contains(e.target) && !e.target.closest('.map-poi')) {
+        closePanel();
+      }
+    });
+
+    // Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && panel.classList.contains('active')) closePanel();
+    });
+
+    // Mobile bottom-sheet drag-to-dismiss
+    var touchStartY = 0;
+    panel.addEventListener('touchstart', function(e) {
+      touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+    panel.addEventListener('touchend', function(e) {
+      var dy = e.changedTouches[0].clientY - touchStartY;
+      if (dy > 60) closePanel();
+    }, { passive: true });
+  }());
+
 })();

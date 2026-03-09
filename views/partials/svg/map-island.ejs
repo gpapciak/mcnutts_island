@@ -1,0 +1,452 @@
+<div class="map-container" role="region" aria-label="Interactive map of McNutt's Island">
+
+  <svg id="island-map" class="island-map-svg" viewBox="0 0 560 780" fill="none"
+       xmlns="http://www.w3.org/2000/svg" aria-describedby="map-desc">
+    <desc id="map-desc">Illustrated map of McNutt's Island, Nova Scotia. Shows the island's geography,
+      trail, and points of interest including the lighthouse, WWII battery, bogs, and wildlife areas.</desc>
+
+    <!-- ── Water background ─────────────────────────────────────────────────── -->
+    <rect width="560" height="780" fill="#d4eaf2"/>
+
+    <!-- ── Harbour side (east) — calmer, lighter wave lines ─────────────────── -->
+    <g class="map-water-harbour" opacity="0.5">
+      <path d="M330,180 C380,176 440,182 520,178" stroke="#5a9ab5" stroke-width="1.2" stroke-linecap="round"/>
+      <path d="M340,210 C390,206 450,212 530,208" stroke="#5a9ab5" stroke-width="1" stroke-linecap="round"/>
+      <path d="M345,244 C395,240 452,246 532,242" stroke="#5a9ab5" stroke-width="1" stroke-linecap="round"/>
+      <path d="M348,280 C398,276 454,282 534,278" stroke="#5a9ab5" stroke-width="1.2" stroke-linecap="round"/>
+      <path d="M348,316 C398,312 454,318 534,314" stroke="#5a9ab5" stroke-width="1" stroke-linecap="round"/>
+      <path d="M345,352 C395,348 450,354 530,350" stroke="#5a9ab5" stroke-width="1" stroke-linecap="round"/>
+      <path d="M340,388 C390,384 444,390 524,386" stroke="#5a9ab5" stroke-width="1.2" stroke-linecap="round"/>
+      <path d="M334,424 C380,420 434,426 514,422" stroke="#5a9ab5" stroke-width="1" stroke-linecap="round"/>
+      <path d="M324,460 C368,456 420,462 496,458" stroke="#5a9ab5" stroke-width="1" stroke-linecap="round"/>
+      <path d="M314,496 C355,492 400,498 470,494" stroke="#5a9ab5" stroke-width="1.2" stroke-linecap="round"/>
+      <path d="M290,530 C330,526 374,532 440,528" stroke="#5a9ab5" stroke-width="1" stroke-linecap="round"/>
+      <path d="M260,562 C295,558 335,564 395,560" stroke="#5a9ab5" stroke-width="1" stroke-linecap="round"/>
+      <path d="M230,594 C260,590 294,596 346,592" stroke="#5a9ab5" stroke-width="1" stroke-linecap="round"/>
+    </g>
+
+    <!-- ── Atlantic side (west) — more active, choppier ──────────────────────── -->
+    <g class="map-water-atlantic" opacity="0.55">
+      <path d="M10,190 C36,186 58,192 82,188" stroke="#4a8aaa" stroke-width="1.4" stroke-linecap="round"/>
+      <path d="M5,220 C34,215 60,221 90,217" stroke="#4a8aaa" stroke-width="1" stroke-linecap="round"/>
+      <path d="M8,250 C38,244 67,252 100,246" stroke="#4a8aaa" stroke-width="1.4" stroke-linecap="round"/>
+      <path d="M6,282 C40,276 72,284 114,278" stroke="#4a8aaa" stroke-width="1" stroke-linecap="round"/>
+      <path d="M8,314 C44,308 78,316 124,310" stroke="#4a8aaa" stroke-width="1.4" stroke-linecap="round"/>
+      <path d="M10,346 C46,340 82,348 130,342" stroke="#4a8aaa" stroke-width="1" stroke-linecap="round"/>
+      <path d="M10,378 C46,372 82,380 134,374" stroke="#4a8aaa" stroke-width="1.4" stroke-linecap="round"/>
+      <path d="M10,410 C44,404 80,412 136,406" stroke="#4a8aaa" stroke-width="1" stroke-linecap="round"/>
+      <path d="M10,442 C44,436 78,444 134,438" stroke="#4a8aaa" stroke-width="1.4" stroke-linecap="round"/>
+      <path d="M10,474 C42,468 76,476 130,470" stroke="#4a8aaa" stroke-width="1" stroke-linecap="round"/>
+      <path d="M12,506 C44,500 76,508 126,502" stroke="#4a8aaa" stroke-width="1.4" stroke-linecap="round"/>
+      <path d="M14,538 C44,532 74,540 120,534" stroke="#4a8aaa" stroke-width="1" stroke-linecap="round"/>
+      <path d="M18,570 C46,564 74,572 116,566" stroke="#4a8aaa" stroke-width="1.4" stroke-linecap="round"/>
+      <path d="M24,602 C50,596 76,604 112,598" stroke="#4a8aaa" stroke-width="1" stroke-linecap="round"/>
+      <path d="M36,634 C60,628 84,636 118,630" stroke="#4a8aaa" stroke-width="1.2" stroke-linecap="round"/>
+      <!-- Chop marks — short hash lines suggesting chop -->
+      <path d="M20,234 L24,238 M50,242 L54,246 M14,330 L18,334 M40,358 L44,362 M12,460 L16,464 M30,530 L34,534" stroke="#4a8aaa" stroke-width="1" stroke-linecap="round" opacity="0.6"/>
+    </g>
+
+    <!-- ── Mainland coast (top right — Gunning Cove area) ────────────────────── -->
+    <path d="M390,0 C400,12 408,28 402,46 C396,64 380,74 368,82 C356,90 350,96 350,104 L560,104 L560,0 Z"
+          fill="#c8b896" opacity="0.6" stroke="#8a7a60" stroke-width="1"/>
+    <!-- Mainland forest texture -->
+    <path d="M400,30 L400,16 M408,38 L408,22 M420,32 L420,18 M432,36 L432,24" stroke="#6a7a50" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/>
+    <!-- Mainland label -->
+    <text x="460" y="52" font-family="Georgia, serif" font-size="8" fill="#4a3a20" opacity="0.7"
+          text-anchor="middle" font-style="italic">Nova Scotia</text>
+    <text x="460" y="62" font-family="Georgia, serif" font-size="7" fill="#4a3a20" opacity="0.6"
+          text-anchor="middle" font-style="italic">mainland</text>
+
+    <!-- ── Island land base ──────────────────────────────────────────────────── -->
+    <!-- Main island + spit — one closed path, clockwise from NW spit tip -->
+    <path id="island-fill" d="
+      M 92,49
+      C 98,60 103,78 102,98
+      C 101,118 107,136 118,152
+      C 129,168 144,180 162,192
+      C 174,200 178,212 180,222
+      L 198,216
+      C 216,210 235,206 254,205
+      C 273,204 291,210 306,222
+      C 321,234 333,252 342,274
+      C 351,296 356,320 357,346
+      C 358,372 354,398 346,422
+      C 338,446 327,468 313,488
+      C 299,508 282,524 265,537
+      C 248,550 230,559 215,564
+      C 207,567 200,572 196,579
+      C 192,586 194,596 202,603
+      C 210,610 222,612 231,606
+      C 239,599 239,587 232,578
+      C 224,568 213,556 202,543
+      C 191,529 181,513 173,495
+      C 165,477 160,457 158,435
+      C 156,413 157,391 161,369
+      C 165,347 172,325 182,305
+      C 192,285 204,267 216,251
+      C 222,243 225,234 222,225
+      L 208,219
+      C 196,222 183,225 170,223
+      C 157,220 144,213 132,203
+      C 120,192 109,178 101,162
+      C 93,146 89,128 88,108
+      C 87,88 88,69 92,52
+      Z"
+      fill="#2a3828" stroke="#1e2a1e" stroke-width="1.2" stroke-linejoin="round"/>
+
+    <!-- ── Bog areas — lighter green with sphagnum circles ────────────────────── -->
+    <g class="map-bogs" opacity="0.7">
+      <ellipse cx="218" cy="358" rx="38" ry="28" fill="#4a5c30" opacity="0.6"/>
+      <ellipse cx="240" cy="390" rx="30" ry="20" fill="#4a5c30" opacity="0.5"/>
+      <ellipse cx="204" cy="380" rx="22" ry="16" fill="#4a5c30" opacity="0.5"/>
+      <!-- Sphagnum hummock circles -->
+      <circle cx="210" cy="352" r="3.5" stroke="#6a8040" stroke-width="0.8" opacity="0.6"/>
+      <circle cx="220" cy="346" r="2.5" stroke="#6a8040" stroke-width="0.8" opacity="0.6"/>
+      <circle cx="230" cy="352" r="3" stroke="#6a8040" stroke-width="0.8" opacity="0.6"/>
+      <circle cx="238" cy="360" r="3.5" stroke="#6a8040" stroke-width="0.8" opacity="0.6"/>
+      <circle cx="246" cy="352" r="2.5" stroke="#6a8040" stroke-width="0.8" opacity="0.5"/>
+      <circle cx="224" cy="366" r="3" stroke="#6a8040" stroke-width="0.8" opacity="0.5"/>
+      <circle cx="212" cy="370" r="2.5" stroke="#6a8040" stroke-width="0.8" opacity="0.5"/>
+      <circle cx="236" cy="374" r="3" stroke="#6a8040" stroke-width="0.8" opacity="0.5"/>
+      <circle cx="208" cy="385" r="3" stroke="#6a8040" stroke-width="0.8" opacity="0.4"/>
+      <circle cx="222" cy="388" r="3.5" stroke="#6a8040" stroke-width="0.8" opacity="0.4"/>
+      <circle cx="240" cy="382" r="2.5" stroke="#6a8040" stroke-width="0.8" opacity="0.4"/>
+    </g>
+
+    <!-- ── Spruce trees across interior ──────────────────────────────────────── -->
+    <!-- Each tree: short vertical trunk + two angled branch pairs -->
+    <!-- Helper macro via repeated pattern -->
+    <g class="map-trees" stroke="#5a8050" stroke-width="0.9" stroke-linecap="round" opacity="0.65">
+      <!-- Spit / northern sparse zone -->
+      <path d="M148,120 L148,108 M148,113 Q145,115 142,117 M148,113 Q151,115 154,117"/>
+      <path d="M162,140 L162,130 M162,134 Q159,136 156,138 M162,134 Q165,136 168,138"/>
+      <path d="M170,160 L170,150 M170,154 Q167,156 164,158 M170,154 Q173,156 176,158"/>
+      <!-- North-central interior — denser -->
+      <path d="M210,235 L210,224 M210,229 Q206,231 202,234 M210,229 Q214,231 218,234 M210,238 Q205,241 200,243 M210,238 Q215,241 220,243"/>
+      <path d="M228,242 L228,231 M228,236 Q224,238 220,240 M228,236 Q232,238 236,240"/>
+      <path d="M244,240 L244,229 M244,234 Q240,236 236,238 M244,234 Q248,236 252,238"/>
+      <path d="M258,246 L258,235 M258,240 Q254,242 250,244 M258,240 Q262,242 266,244"/>
+      <path d="M272,252 L272,241 M272,246 Q268,248 264,250 M272,246 Q276,248 280,250"/>
+      <path d="M286,260 L286,249 M286,254 Q282,256 278,258 M286,254 Q290,256 294,258"/>
+      <!-- Center — most dense -->
+      <path d="M204,264 L204,253 M204,258 Q200,260 196,263 M204,258 Q208,260 212,263 M204,268 Q199,271 194,273 M204,268 Q209,271 214,273"/>
+      <path d="M220,268 L220,257 M220,262 Q216,264 212,266 M220,262 Q224,264 228,266 M220,272 Q215,275 210,277 M220,272 Q225,275 230,277"/>
+      <path d="M236,270 L236,259 M236,264 Q232,266 228,268 M236,264 Q240,266 244,268"/>
+      <path d="M250,272 L250,261 M250,266 Q246,268 242,270 M250,266 Q254,268 258,270"/>
+      <path d="M264,278 L264,267 M264,272 Q260,274 256,276 M264,272 Q268,274 272,276"/>
+      <path d="M278,286 L278,275 M278,280 Q274,282 270,284 M278,280 Q282,282 286,284"/>
+      <path d="M294,296 L294,285 M294,290 Q290,292 286,294 M294,290 Q298,292 302,294"/>
+      <path d="M308,308 L308,297 M308,302 Q304,304 300,306 M308,302 Q312,304 316,306"/>
+      <path d="M318,322 L318,311 M318,316 Q314,318 310,320 M318,316 Q322,318 326,320"/>
+      <path d="M326,338 L326,327 M326,332 Q322,334 318,336 M326,332 Q330,334 334,336"/>
+      <path d="M330,356 L330,345 M330,350 Q326,352 322,354 M330,350 Q334,352 338,354"/>
+      <!-- East-central -->
+      <path d="M320,374 L320,363 M320,368 Q316,370 312,372 M320,368 Q324,370 328,372"/>
+      <path d="M316,392 L316,381 M316,386 Q312,388 308,390 M316,386 Q320,388 324,390"/>
+      <path d="M310,410 L310,399 M310,404 Q306,406 302,408 M310,404 Q314,406 318,408"/>
+      <path d="M304,428 L304,417 M304,422 Q300,424 296,426 M304,422 Q308,424 312,426"/>
+      <path d="M296,446 L296,435 M296,440 Q292,442 288,444 M296,440 Q300,442 304,444"/>
+      <path d="M286,464 L286,453 M286,458 Q282,460 278,462 M286,458 Q290,460 294,462"/>
+      <path d="M272,480 L272,469 M272,474 Q268,476 264,478 M272,474 Q276,476 280,478"/>
+      <path d="M256,494 L256,483 M256,488 Q252,490 248,492 M256,488 Q260,490 264,492"/>
+      <!-- West side interior -->
+      <path d="M196,310 L196,299 M196,304 Q192,306 188,308 M196,304 Q200,306 204,308"/>
+      <path d="M188,330 L188,319 M188,324 Q184,326 180,328 M188,324 Q192,326 196,328"/>
+      <path d="M182,354 L182,343 M182,348 Q178,350 174,352 M182,348 Q186,350 190,352"/>
+      <path d="M178,378 L178,367 M178,372 Q174,374 170,376 M178,372 Q182,374 186,376"/>
+      <path d="M176,402 L176,391 M176,396 Q172,398 168,400 M176,396 Q180,398 184,400"/>
+      <path d="M177,426 L177,415 M177,420 Q173,422 169,424 M177,420 Q181,422 185,424"/>
+      <path d="M180,450 L180,439 M180,444 Q176,446 172,448 M180,444 Q184,446 188,448"/>
+      <path d="M184,474 L184,463 M184,468 Q180,470 176,472 M184,468 Q188,470 192,472"/>
+      <path d="M190,498 L190,487 M190,492 Q186,494 182,496 M190,492 Q194,494 198,496"/>
+      <path d="M198,520 L198,509 M198,514 Q194,516 190,518 M198,514 Q202,516 206,518"/>
+      <path d="M208,540 L208,529 M208,534 Q204,536 200,538 M208,534 Q212,536 216,538"/>
+      <!-- Center lower -->
+      <path d="M240,440 L240,429 M240,434 Q236,436 232,438 M240,434 Q244,436 248,438"/>
+      <path d="M252,460 L252,449 M252,454 Q248,456 244,458 M252,454 Q256,456 260,458"/>
+      <path d="M262,480 L262,469 M262,474 Q258,476 254,478 M262,474 Q266,476 270,478"/>
+      <path d="M268,502 L268,491 M268,496 Q264,498 260,500 M268,496 Q272,498 276,500"/>
+      <path d="M270,524 L270,513 M270,518 Q266,520 262,522 M270,518 Q274,520 278,522"/>
+      <path d="M266,544 L266,533 M266,538 Q262,540 258,542 M266,538 Q270,540 274,542"/>
+      <path d="M258,562 L258,551 M258,556 Q254,558 250,560 M258,556 Q262,558 266,560"/>
+      <path d="M244,576 L244,565 M244,570 Q240,572 236,574 M244,570 Q248,572 252,574"/>
+      <path d="M228,586 L228,575 M228,580 Q224,582 220,584 M228,580 Q232,582 236,584"/>
+    </g>
+
+    <!-- ── Cobble beach stipple — western & southern shores ───────────────────── -->
+    <g class="map-beaches" fill="#8a9a70" opacity="0.5">
+      <!-- Western shore dots -->
+      <circle cx="163" cy="415" r="1.8"/> <circle cx="158" cy="426" r="1.4"/>
+      <circle cx="155" cy="438" r="1.8"/> <circle cx="154" cy="450" r="1.4"/>
+      <circle cx="155" cy="462" r="1.8"/> <circle cx="157" cy="474" r="1.4"/>
+      <circle cx="160" cy="486" r="1.8"/> <circle cx="164" cy="498" r="1.4"/>
+      <circle cx="168" cy="510" r="1.8"/> <circle cx="173" cy="522" r="1.4"/>
+      <circle cx="179" cy="533" r="1.8"/> <circle cx="186" cy="543" r="1.4"/>
+      <circle cx="194" cy="552" r="1.8"/> <circle cx="202" cy="560" r="1.4"/>
+      <circle cx="210" cy="568" r="1.8"/> <circle cx="218" cy="574" r="1.4"/>
+      <!-- Southern tip stipple -->
+      <circle cx="226" cy="578" r="1.6"/> <circle cx="233" cy="581" r="1.4"/>
+      <circle cx="222" cy="587" r="1.6"/> <circle cx="214" cy="592" r="1.4"/>
+      <circle cx="208" cy="597" r="1.6"/> <circle cx="215" cy="582" r="1.4"/>
+    </g>
+
+    <!-- ── Island outline (top layer for crispness) ───────────────────────────── -->
+    <path d="
+      M 92,49
+      C 98,60 103,78 102,98
+      C 101,118 107,136 118,152
+      C 129,168 144,180 162,192
+      C 174,200 178,212 180,222
+      L 198,216
+      C 216,210 235,206 254,205
+      C 273,204 291,210 306,222
+      C 321,234 333,252 342,274
+      C 351,296 356,320 357,346
+      C 358,372 354,398 346,422
+      C 338,446 327,468 313,488
+      C 299,508 282,524 265,537
+      C 248,550 230,559 215,564
+      C 207,567 200,572 196,579
+      C 192,586 194,596 202,603
+      C 210,610 222,612 231,606
+      C 239,599 239,587 232,578
+      C 224,568 213,556 202,543
+      C 191,529 181,513 173,495
+      C 165,477 160,457 158,435
+      C 156,413 157,391 161,369
+      C 165,347 172,325 182,305
+      C 192,285 204,267 216,251
+      C 222,243 225,234 222,225
+      L 208,219
+      C 196,222 183,225 170,223
+      C 157,220 144,213 132,203
+      C 120,192 109,178 101,162
+      C 93,146 89,128 88,108
+      C 87,88 88,69 92,52
+      Z"
+      fill="none" stroke="#3d5230" stroke-width="1.5" stroke-linejoin="round"/>
+
+    <!-- ── Lighthouse trail (dashed) ──────────────────────────────────────────── -->
+    <path d="M 298,336 C 270,345 250,358 236,372 C 222,386 210,404 200,424 C 190,444 184,468 180,494 C 176,518 186,545 202,566 C 210,576 218,586 218,598"
+          stroke="#8a6a3a" stroke-width="1.8" stroke-dasharray="6,4" stroke-linecap="round" fill="none" opacity="0.7"/>
+    <!-- Trail label -->
+    <text x="238" y="446" font-family="Georgia, serif" font-size="7.5" fill="#8a6a3a" opacity="0.75"
+          transform="rotate(-75,238,446)" font-style="italic">Lighthouse Trail</text>
+
+    <!-- ── Harbour crossing — dotted line ────────────────────────────────────── -->
+    <path d="M 460,68 C 420,100 380,180 304,328"
+          stroke="#2a6b7c" stroke-width="1.5" stroke-dasharray="3,5" stroke-linecap="round" fill="none" opacity="0.55"/>
+    <!-- ~800m label along crossing -->
+    <text x="390" y="206" font-family="Georgia, serif" font-size="8" fill="#2a6b7c" opacity="0.7"
+          transform="rotate(62,390,206)" text-anchor="middle">~800m</text>
+
+    <!-- ── Water labels ────────────────────────────────────────────────────────── -->
+    <text x="468" y="310" font-family="Georgia, serif" font-size="11" fill="#2a5a6e" opacity="0.55"
+          text-anchor="middle" font-style="italic">Shelburne</text>
+    <text x="468" y="324" font-family="Georgia, serif" font-size="11" fill="#2a5a6e" opacity="0.55"
+          text-anchor="middle" font-style="italic">Harbour</text>
+    <text x="44" y="660" font-family="Georgia, serif" font-size="10" fill="#2a4a5e" opacity="0.5"
+          text-anchor="middle" font-style="italic">Atlantic</text>
+    <text x="44" y="673" font-family="Georgia, serif" font-size="10" fill="#2a4a5e" opacity="0.5"
+          text-anchor="middle" font-style="italic">Ocean</text>
+
+    <!-- ── Island name label ──────────────────────────────────────────────────── -->
+    <text x="232" y="318" font-family="Georgia, serif" font-size="13" fill="#e8d8b0" opacity="0.8"
+          text-anchor="middle" font-style="italic" letter-spacing="0.5">McNutt's</text>
+    <text x="232" y="334" font-family="Georgia, serif" font-size="13" fill="#e8d8b0" opacity="0.8"
+          text-anchor="middle" font-style="italic" letter-spacing="0.5">Island</text>
+
+    <!-- ── Scale bar ─────────────────────────────────────────────────────────── -->
+    <g transform="translate(24, 744)">
+      <rect x="0" y="0" width="112" height="5" fill="#3a5a3a" opacity="0.6"/>
+      <rect x="0" y="0" width="56" height="5" fill="#c8d8b8" opacity="0.6"/>
+      <line x1="0" y1="-3" x2="0" y2="8" stroke="#3a5a3a" stroke-width="1.2"/>
+      <line x1="56" y1="-3" x2="56" y2="8" stroke="#3a5a3a" stroke-width="1.2"/>
+      <line x1="112" y1="-3" x2="112" y2="8" stroke="#3a5a3a" stroke-width="1.2"/>
+      <text x="0" y="18" font-family="Georgia, serif" font-size="8" fill="#3a5a3a" opacity="0.7">0</text>
+      <text x="52" y="18" font-family="Georgia, serif" font-size="8" fill="#3a5a3a" opacity="0.7">0.5</text>
+      <text x="102" y="18" font-family="Georgia, serif" font-size="8" fill="#3a5a3a" opacity="0.7">1 km</text>
+    </g>
+
+    <!-- ── Compass rose ───────────────────────────────────────────────────────── -->
+    <g transform="translate(496, 704)">
+      <circle r="28" stroke="#3a5a3a" stroke-width="0.8" fill="#d4eaf2" fill-opacity="0.7" opacity="0.5"/>
+      <!-- Cardinal needles -->
+      <path d="M0,-28 L-5,-10 L0,-14 L5,-10 Z" fill="#3a5a3a" opacity="0.7"/>
+      <path d="M0,28 L-4,10 L0,14 L4,10 Z" fill="#8a9a80" opacity="0.5"/>
+      <path d="M-28,0 L-10,-4 L-14,0 L-10,4 Z" fill="#8a9a80" opacity="0.5"/>
+      <path d="M28,0 L10,-4 L14,0 L10,4 Z" fill="#8a9a80" opacity="0.5"/>
+      <!-- N label -->
+      <text x="0" y="-32" font-family="Georgia, serif" font-size="9" fill="#2a3a2a" opacity="0.8"
+            text-anchor="middle" font-weight="bold">N</text>
+    </g>
+
+    <!-- ══ POINTS OF INTEREST ══════════════════════════════════════════════════ -->
+
+    <!-- 1. Cape Roseway Lighthouse -->
+    <g class="map-poi" data-id="lighthouse"
+       data-title="Cape Roseway Lighthouse"
+       data-desc="One of Canada&apos;s oldest lighthouses, guiding ships into Shelburne Harbour since 1788. The current octagonal wooden tower dates to 1833."
+       data-link="/island#lighthouse">
+      <circle class="map-poi__target" cx="216" cy="600" r="22" fill="transparent"/>
+      <g class="map-poi__icon" transform="translate(205,586)">
+        <!-- Mini lighthouse icon -->
+        <rect x="3" y="8" width="8" height="2" fill="#c49a6c"/>
+        <path d="M4,8 L10,8 L9,0 L5,0 Z" fill="#c49a6c"/>
+        <rect x="3.5" y="-1" width="7" height="1.5" fill="#c49a6c"/>
+        <rect x="4" y="-4" width="6" height="3" fill="#c49a6c"/>
+        <path d="M3.5,-4 L10.5,-4 L7,-8 Z" fill="#c49a6c"/>
+        <rect x="5.2" y="-3.5" width="3.6" height="2" fill="#e8d8b0" opacity="0.8"/>
+      </g>
+      <text class="map-poi__label" x="216" y="618" font-family="Georgia, serif" font-size="7.5"
+            fill="#e8d8b0" text-anchor="middle" font-style="italic">Lighthouse</text>
+    </g>
+
+    <!-- 2. WWII Gun Battery -->
+    <g class="map-poi" data-id="battery"
+       data-title="WWII Gun Battery"
+       data-desc="Concrete emplacements from Canada&apos;s coastal defence network, now being reclaimed by the forest. Armed with two six-inch naval guns during WWII."
+       data-link="/island#battery">
+      <circle class="map-poi__target" cx="186" cy="554" r="22" fill="transparent"/>
+      <g class="map-poi__icon" transform="translate(177,544)">
+        <!-- Bunker icon -->
+        <rect x="0" y="4" width="18" height="6" rx="1" fill="#c49a6c"/>
+        <rect x="6" y="2" width="6" height="4" rx="0.5" fill="#c49a6c"/>
+        <!-- Gun barrel -->
+        <line x1="16" y1="6" x2="22" y2="4" stroke="#c49a6c" stroke-width="1.5" stroke-linecap="round"/>
+      </g>
+      <text class="map-poi__label" x="186" y="568" font-family="Georgia, serif" font-size="7"
+            fill="#e8d8b0" text-anchor="middle" font-style="italic">Battery</text>
+    </g>
+
+    <!-- 3. Interior Bogs -->
+    <g class="map-poi" data-id="bogs"
+       data-title="Interior Bogs"
+       data-desc="Peat-forming wetlands with pitcher plants, sundews, and Labrador tea — among the most carbon-dense ecosystems on the planet."
+       data-link="/flora-fauna#bogs">
+      <circle class="map-poi__target" cx="238" cy="368" r="22" fill="transparent"/>
+      <g class="map-poi__icon" transform="translate(228,356)">
+        <!-- Pitcher plant icon -->
+        <path d="M5,12 C3,8 3,4 5,2 C7,0 10,0 11,2 C12,4 12,8 10,12 Z" fill="none" stroke="#c49a6c" stroke-width="1.3"/>
+        <path d="M8,2 L8,0 M5,0 L11,0" stroke="#c49a6c" stroke-width="1" stroke-linecap="round"/>
+        <path d="M8,12 L8,16 M3,14 L13,14" stroke="#c49a6c" stroke-width="1" stroke-linecap="round"/>
+      </g>
+      <text class="map-poi__label" x="238" y="382" font-family="Georgia, serif" font-size="7"
+            fill="#e8d8b0" text-anchor="middle" font-style="italic">Bogs</text>
+    </g>
+
+    <!-- 4. Eagle Nesting Area -->
+    <g class="map-poi" data-id="eagles"
+       data-title="Eagle Nesting Area"
+       data-desc="Bald eagles nest in the island&apos;s tall spruce. Nova Scotia has one of the highest eagle densities in Eastern North America."
+       data-link="/flora-fauna#eagles">
+      <circle class="map-poi__target" cx="294" cy="286" r="22" fill="transparent"/>
+      <g class="map-poi__icon" transform="translate(281,274)">
+        <!-- Eagle silhouette (soaring) -->
+        <path d="M13,6 C10,3 5,1 1,3 C4,4 7,5 9,6 C6,6 3,6 2,8 C5,7 8,7 11,7" stroke="#c49a6c" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+        <path d="M13,6 C16,3 21,1 25,3 C22,4 19,5 17,6 C20,6 23,6 24,8 C21,7 18,7 15,7" stroke="#c49a6c" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+        <circle cx="13" cy="5" r="2" fill="#c49a6c"/>
+        <path d="M13,7 L11,12 M13,7 L15,12" stroke="#c49a6c" stroke-width="1" stroke-linecap="round"/>
+      </g>
+      <text class="map-poi__label" x="294" y="300" font-family="Georgia, serif" font-size="7"
+            fill="#e8d8b0" text-anchor="middle" font-style="italic">Eagles</text>
+    </g>
+
+    <!-- 5. Seal Rocks -->
+    <g class="map-poi" data-id="seals"
+       data-title="Seal Rocks"
+       data-desc="Harbour seals haul out on exposed ledges, particularly in late summer and fall. Often visible from the lighthouse point."
+       data-link="/flora-fauna#seals">
+      <circle class="map-poi__target" cx="159" cy="476" r="22" fill="transparent"/>
+      <g class="map-poi__icon" transform="translate(148,464)">
+        <!-- Seal icon -->
+        <ellipse cx="11" cy="10" rx="7" ry="4" fill="none" stroke="#c49a6c" stroke-width="1.2"/>
+        <circle cx="15" cy="5" r="3" fill="none" stroke="#c49a6c" stroke-width="1.2"/>
+        <path d="M17,5 L20,4.5 M17,6 L20,7" stroke="#c49a6c" stroke-width="0.8" stroke-linecap="round"/>
+      </g>
+      <text class="map-poi__label" x="159" y="490" font-family="Georgia, serif" font-size="7"
+            fill="#e8d8b0" text-anchor="middle" font-style="italic">Seals</text>
+    </g>
+
+    <!-- 6. Landing Cove -->
+    <g class="map-poi" data-id="landing"
+       data-title="Landing Cove"
+       data-desc="The main arrival point for visitors crossing from Gunning Cove. The wharf provides sheltered landing in most conditions."
+       data-link="/activities#getting-here">
+      <circle class="map-poi__target" cx="302" cy="334" r="22" fill="transparent"/>
+      <g class="map-poi__icon" transform="translate(291,322)">
+        <!-- Dock icon -->
+        <rect x="2" y="9" width="18" height="3" fill="#c49a6c"/>
+        <line x1="4" y1="9" x2="4" y2="14" stroke="#c49a6c" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="10" y1="9" x2="10" y2="14" stroke="#c49a6c" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="16" y1="9" x2="16" y2="14" stroke="#c49a6c" stroke-width="1.5" stroke-linecap="round"/>
+        <!-- Small boat -->
+        <path d="M6,5 C7,3 13,3 14,5 C13,8 7,8 6,5 Z" fill="#c49a6c"/>
+        <line x1="10" y1="3" x2="10" y2="0" stroke="#c49a6c" stroke-width="1" stroke-linecap="round"/>
+      </g>
+      <text class="map-poi__label" x="302" y="348" font-family="Georgia, serif" font-size="7"
+            fill="#e8d8b0" text-anchor="middle" font-style="italic">Landing Cove</text>
+    </g>
+
+    <!-- 7. Lighthouse Trail marker -->
+    <g class="map-poi" data-id="trail"
+       data-title="Lighthouse Trail"
+       data-desc="A 6km round trip through Acadian forest and along the western shore to the lighthouse. No maintained trail — follow paths and shore."
+       data-link="/activities#hiking">
+      <circle class="map-poi__target" cx="192" cy="444" r="22" fill="transparent"/>
+      <g class="map-poi__icon" transform="translate(181,432)">
+        <!-- Hiking boot icon (simplified) -->
+        <path d="M4,14 L4,6 C4,3 7,1 10,1 C13,1 16,3 16,6 L16,10 L20,10 L20,14 Z" fill="none" stroke="#c49a6c" stroke-width="1.3" stroke-linejoin="round"/>
+        <path d="M2,14 L22,14" stroke="#c49a6c" stroke-width="1.5" stroke-linecap="round"/>
+      </g>
+      <text class="map-poi__label" x="192" y="458" font-family="Georgia, serif" font-size="7"
+            fill="#e8d8b0" text-anchor="middle" font-style="italic">Trail</text>
+    </g>
+
+    <!-- 8. Acadian Forest -->
+    <g class="map-poi" data-id="forest"
+       data-title="Acadian Forest"
+       data-desc="Red spruce, balsam fir, yellow birch, and sugar maple in a largely unlogged mixed forest with rare structural complexity."
+       data-link="/flora-fauna#forest">
+      <circle class="map-poi__target" cx="260" cy="264" r="22" fill="transparent"/>
+      <g class="map-poi__icon" transform="translate(249,252)">
+        <!-- Tree icon -->
+        <line x1="11" y1="14" x2="11" y2="0" stroke="#c49a6c" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M11,4 Q7,6 4,8 M11,4 Q15,6 18,8 M11,8 Q6,11 2,13 M11,8 Q16,11 20,13" stroke="#c49a6c" stroke-width="1.2" stroke-linecap="round"/>
+      </g>
+      <text class="map-poi__label" x="260" y="278" font-family="Georgia, serif" font-size="7"
+            fill="#e8d8b0" text-anchor="middle" font-style="italic">Acadian Forest</text>
+    </g>
+
+    <!-- 9. Gunning Cove (mainland) -->
+    <g class="map-poi" data-id="gunningcove"
+       data-title="Gunning Cove"
+       data-desc="Public boat launch and departure point on the mainland. 800m crossing to the island. 15 minutes from Shelburne town centre."
+       data-link="/activities#getting-here">
+      <circle class="map-poi__target" cx="462" cy="68" r="22" fill="transparent"/>
+      <g class="map-poi__icon" transform="translate(451,56)">
+        <!-- Launch ramp icon -->
+        <path d="M2,14 L12,4 L22,14" fill="none" stroke="#8a6a3a" stroke-width="1.3" stroke-linejoin="round"/>
+        <path d="M0,14 L24,14" stroke="#8a6a3a" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M8,10 C10,8 14,8 16,10 C15,13 9,13 8,10 Z" fill="#8a6a3a" opacity="0.7"/>
+      </g>
+      <text class="map-poi__label" x="462" y="82" font-family="Georgia, serif" font-size="7.5"
+            fill="#4a3a20" text-anchor="middle" font-style="italic">Gunning Cove</text>
+    </g>
+
+  </svg><!-- /svg -->
+
+  <!-- ── Info panel (HTML, not SVG — positioned over map) ─────────────────── -->
+  <div class="map-info-panel" id="map-info-panel" role="dialog" aria-modal="true"
+       aria-labelledby="map-info-title" hidden>
+    <button class="map-info-panel__close" id="map-panel-close" aria-label="Close">&times;</button>
+    <h3 class="map-info-panel__title" id="map-info-title"></h3>
+    <p class="map-info-panel__desc" id="map-info-desc"></p>
+    <a class="map-info-panel__link btn btn--outline-dark btn--sm" id="map-info-link"
+       href="#" target="_self">Learn more &rarr;</a>
+  </div>
+
+  <!-- Mobile drag handle -->
+  <div class="map-info-panel__handle" aria-hidden="true"></div>
+
+</div><!-- /.map-container -->

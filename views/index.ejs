@@ -110,6 +110,20 @@
   </section>
   <% } %>
 
+  <!-- ── Interactive Map ───────────────────────────────────────────────────────── -->
+  <section class="section island-map-section">
+    <div class="container">
+      <div class="section__header text-center">
+        <span class="section__eyebrow">Interactive Map</span>
+        <h2>Explore the Island</h2>
+      </div>
+      <%- include('partials/svg/map-island') %>
+      <p class="text-center text-muted mt-3" style="font-size:.85rem;">
+        Tap or click any marker to learn more. Pinch to zoom on mobile.
+      </p>
+    </div>
+  </section>
+
   <%- include('partials/svg/divider-treeline') %>
 
   <!-- ── Island snapshot ──────────────────────────────────────────────────────── -->
