@@ -1,0 +1,254 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 500" width="600" height="500"
+     role="img" aria-label="Geological map of Nova Scotia showing Meguma and Avalon terranes, with McNutt's Island marked near Shelburne">
+
+<style>
+  :root {
+    --geo-meguma: #9B9284;
+    --geo-avalon: #6E7F8D;
+    --geo-fault: #C49A3A;
+    --geo-outline: #4A4540;
+    --geo-mcnutts: #8B2E2E;
+  }
+
+  /* ── Terrane fills ─────────────────────────────────── */
+  .meguma-fill { fill: var(--geo-meguma); fill-opacity: 0; }
+  .avalon-fill  { fill: var(--geo-avalon);  fill-opacity: 0; }
+
+  .anim-active .meguma-fill {
+    fill-opacity: 0.62;
+    transition: fill-opacity 500ms ease 700ms;
+  }
+  .anim-active .avalon-fill {
+    fill-opacity: 0.62;
+    transition: fill-opacity 500ms ease 1200ms;
+  }
+
+  /* ── Outlines ──────────────────────────────────────── */
+  .ns-outline {
+    fill: none;
+    stroke: var(--geo-outline);
+    stroke-width: 1.5;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+  }
+  .outline-main {
+    stroke-dasharray: 1300;
+    stroke-dashoffset: 1300;
+  }
+  .outline-cb {
+    stroke-dasharray: 700;
+    stroke-dashoffset: 700;
+  }
+  .anim-active .outline-main {
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 650ms cubic-bezier(0.4,0,0.2,1) 0ms;
+  }
+  .anim-active .outline-cb {
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 550ms cubic-bezier(0.4,0,0.2,1) 100ms;
+  }
+
+  /* ── Fault line ────────────────────────────────────── */
+  .fault-line {
+    fill: none;
+    stroke: var(--geo-fault);
+    stroke-width: 2.2;
+    stroke-dasharray: 7 3;
+    stroke-linecap: round;
+    opacity: 0;
+  }
+  .anim-active .fault-line {
+    opacity: 1;
+    transition: opacity 450ms ease 1700ms;
+  }
+
+  /* ── Marker ────────────────────────────────────────── */
+  .mcnutts-group { opacity: 0; }
+  .anim-active .mcnutts-group {
+    opacity: 1;
+    transition: opacity 400ms ease 2150ms;
+  }
+  .marker-dot  { fill: var(--geo-mcnutts); }
+  .marker-ring { fill: none; stroke: var(--geo-mcnutts); stroke-width: 1.5; }
+
+  /* ── Labels & legend ───────────────────────────────── */
+  .labels-group { opacity: 0; }
+  .legend-group { opacity: 0; }
+  .anim-active .labels-group {
+    opacity: 1;
+    transition: opacity 500ms ease 2550ms;
+  }
+  .anim-active .legend-group {
+    opacity: 1;
+    transition: opacity 500ms ease 2850ms;
+  }
+
+  /* ── Typography ────────────────────────────────────── */
+  text {
+    font-family: system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+    fill: currentColor;
+  }
+  .lbl-heading  { font-size: 11.5px; font-weight: 600; fill-opacity: 0.88; }
+  .lbl-sub      { font-size: 10px;   fill-opacity: 0.72; }
+  .lbl-fault    { font-size: 9px;    fill: var(--geo-fault); fill-opacity: 0.92; }
+  .lbl-origin   { font-size: 9.5px;  font-style: italic; fill-opacity: 0.70; }
+  .lbl-title    { font-size: 13px;   font-weight: 600; fill-opacity: 0.90; }
+  .lbl-legend   { font-size: 10px;   fill-opacity: 0.85; }
+</style>
+
+<!-- Subtle water tint -->
+<rect width="600" height="500" fill="rgba(185,210,228,0.08)" rx="6"/>
+
+<!-- ── TERRANE FILLS ─────────────────────────────────────────── -->
+
+<!-- Meguma (mainland south of fault + Fundy shore below fault) -->
+<path class="meguma-fill" d="
+  M 252,228 L 435,248
+  L 445,268 L 390,298 L 335,320 L 300,345 L 262,355
+  L 215,368 L 182,388 L 160,405 L 142,412 L 112,420
+  L 90,400  L 77,378
+  L 108,328 L 148,292 L 192,258 L 215,248 L 228,235
+  Z"/>
+
+<!-- Avalon — mainland strip north of fault -->
+<path class="avalon-fill" d="
+  M 252,228 L 435,248
+  L 448,252 L 432,240
+  L 395,215 L 355,205 L 310,218 L 295,232 L 262,228
+  Z"/>
+
+<!-- Avalon — Cape Breton Island -->
+<path class="avalon-fill" d="
+  M 448,268 L 460,252 L 475,228 L 480,205
+  L 472,175 L 488,148 L 515,138
+  L 538,152 L 545,178 L 535,205
+  L 515,228 L 495,250 L 472,260
+  Z"/>
+
+<!-- ── OUTLINES ───────────────────────────────────────────────── -->
+
+<!-- Mainland Nova Scotia (clockwise from Yarmouth) -->
+<path class="ns-outline outline-main" d="
+  M 77,378
+  L 90,400  L 112,420 L 142,412 L 160,405 L 182,388
+  L 215,368 L 262,355 L 300,345 L 335,320 L 390,298 L 445,268
+  L 448,252 L 432,240
+  L 395,215 L 355,205 L 310,218 L 295,232 L 262,228
+  L 228,235 L 215,248 L 192,258 L 148,292 L 108,328
+  Z"/>
+
+<!-- Cape Breton Island -->
+<path class="ns-outline outline-cb" d="
+  M 448,268
+  L 460,252 L 475,228 L 480,205
+  L 472,175 L 488,148 L 515,138
+  L 538,152 L 545,178 L 535,205
+  L 515,228 L 495,250 L 472,260
+  Z"/>
+
+<!-- ── FAULT LINE ─────────────────────────────────────────────── -->
+<line class="fault-line" x1="252" y1="228" x2="435" y2="248"/>
+
+<!-- ── McNUTT'S ISLAND MARKER ─────────────────────────────────── -->
+<g class="mcnutts-group">
+  <!-- Leader line to label -->
+  <line x1="155" y1="406" x2="102" y2="452"
+        stroke="var(--geo-mcnutts)" stroke-width="0.8" stroke-opacity="0.55"/>
+  <circle cx="155" cy="408" r="5"  class="marker-dot"/>
+  <circle cx="155" cy="408" r="9"  class="marker-ring"/>
+</g>
+
+<!-- ── LABELS ─────────────────────────────────────────────────── -->
+<g class="labels-group">
+  <!-- Meguma region -->
+  <text x="215" y="338" class="lbl-heading" text-anchor="middle">Meguma</text>
+  <text x="215" y="351" class="lbl-sub"     text-anchor="middle">Terrane</text>
+
+  <!-- Avalon mainland strip -->
+  <text x="372" y="220" class="lbl-heading" text-anchor="middle">Avalon</text>
+  <text x="372" y="232" class="lbl-sub"     text-anchor="middle">Terrane</text>
+
+  <!-- Cape Breton -->
+  <text x="507" y="192" class="lbl-sub" text-anchor="middle">Cape</text>
+  <text x="507" y="204" class="lbl-sub" text-anchor="middle">Breton</text>
+
+  <!-- Fault label (above the line) -->
+  <text x="340" y="241" class="lbl-fault" text-anchor="middle">Cobequid–Chedabucto Fault</text>
+
+  <!-- McNutt's Island label -->
+  <text x="78"  y="454" class="lbl-sub" text-anchor="middle">McNutt's</text>
+  <text x="78"  y="466" class="lbl-sub" text-anchor="middle">Island</text>
+
+  <!-- Origin note -->
+  <text x="300" y="484" class="lbl-origin" text-anchor="middle">
+    originated ~500 million years ago near northwest Africa
+  </text>
+</g>
+
+<!-- ── TITLE ──────────────────────────────────────────────────── -->
+<text x="300" y="26" class="lbl-title" text-anchor="middle">
+  Nova Scotia — Geological Terranes
+</text>
+
+<!-- ── LEGEND ─────────────────────────────────────────────────── -->
+<g class="legend-group" transform="translate(14,38)">
+  <rect x="0" y="0" width="174" height="106"
+        fill="rgba(255,255,255,0.06)"
+        stroke="currentColor" stroke-opacity="0.18" stroke-width="1" rx="5"/>
+
+  <!-- Meguma -->
+  <rect x="10" y="14" width="15" height="11"
+        fill="var(--geo-meguma)" fill-opacity="0.65"
+        stroke="var(--geo-outline)" stroke-width="0.5"/>
+  <text x="31" y="23" class="lbl-legend">Meguma Terrane</text>
+
+  <!-- Avalon -->
+  <rect x="10" y="34" width="15" height="11"
+        fill="var(--geo-avalon)" fill-opacity="0.65"
+        stroke="var(--geo-outline)" stroke-width="0.5"/>
+  <text x="31" y="43" class="lbl-legend">Avalon Terrane</text>
+
+  <!-- Fault line swatch -->
+  <line x1="10" y1="62" x2="25" y2="62"
+        stroke="var(--geo-fault)" stroke-width="2" stroke-dasharray="5 2"/>
+  <text x="31" y="66" class="lbl-legend">Fault Line</text>
+
+  <!-- McNutt's swatch -->
+  <circle cx="17" cy="84" r="4" fill="var(--geo-mcnutts)"/>
+  <circle cx="17" cy="84" r="7" fill="none"
+          stroke="var(--geo-mcnutts)" stroke-width="1.2"/>
+  <text x="31" y="88" class="lbl-legend">McNutt's Island</text>
+</g>
+
+<!-- ── ANIMATION SCRIPT ───────────────────────────────────────── -->
+<script>
+<![CDATA[
+(function () {
+  'use strict';
+
+  // Locate the SVG whether this runs inline, via <object>, or standalone
+  var svg = null;
+  if (typeof document !== 'undefined') {
+    if (document.currentScript) {
+      var el = document.currentScript.parentElement;
+      while (el && el.tagName.toLowerCase() !== 'svg') el = el.parentElement;
+      svg = el;
+    }
+    if (!svg) svg = document.querySelector('svg');
+  }
+  if (!svg) return;
+
+  function activate() { svg.classList.add('anim-active'); }
+
+  if (typeof IntersectionObserver !== 'undefined') {
+    var io = new IntersectionObserver(function (entries) {
+      if (entries[0].isIntersecting) { activate(); io.disconnect(); }
+    }, { threshold: 0.15 });
+    io.observe(svg);
+  } else {
+    activate();
+  }
+}());
+]]>
+</script>
+</svg>

@@ -1,0 +1,21 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.33588,
+          43.76478,
+          0
+        ]
+      },
+      "properties": {
+        "name": "The Islands Provincial Park",
+        "styleUrl": "#10436_11944_15-3",
+        "_source": "The Islands Provincial Park"
+      }
+    }
+  ]
+}

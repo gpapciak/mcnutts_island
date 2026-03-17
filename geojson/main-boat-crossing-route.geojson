@@ -1,0 +1,64 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -65.33874974837688,
+            43.6823110199665,
+            0
+          ],
+          [
+            -65.3312074200619,
+            43.68104923437983,
+            0
+          ],
+          [
+            -65.32590099204677,
+            43.67799922807818,
+            0
+          ],
+          [
+            -65.32530817599519,
+            43.6731921282886,
+            0
+          ],
+          [
+            -65.32411049448248,
+            43.66814369178143,
+            0
+          ],
+          [
+            -65.32230583786232,
+            43.66257750453737,
+            0
+          ],
+          [
+            -65.31547775781674,
+            43.65655801089753,
+            0
+          ],
+          [
+            -65.30446791065229,
+            43.65540729994104,
+            0
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Main Crossing Route",
+        "styleUrl": "#m_ylw-pushpin6",
+        "styleHash": "35c20d0b",
+        "styleMapHash": {
+          "normal": "#s_ylw-pushpin5",
+          "highlight": "#s_ylw-pushpin_hl5"
+        },
+        "icon": "http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png",
+        "_source": "Main Boat Crossing Route"
+      }
+    }
+  ]
+}

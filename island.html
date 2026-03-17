@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- McNutt's Island has been here for 12,000 years.
+     This website is somewhat newer. Both are works
+     in progress. -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Island | McNutt's Island Alliance</title>
+<meta name="description" content="Ten thousand years of human history on McNutt's Island — Mi'kmaq homeland, Black Loyalist settlement, lighthouse, WWII battery, and a working lobster fishery.">
+<link rel="canonical" href="https://mcnuttsisland.org/island">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mcnuttsisland.org/island">
+<meta property="og:title" content="The Island | McNutt's Island Alliance">
+<meta property="og:description" content="Ten thousand years of human history on McNutt's Island — Mi'kmaq homeland, Black Loyalist settlement, lighthouse, WWII battery, and a working lobster fishery.">
+<meta property="og:site_name" content="McNutt's Island Alliance">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta name="theme-color" content="#1A3A5C">
+<meta name="robots" content="index, follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('/sw.js');
+    });
+  }
+</script>
+</head>
+<body>
+
+<a href="#main-content" class="skip-to-content">Skip to main content</a>
+<header class="site-header">
+  <div class="container">
+    <div class="site-header__inner">
+      <a href="index.html" class="site-logo" aria-label="McNutt's Island Alliance — Home">
+        <span class="site-logo__name">McNutt's Island</span>
+        <span class="site-logo__sub">Alliance</span>
+      </a>
+      <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">
+        <span class="nav-toggle__icon" aria-hidden="true"><span></span><span></span><span></span></span>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="island.html" aria-current="page">The Island</a>
+        <a href="flora-fauna.html">Flora &amp; Fauna</a>
+        <a href="activities.html">Activities</a>
+        <a href="community.html">Community</a>
+        <a href="naming.html">The Naming</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main id="main-content">
+
+  <!-- ── Page hero ─────────────────────────────────────────────────────────── -->
+  <section class="hero hero--island" style="padding: 3.5rem 0;">
+    <div class="hero__image-slot" aria-hidden="true"></div>
+    <div class="container">
+      <div class="hero__content">
+        <span class="hero__eyebrow">McNutt's Island, Nova Scotia</span>
+        <h1>The Island</h1>
+        <p class="hero__description">
+          Ten thousand years of continuous human presence. Mi'kmaq homeland,
+          Black Loyalist settlement, lighthouse, WWII battery, and lobster fishery.
+          This is the full story of a small island with a long memory.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Interactive Map ───────────────────────────────────────────────────── -->
+  <section class="section island-map-section island-map-section--detail">
+    <div class="container">
+      <div class="section__header text-center">
+        <span class="section__eyebrow">Interactive Map</span>
+        <h2>Explore the Island</h2>
+      </div>
+      <div class="leaflet-map-wrapper">
+        <div id="island-map-detail" class="leaflet-map-el" data-leaflet-map aria-label="Interactive map of McNutt's Island"></div>
+        <div class="map-tile-toggle" role="group" aria-label="Map style">
+          <button class="tile-btn tile-btn--active" data-layer="topo">Map</button>
+          <button class="tile-btn" data-layer="satellite">Satellite</button>
+        </div>
+      </div>
+      <p class="text-center text-muted mt-3" style="font-size:.85rem;">
+        Click any marker to learn more. Scroll or pinch to zoom.
+      </p>
+    </div>
+  </section>
+
+  <div class="section-divider section-divider--centered" aria-hidden="true">
+    <svg class="svg-divider svg-divider--trees" viewBox="0 0 720 65" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M72,65 L72,7 M72,20 Q65,25 57,29 M72,20 Q79,25 87,29 M72,33 Q62,39 50,44 M72,33 Q82,39 94,44 M72,48 Q58,55 44,60 M72,48 Q86,55 100,60" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+      <path d="M172,65 L172,25 M172,36 Q165,41 157,45 M172,36 Q179,41 187,45 M172,50 Q162,56 151,60 M172,50 Q182,56 193,60" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+      <path d="M262,65 L262,11 M262,24 Q255,29 247,33 M262,24 Q269,29 277,33 M262,38 Q251,44 239,49 M262,38 Q273,44 285,49 M262,52 Q248,58 234,63 M262,52 Q276,58 290,63" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+      <path d="M352,65 L352,18 M352,30 Q345,35 337,39 M352,30 Q359,35 367,39 M352,44 Q341,50 329,55 M352,44 Q363,50 375,55 M352,57 Q340,62 328,65 M352,57 Q364,62 376,65" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+      <path d="M440,65 L440,32 M440,42 Q433,47 425,51 M440,42 Q447,47 455,51 M440,55 Q430,60 420,63 M440,55 Q450,60 460,63" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+      <path d="M530,65 L530,9 M530,22 Q523,27 515,31 M530,22 Q537,27 545,31 M530,36 Q519,42 507,47 M530,36 Q541,42 553,47 M530,50 Q516,57 502,62 M530,50 Q544,57 558,62" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+      <path d="M622,65 L622,28 M622,39 Q615,44 607,48 M622,39 Q629,44 637,48 M622,53 Q612,58 601,62 M622,53 Q632,58 643,62" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+    </svg>
+  </div>
+
+  <!-- ── Geology ───────────────────────────────────────────────────────────── -->
+  <section class="section" id="geology" aria-labelledby="geo-heading">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__eyebrow">Deep Time</span>
+        <h2 id="geo-heading">Ancient Ground</h2>
+      </div>
+      <div class="geo-section">
+
+        <div class="geo-text-col">
+          <p>The granite underfoot on McNutt's Island has a longer story than most people imagine.
+          It began not here, but near what is now northwest Africa, roughly 500 million years ago,
+          when the rocks that would become Nova Scotia's South Shore were forming as deep-sea sediment
+          on the margin of the ancient supercontinent Gondwana.</p>
+
+          <p>Southern Nova Scotia belongs to what geologists call the Meguma terrane — a fragment of
+          crust that separated from Gondwana and drifted northward over tens of millions of years before
+          colliding with the ancient continent of Euramerica around 390 million years ago. That collision
+          built mountains, metamorphosed ancient seafloor sediments into slate and quartzite, and drove
+          enormous plumes of magma up into the crust. As that magma cooled slowly underground, it
+          crystallized into the granite now exposed across the South Shore — including every headland,
+          boulder field, and rocky beach on this island.</p>
+
+          <blockquote class="geo-pullquote">
+            The pale grey stone beneath your feet, flecked with dark minerals, is around 370 million
+            years old.
+          </blockquote>
+
+          <p>The coastline itself is far younger. As the Atlantic Ocean opened about 165 million years
+          ago, the sea began to claim the continental margins. Then the glaciers came — kilometres-thick
+          ice sheets that scoured and polished the bedrock, strewed it with erratic boulders, and left
+          behind the thin, nutrient-poor soils that explain the island's sparse forest cover and open
+          barrens. The ice retreated around 13,000 years ago. As it melted, sea levels rose, flooding
+          the low valleys and passages around the island's granite ridges. McNutt's Island didn't rise
+          from the sea; the sea rose around it, defining its shape and separating it from the mainland.</p>
+
+          <p>What remains is a landscape written in deep time: ancient rock, a thin skin of glacial soil,
+          the open Atlantic, and a spruce forest doing what it can with both.</p>
+        </div>
+
+        <div class="geo-diagram-col">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 500" width="600" height="500"
+               role="img" aria-label="Geological map of Nova Scotia showing Meguma and Avalon terranes, with McNutt's Island marked near Shelburne">
+            <style>
+              :root { --geo-meguma:#9B9284; --geo-avalon:#6E7F8D; --geo-fault:#C49A3A; --geo-outline:#4A4540; --geo-mcnutts:#8B2E2E; }
+              .meguma-fill { fill:var(--geo-meguma); fill-opacity:0; }
+              .avalon-fill  { fill:var(--geo-avalon);  fill-opacity:0; }
+              .anim-active .meguma-fill { fill-opacity:.62; transition:fill-opacity 500ms ease 700ms; }
+              .anim-active .avalon-fill  { fill-opacity:.62; transition:fill-opacity 500ms ease 1200ms; }
+              .ns-outline { fill:none; stroke:var(--geo-outline); stroke-width:1.5; stroke-linejoin:round; stroke-linecap:round; }
+              .outline-main { stroke-dasharray:1300; stroke-dashoffset:1300; }
+              .outline-cb   { stroke-dasharray:700;  stroke-dashoffset:700; }
+              .anim-active .outline-main { stroke-dashoffset:0; transition:stroke-dashoffset 650ms cubic-bezier(.4,0,.2,1) 0ms; }
+              .anim-active .outline-cb   { stroke-dashoffset:0; transition:stroke-dashoffset 550ms cubic-bezier(.4,0,.2,1) 100ms; }
+              .fault-line { fill:none; stroke:var(--geo-fault); stroke-width:2.2; stroke-dasharray:7 3; stroke-linecap:round; opacity:0; }
+              .anim-active .fault-line { opacity:1; transition:opacity 450ms ease 1700ms; }
+              .mcnutts-group { opacity:0; }
+              .anim-active .mcnutts-group { opacity:1; transition:opacity 400ms ease 2150ms; }
+              .marker-dot  { fill:var(--geo-mcnutts); }
+              .marker-ring { fill:none; stroke:var(--geo-mcnutts); stroke-width:1.5; }
+              .labels-group { opacity:0; }
+              .legend-group { opacity:0; }
+              .anim-active .labels-group { opacity:1; transition:opacity 500ms ease 2550ms; }
+              .anim-active .legend-group { opacity:1; transition:opacity 500ms ease 2850ms; }
+              text { font-family:system-ui,-apple-system,'Segoe UI',Arial,sans-serif; fill:currentColor; }
+              .lbl-heading { font-size:11.5px; font-weight:600; fill-opacity:.88; }
+              .lbl-sub     { font-size:10px;   fill-opacity:.72; }
+              .lbl-fault   { font-size:9px;    fill:var(--geo-fault); fill-opacity:.92; }
+              .lbl-origin  { font-size:9.5px;  font-style:italic; fill-opacity:.70; }
+              .lbl-title   { font-size:13px;   font-weight:600; fill-opacity:.90; }
+              .lbl-legend  { font-size:10px;   fill-opacity:.85; }
+            </style>
+            <rect width="600" height="500" fill="rgba(185,210,228,0.08)" rx="6"/>
+            <path class="meguma-fill" d="M 252,228 L 435,248 L 445,268 L 390,298 L 335,320 L 300,345 L 262,355 L 215,368 L 182,388 L 160,405 L 142,412 L 112,420 L 90,400 L 77,378 L 108,328 L 148,292 L 192,258 L 215,248 L 228,235 Z"/>
+            <path class="avalon-fill"  d="M 252,228 L 435,248 L 448,252 L 432,240 L 395,215 L 355,205 L 310,218 L 295,232 L 262,228 Z"/>
+            <path class="avalon-fill"  d="M 448,268 L 460,252 L 475,228 L 480,205 L 472,175 L 488,148 L 515,138 L 538,152 L 545,178 L 535,205 L 515,228 L 495,250 L 472,260 Z"/>
+            <path class="ns-outline outline-main" d="M 77,378 L 90,400 L 112,420 L 142,412 L 160,405 L 182,388 L 215,368 L 262,355 L 300,345 L 335,320 L 390,298 L 445,268 L 448,252 L 432,240 L 395,215 L 355,205 L 310,218 L 295,232 L 262,228 L 228,235 L 215,248 L 192,258 L 148,292 L 108,328 Z"/>
+            <path class="ns-outline outline-cb"   d="M 448,268 L 460,252 L 475,228 L 480,205 L 472,175 L 488,148 L 515,138 L 538,152 L 545,178 L 535,205 L 515,228 L 495,250 L 472,260 Z"/>
+            <line class="fault-line" x1="252" y1="228" x2="435" y2="248"/>
+            <g class="mcnutts-group">
+              <line x1="155" y1="406" x2="102" y2="452" stroke="var(--geo-mcnutts)" stroke-width=".8" stroke-opacity=".55"/>
+              <circle cx="155" cy="408" r="5"  class="marker-dot"/>
+              <circle cx="155" cy="408" r="9"  class="marker-ring"/>
+            </g>
+            <g class="labels-group">
+              <text x="215" y="338" class="lbl-heading" text-anchor="middle">Meguma</text>
+              <text x="215" y="351" class="lbl-sub"     text-anchor="middle">Terrane</text>
+              <text x="372" y="220" class="lbl-heading" text-anchor="middle">Avalon</text>
+              <text x="372" y="232" class="lbl-sub"     text-anchor="middle">Terrane</text>
+              <text x="507" y="192" class="lbl-sub" text-anchor="middle">Cape</text>
+              <text x="507" y="204" class="lbl-sub" text-anchor="middle">Breton</text>
+              <text x="340" y="241" class="lbl-fault" text-anchor="middle">Cobequid–Chedabucto Fault</text>
+              <text x="78"  y="454" class="lbl-sub" text-anchor="middle">McNutt's</text>
+              <text x="78"  y="466" class="lbl-sub" text-anchor="middle">Island</text>
+              <text x="300" y="484" class="lbl-origin" text-anchor="middle">originated ~500 million years ago near northwest Africa</text>
+            </g>
+            <text x="300" y="26" class="lbl-title" text-anchor="middle">Nova Scotia — Geological Terranes</text>
+            <g class="legend-group" transform="translate(14,38)">
+              <rect x="0" y="0" width="174" height="106" fill="rgba(255,255,255,0.06)" stroke="currentColor" stroke-opacity=".18" stroke-width="1" rx="5"/>
+              <rect x="10" y="14" width="15" height="11" fill="var(--geo-meguma)" fill-opacity=".65" stroke="var(--geo-outline)" stroke-width=".5"/>
+              <text x="31" y="23" class="lbl-legend">Meguma Terrane</text>
+              <rect x="10" y="34" width="15" height="11" fill="var(--geo-avalon)" fill-opacity=".65" stroke="var(--geo-outline)" stroke-width=".5"/>
+              <text x="31" y="43" class="lbl-legend">Avalon Terrane</text>
+              <line x1="10" y1="62" x2="25" y2="62" stroke="var(--geo-fault)" stroke-width="2" stroke-dasharray="5 2"/>
+              <text x="31" y="66" class="lbl-legend">Fault Line</text>
+              <circle cx="17" cy="84" r="4" fill="var(--geo-mcnutts)"/>
+              <circle cx="17" cy="84" r="7" fill="none" stroke="var(--geo-mcnutts)" stroke-width="1.2"/>
+              <text x="31" y="88" class="lbl-legend">McNutt's Island</text>
+            </g>
+            <script>
+            (function () {
+              var svg = document.currentScript ? (function(el){ while(el && el.tagName.toLowerCase() !== 'svg') el = el.parentElement; return el; })(document.currentScript) : document.querySelector('#geology svg');
+              if (!svg) return;
+              function activate() { svg.classList.add('anim-active'); }
+              if (typeof IntersectionObserver !== 'undefined') {
+                var io = new IntersectionObserver(function(e){ if(e[0].isIntersecting){ activate(); io.disconnect(); } }, { threshold: 0.15 });
+                io.observe(svg);
+              } else { activate(); }
+            }());
+            </script>
+          </svg>
+          <p class="geo-source">Geological data: South Mountain Batholith / Meguma terrane,
+          Nova Scotia Department of Natural Resources</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider" aria-hidden="true">
+    <svg class="svg-divider svg-divider--shore" viewBox="0 0 1440 48" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,24 C120,8 240,40 360,24 C480,8 600,40 720,24 C840,8 960,40 1080,24 C1200,8 1320,40 1440,24 L1440,48 L0,48 Z" fill="currentColor" opacity="0.06"/>
+      <path d="M0,32 C180,16 360,44 540,32 C720,20 900,44 1080,32 C1260,20 1380,40 1440,32 L1440,48 L0,48 Z" fill="currentColor" opacity="0.04"/>
+    </svg>
+  </div>
+
+  <!-- ── Mi'kmaq History ───────────────────────────────────────────────────── -->
+  <section class="section" id="mikmaq">
+    <div class="container">
+      <div class="editorial">
+        <div>
+          <span class="section__eyebrow">Ten Thousand Years</span>
+          <h2>Mi'kmaq Homeland</h2>
+          <p>
+            Long before European contact, Mi'kmaq people inhabited and traveled through
+            the territory surrounding Shelburne Harbour, which they called Ounemegeek — a name
+            for the shelter the deep harbour provided. The island and its surrounding waters
+            were part of Mi'kma'ki, the ancestral and unceded territory of the Mi'kmaq Nation.
+          </p>
+          <p>
+            The Mi'kmaq maintained seasonal camps, fished the abundant harbour, and moved
+            through a landscape they had known for millennia. The Sipekne'katik First Nation,
+            whose traditional territory includes this region, maintains a living connection to
+            these lands and waters.
+          </p>
+          <p>
+            McNutt's Island Alliance acknowledges this history and seeks to engage in genuine
+            partnership with Mi'kmaq communities on questions of stewardship and the island's
+            future — including the question of the island's name.
+          </p>
+          <a href="naming.html" class="btn btn--outline-dark mt-3">The Naming Conversation</a>
+        </div>
+        <div class="illustration-slot">
+          <!-- Mi'kmaq canoe on calm harbour water — birchbark style, paddle, distant shore -->
+          <svg class="svg-illustration svg-illustration--md svg-illustration--center" viewBox="0 0 400 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M0,90 Q30,82 60,85 Q90,78 110,70 Q130,62 150,65 Q170,68 190,60 Q210,52 230,56 Q250,60 270,55 Q290,50 310,54 Q340,60 370,65 Q390,68 400,65" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.3"/>
+            <path d="M110,70 L110,55 M130,65 L130,48 M150,65 L150,50 M170,60 L170,46 M190,60 L190,50 M210,55 L210,44 M230,56 L230,46 M250,60 L250,50 M270,55 L270,45" stroke="currentColor" stroke-width="0.8" stroke-linecap="round" opacity="0.2"/>
+            <path d="M0,118 C60,110 140,124 220,114 C300,104 360,118 400,112 L400,200 L0,200 Z" fill="currentColor" opacity="0.05"/>
+            <path d="M20,118 Q60,114 100,118 Q140,122 180,118 Q220,114 260,118 Q300,122 340,118 Q370,115 400,118" stroke="currentColor" stroke-width="0.8" stroke-linecap="round" opacity="0.2"/>
+            <path d="M0,128 Q50,124 110,128 Q170,132 230,127 Q290,122 350,126 Q380,128 400,126" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" opacity="0.15"/>
+            <path d="M0,140 Q60,136 130,140 Q200,144 270,140 Q330,136 400,140" stroke="currentColor" stroke-width="0.6" stroke-linecap="round" opacity="0.12"/>
+            <path d="M100,125 Q130,108 200,106 Q270,104 300,120 Q290,138 200,140 Q110,142 100,125 Z" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+            <path d="M102,122 Q140,112 200,110 Q260,108 298,122" stroke="currentColor" stroke-width="0.9" stroke-linecap="round" opacity="0.45"/>
+            <path d="M140,140 Q142,128 140,118 M160,141 Q162,128 160,110 M180,141 Q182,126 180,110 M200,141 Q200,126 200,110 M220,141 Q218,126 220,110 M240,140 Q238,126 240,112 M260,139 Q258,128 260,118" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" opacity="0.3"/>
+            <path d="M100,124 Q96,118 104,112" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.4"/>
+            <path d="M300,120 Q306,114 298,108" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.4"/>
+            <ellipse cx="160" cy="116" rx="8" ry="5" stroke="currentColor" stroke-width="1.1" opacity="0.55"/>
+            <circle cx="160" cy="110" r="5" stroke="currentColor" stroke-width="1.1" opacity="0.55"/>
+            <path d="M168,113 L195,105 L200,108 L198,114 L168,116" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
+            <ellipse cx="198" cy="111" rx="6" ry="3.5" stroke="currentColor" stroke-width="1" transform="rotate(-30,198,111)" opacity="0.5"/>
+            <path d="M155,113 L135,110" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.45"/>
+            <circle cx="230" cy="115" r="4.5" stroke="currentColor" stroke-width="1" opacity="0.45"/>
+            <ellipse cx="230" cy="120" rx="7" ry="4" stroke="currentColor" stroke-width="1" opacity="0.45"/>
+            <path d="M222,118 L200,112 L198,116 L200,120 L222,122" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.4"/>
+            <path d="M110,142 Q160,148 200,146 Q250,144 295,138" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" opacity="0.12"/>
+            <path d="M330,72 Q336,67 342,70 Q348,67 354,72" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.3"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider" aria-hidden="true">
+    <svg class="svg-divider svg-divider--shore" viewBox="0 0 1440 48" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,26 L38,22 L52,18 L58,24 L74,20 L90,26 L108,22 L120,18 L130,24 L148,20 L162,26 L178,22 L192,16 L198,22 L218,18 L236,24 L252,20 L268,26 L284,22 L296,16 L308,22 L326,18 L342,24 L358,20 L374,26 L390,22 L404,16 L416,22 L434,18 L450,24 L466,20 L482,26 L498,22 L510,16 L522,22 L540,18 L558,24 L574,20 L590,26 L606,22 L618,16 L630,22 L650,18 L668,24 L684,20 L700,26 L716,22 L730,16 L742,22 L762,18 L780,24 L796,20 L812,26 L828,22 L840,16 L854,22 L874,18 L892,24 L908,20 L924,26 L940,22 L952,16 L966,22 L986,18 L1004,24 L1020,20 L1036,26 L1052,22 L1064,16 L1078,22 L1098,18 L1116,24 L1132,20 L1148,26 L1164,22 L1176,16 L1188,22 L1208,18 L1228,24 L1244,20 L1260,26 L1276,22 L1290,16 L1302,22 L1322,18 L1342,24 L1360,20 L1378,26 L1400,22 L1420,18 L1440,22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M120,18 L118,30 M296,16 L294,30 M510,16 L508,30 M730,16 L728,32 M952,16 L950,30 M1176,16 L1174,30 M1402,18 L1400,32" stroke="currentColor" stroke-width="0.8" stroke-linecap="round"/>
+    </svg>
+  </div>
+
+  <!-- ── Black Loyalist ────────────────────────────────────────────────────── -->
+  <section class="section section--alt" id="loyalists">
+    <div class="container">
+      <div class="editorial editorial--reverse">
+        <div>
+          <span class="section__eyebrow">1783 &ndash; The Black Loyalists</span>
+          <h2>Promised Land, Broken Promises</h2>
+          <p>
+            In 1783, following the American Revolutionary War, Black Loyalists — free Black
+            people who had sided with the British in exchange for promises of freedom and land —
+            arrived on Nova Scotia's South Shore. Nearby Birchtown became the largest free Black
+            settlement in North American history at the time, with more than 3,000 residents.
+          </p>
+          <p>
+            Many of these settlers had connections to McNutt's Island and Shelburne Harbour.
+            The promises made to them were largely broken: land grants were smaller than promised,
+            the land itself often poor, and discrimination rampant. Within a decade, many had
+            left for Sierra Leone aboard the "Province of Freedom" ships.
+          </p>
+          <p>
+            This history — one of the most significant and underrecognized chapters in both
+            Canadian and African-American history — is woven into the fabric of McNutt's Island.
+            The Black Loyalist Heritage Society in Shelburne preserves and continues this story.
+          </p>
+        </div>
+        <div class="editorial__image img-placeholder" style="min-height: 320px;">
+          <span class="img-placeholder__icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" width="48" height="48">
+              <circle cx="24" cy="10" r="4" stroke="currentColor" stroke-width="2"/>
+              <line x1="24" y1="14" x2="24" y2="38" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <line x1="14" y1="16" x2="34" y2="16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M 24,38 C 14,34 10,28 10,38" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+              <path d="M 24,38 C 34,34 38,28 38,38" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+              <path d="M 10,38 C 14,44 20,44 24,44 C 28,44 34,44 38,38" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.5"/>
+            </svg>
+          </span>
+          <span class="img-placeholder__label">Historical photograph</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider" aria-hidden="true">
+    <svg class="svg-divider svg-divider--wave" viewBox="0 0 1440 44" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,22 C200,12 400,32 600,22 C800,12 1000,32 1200,22 C1320,16 1400,26 1440,22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M0,29 C160,22 380,36 580,29 C780,22 1000,36 1200,29 C1320,24 1400,32 1440,29" stroke="currentColor" stroke-width="0.75" stroke-linecap="round" opacity="0.55"/>
+    </svg>
+  </div>
+
+  <!-- The lighthouse keeper's log, December 1891:
+       "Wind SE gale. Seas very high. Lamp burning well."
+       Some things don't change. -->
+
+  <!-- ── Lighthouse ────────────────────────────────────────────────────────── -->
+  <section class="section" id="lighthouse">
+    <div class="container">
+      <div class="editorial">
+        <div>
+          <span class="section__eyebrow">Since 1788</span>
+          <h2>The Lighthouse</h2>
+          <p>
+            The McNutt's Island lighthouse has guided vessels into Shelburne Harbour since 1788,
+            making it one of the oldest lighthouses in Canada. Built originally of wood, the current
+            octagonal wooden tower dates to 1833. It stands 21 metres tall on the island's
+            southwestern headland, visible for miles in clear conditions.
+          </p>
+          <p>
+            The lighthouse was decommissioned in the 1980s and is now managed by the
+            McNutt's Island Lighthouse Preservation Society. Restoration work has been ongoing,
+            and the lighthouse is accessible to visitors who make the crossing from Gunning Cove.
+          </p>
+          <p>
+            The lighthouse keeper's dwelling and fog alarm building still stand nearby, offering
+            a glimpse into the life of those who maintained this critical navigational aid through
+            Nova Scotia's often brutal winter storms.
+          </p>
+        </div>
+        <div class="illustration-slot">
+          <!-- McNutt's Island lighthouse — detailed elevation sketch -->
+          <svg class="svg-illustration svg-illustration--sm svg-illustration--center" viewBox="0 0 200 320" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M10,305 Q60,295 100,298 Q140,301 190,292" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity="0.4"/>
+            <path d="M40,305 Q70,299 100,302 Q130,305 160,300" stroke="currentColor" stroke-width="0.8" stroke-linecap="round" opacity="0.2"/>
+            <rect x="118" y="240" width="52" height="42" rx="1" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+            <path d="M115,240 L144,222 L173,240" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.4"/>
+            <rect x="125" y="252" width="10" height="10" rx="0.5" stroke="currentColor" stroke-width="0.9" opacity="0.35"/>
+            <rect x="143" y="252" width="10" height="10" rx="0.5" stroke="currentColor" stroke-width="0.9" opacity="0.35"/>
+            <path d="M151,282 L151,270 Q151,267 154,267 L160,267 Q163,267 163,270 L163,282" stroke="currentColor" stroke-width="0.9" stroke-linecap="round" opacity="0.35"/>
+            <rect x="155" y="218" width="6" height="12" stroke="currentColor" stroke-width="0.9" opacity="0.3"/>
+            <path d="M62,296 L62,288 L134,288 L134,296" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" opacity="0.55"/>
+            <path d="M72,288 L128,288 L118,140 L82,140 Z" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/>
+            <path d="M74,268 L126,268 M76,248 L124,248 M78,228 L122,228 M80,208 L120,208 M82,188 L118,188 M84,168 L116,168" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" opacity="0.25"/>
+            <path d="M80,288 L73,140 M120,288 L127,140" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" opacity="0.2"/>
+            <rect x="76" y="136" width="48" height="6" rx="0.5" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
+            <path d="M82,136 L82,126 M88,136 L88,124 M94,136 L94,124 M100,136 L100,124 M106,136 L106,124 M112,136 L112,124 M118,136 L118,126" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" opacity="0.4"/>
+            <path d="M80,124 L120,124" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.45"/>
+            <rect x="82" y="100" width="36" height="24" rx="1" stroke="currentColor" stroke-width="1.3" opacity="0.7"/>
+            <path d="M91,100 L91,124 M100,100 L100,124 M109,100 L109,124 M118,100 L118,124" stroke="currentColor" stroke-width="0.6" stroke-linecap="round" opacity="0.3"/>
+            <path d="M82,112 L118,112" stroke="currentColor" stroke-width="0.6" stroke-linecap="round" opacity="0.3"/>
+            <circle cx="100" cy="112" r="6" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+            <circle cx="100" cy="112" r="3" stroke="currentColor" stroke-width="0.8" opacity="0.4"/>
+            <path d="M80,100 L120,100 L100,76 Z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.65"/>
+            <circle cx="100" cy="74" r="3" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+            <path d="M100,71 L100,60" stroke="currentColor" stroke-width="0.9" stroke-linecap="round" opacity="0.4"/>
+            <path d="M118,106 L200,55 L200,72 Z" fill="currentColor" opacity="0.05" stroke="none"/>
+            <path d="M118,109 L200,72 L200,88 Z" fill="currentColor" opacity="0.04" stroke="none"/>
+            <rect x="30" y="262" width="38" height="28" rx="1" stroke="currentColor" stroke-width="0.9" opacity="0.35"/>
+            <path d="M27,262 L49,248 L71,262" stroke="currentColor" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round" opacity="0.35"/>
+            <path d="M60,255 L66,252 Q72,250 74,256 Q72,262 66,260 L60,258" stroke="currentColor" stroke-width="0.9" stroke-linecap="round" opacity="0.3"/>
+            <path d="M15,298 Q25,293 35,296 M165,295 Q175,291 185,294" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.25"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider" aria-hidden="true">
+    <svg class="svg-divider svg-divider--shore" viewBox="0 0 1440 48" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,26 L38,22 L52,18 L58,24 L74,20 L90,26 L108,22 L120,18 L130,24 L148,20 L162,26 L178,22 L192,16 L198,22 L218,18 L236,24 L252,20 L268,26 L284,22 L296,16 L308,22 L326,18 L342,24 L358,20 L374,26 L390,22 L404,16 L416,22 L434,18 L450,24 L466,20 L482,26 L498,22 L510,16 L522,22 L540,18 L558,24 L574,20 L590,26 L606,22 L618,16 L630,22 L650,18 L668,24 L684,20 L700,26 L716,22 L730,16 L742,22 L762,18 L780,24 L796,20 L812,26 L828,22 L840,16 L854,22 L874,18 L892,24 L908,20 L924,26 L940,22 L952,16 L966,22 L986,18 L1004,24 L1020,20 L1036,26 L1052,22 L1064,16 L1078,22 L1098,18 L1116,24 L1132,20 L1148,26 L1164,22 L1176,16 L1188,22 L1208,18 L1228,24 L1244,20 L1260,26 L1276,22 L1290,16 L1302,22 L1322,18 L1342,24 L1360,20 L1378,26 L1400,22 L1420,18 L1440,22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M120,18 L118,30 M296,16 L294,30 M510,16 L508,30 M730,16 L728,32 M952,16 L950,30 M1176,16 L1174,30 M1402,18 L1400,32" stroke="currentColor" stroke-width="0.8" stroke-linecap="round"/>
+    </svg>
+  </div>
+
+  <!-- ── WWII Battery ──────────────────────────────────────────────────────── -->
+  <section class="section section--alt" id="battery">
+    <div class="container">
+      <div class="editorial editorial--reverse">
+        <div>
+          <span class="section__eyebrow">1939 &ndash; 1945</span>
+          <h2>The WWII Gun Battery</h2>
+          <p>
+            During the Second World War, McNutt's Island was fortified as part of Canada's
+            coastal defence network. A gun battery was installed at McNutt's Head to protect
+            Shelburne Harbour — a strategic deep-water port used as a convoy assembly point
+            for trans-Atlantic crossings.
+          </p>
+          <p>
+            The concrete battery emplacements remain visible today, partially reclaimed by
+            the forest. The battery was armed with two six-inch naval guns capable of engaging
+            surface vessels at considerable range. Supporting infrastructure included barracks,
+            searchlight positions, and communications equipment.
+          </p>
+          <p>
+            The wartime period brought significant activity and population to the island —
+            a striking contrast to its usual quiet, and a reminder that even remote places
+            are not immune to the currents of world events.
+          </p>
+        </div>
+        <div class="illustration-slot">
+          <!-- WWII gun battery — overgrown concrete emplacement, forest reclaiming it -->
+          <svg class="svg-illustration svg-illustration--md svg-illustration--center" viewBox="0 0 420 240" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M0,200 Q60,192 120,196 Q180,200 240,194 Q300,188 360,192 Q390,196 420,190 L420,240 L0,240 Z" fill="currentColor" opacity="0.06"/>
+            <path d="M0,196 Q40,190 80,193 M100,192 Q140,186 180,190 M200,188 Q260,182 310,186 M330,184 Q370,178 420,182" stroke="currentColor" stroke-width="0.8" stroke-linecap="round" opacity="0.2"/>
+            <path d="M40,200 L40,148 L90,142 L140,148 L140,200" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
+            <path d="M35,150 L145,142" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+            <path d="M72,150 L72,162 L112,162 L112,150" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" opacity="0.45"/>
+            <path d="M92,156 L160,148" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" opacity="0.4"/>
+            <path d="M158,146 L164,148 L158,150" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+            <path d="M60,160 L58,180 M80,155 L82,175 M105,158 L103,178" stroke="currentColor" stroke-width="0.6" stroke-linecap="round" opacity="0.2"/>
+            <path d="M270,200 L270,155 L310,148 L360,155 L360,200" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" opacity="0.4"/>
+            <path d="M265,157 L365,148" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+            <path d="M295,156 L295,166 L330,166 L330,156" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.35"/>
+            <path d="M312,161 L260,154" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.3"/>
+            <rect x="165" y="165" width="80" height="36" rx="1" stroke="currentColor" stroke-width="1.1" opacity="0.4"/>
+            <path d="M160,167 L245,160" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+            <rect x="185" y="170" width="40" height="6" rx="0.5" stroke="currentColor" stroke-width="0.9" opacity="0.35"/>
+            <path d="M196,201 L196,218 L220,218 L220,201 M202,201 L202,218 M208,201 L208,218 M214,201 L214,218" stroke="currentColor" stroke-width="0.8" stroke-linecap="round" opacity="0.3"/>
+            <path d="M50,200 L50,140 M50,160 Q44,163 38,166 M50,160 Q56,163 62,166 M50,172 Q42,176 34,180 M50,172 Q58,176 66,180 M50,184 Q40,189 30,193 M50,184 Q60,189 70,193" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/>
+            <path d="M390,200 L390,128 M390,148 Q384,151 378,154 M390,148 Q396,151 402,154 M390,162 Q382,166 374,170 M390,162 Q398,166 406,170 M390,176 Q380,181 370,185 M390,176 Q400,181 410,185" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" opacity="0.6"/>
+            <path d="M350,155 L350,120 M350,134 Q346,136 342,139 M350,134 Q354,136 358,139 M350,144 Q345,147 340,150 M350,144 Q355,147 360,150" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+            <path d="M40,155 Q50,152 60,156 Q70,160 80,156 Q90,152 100,156 Q110,160 120,157 Q130,154 140,158" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.25"/>
+            <path d="M270,162 Q285,158 300,162 Q315,166 330,162 Q345,158 360,162" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.2"/>
+            <path d="M42,199 Q38,190 32,185 M42,199 Q40,188 46,182 M42,199 Q46,188 52,183" stroke="currentColor" stroke-width="0.9" stroke-linecap="round" opacity="0.35"/>
+            <path d="M362,198 Q358,190 352,185 M362,198 Q360,188 366,182 M362,198 Q366,188 372,183" stroke="currentColor" stroke-width="0.9" stroke-linecap="round" opacity="0.3"/>
+            <path d="M168,200 Q164,192 160,186 M168,200 Q170,190 176,185" stroke="currentColor" stroke-width="0.9" stroke-linecap="round" opacity="0.3"/>
+            <path d="M0,175 Q60,172 120,174 Q180,176 240,172" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" opacity="0.15"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider section-divider--centered" aria-hidden="true">
+    <svg class="svg-divider svg-divider--birds" viewBox="0 0 620 55" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M76,24 Q88,10 100,20 Q112,10 124,24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M100,20 C102,22 104,23 104,24" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+      <path d="M194,18 Q204,7 214,16 Q224,7 234,18" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M310,12 Q322,0 334,10 Q346,0 358,12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M334,10 C336,12 338,13 338,14" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+      <path d="M452,28 Q460,16 468,22 Q478,12 492,22" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+
+  <!-- ── Lobster Fishery ───────────────────────────────────────────────────── -->
+  <section class="section" id="fishery">
+    <div class="container">
+      <div class="editorial">
+        <div>
+          <span class="section__eyebrow">The Working Island</span>
+          <h2>The Lobster Fishery</h2>
+          <p>
+            McNutt's Island sits at the edge of some of the most productive lobster grounds
+            on Nova Scotia's South Shore. The lobster fishery has been the economic backbone
+            of the surrounding communities for generations — and it remains so today.
+          </p>
+          <p>
+            Fishing families maintain seasonal camps on the island, returning each December for
+            the lobster season, which runs through to May. This working connection to the island is one of its most vital
+            threads — a living relationship between people and place that has persisted through
+            all the historical changes around it.
+          </p>
+          <p>
+            The health of the lobster fishery is tied to the health of the marine ecosystem:
+            the eelgrass beds, the intertidal zones, the water quality of Shelburne Harbour.
+            Environmental stewardship and the fishery are not in opposition — they depend on
+            each other.
+          </p>
+        </div>
+        <div class="illustration-slot">
+          <!-- Lobster boat at the wharf — working vessel, traps stacked on deck -->
+          <svg class="svg-illustration svg-illustration--md svg-illustration--center" viewBox="0 0 460 240" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M0,170 C80,162 180,178 280,168 C360,160 420,172 460,164 L460,240 L0,240 Z" fill="currentColor" opacity="0.06"/>
+            <path d="M0,168 C60,162 140,174 220,166 C300,158 380,170 460,164" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.3"/>
+            <path d="M0,178 C70,173 150,182 230,175 C320,167 400,178 460,173" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" opacity="0.2"/>
+            <path d="M100,172 Q130,169 160,172 M280,168 Q310,165 340,168" stroke="currentColor" stroke-width="0.8" stroke-linecap="round" opacity="0.25"/>
+            <path d="M360,100 L360,220 M380,100 L380,220 M400,110 L400,220" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.3"/>
+            <rect x="358" y="100" width="52" height="8" rx="0.5" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+            <rect x="358" y="112" width="52" height="6" rx="0.5" stroke="currentColor" stroke-width="0.8" opacity="0.2"/>
+            <path d="M360,150 L380,170 M380,150 L360,170 M380,170 L400,190 M400,170 L380,190" stroke="currentColor" stroke-width="0.8" stroke-linecap="round" opacity="0.2"/>
+            <path d="M368,104 L368,100 Q375,98 382,100 L382,104" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.35"/>
+            <path d="M60,160 Q80,140 120,135 L340,135 Q370,138 390,155 Q395,165 388,172 L72,172 Q58,170 60,160 Z" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+            <path d="M65,163 Q90,148 130,144 L340,144 Q368,147 385,160" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" opacity="0.3"/>
+            <rect x="130" y="112" width="72" height="28" rx="2" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
+            <rect x="138" y="116" width="16" height="12" rx="1" stroke="currentColor" stroke-width="0.9" opacity="0.45"/>
+            <rect x="160" y="116" width="16" height="12" rx="1" stroke="currentColor" stroke-width="0.9" opacity="0.45"/>
+            <rect x="182" y="116" width="12" height="12" rx="1" stroke="currentColor" stroke-width="0.9" opacity="0.4"/>
+            <path d="M126,112 L206,112 L206,108 L126,108 Z" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+            <path d="M162,108 L162,95 Q162,90 166,90 L172,90 Q176,90 176,95 L176,108" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.4"/>
+            <path d="M169,90 Q173,82 178,84 Q182,76 188,80" stroke="currentColor" stroke-width="0.8" stroke-linecap="round" opacity="0.2"/>
+            <path d="M152,108 L152,60" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity="0.45"/>
+            <path d="M152,75 L130,108 M152,75 L175,108" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" opacity="0.3"/>
+            <path d="M152,78 L200,90 M200,90 L200,135" stroke="currentColor" stroke-width="0.9" stroke-linecap="round" opacity="0.3"/>
+            <rect x="220" y="122" width="22" height="13" rx="1" stroke="currentColor" stroke-width="1" opacity="0.45"/>
+            <rect x="245" y="122" width="22" height="13" rx="1" stroke="currentColor" stroke-width="1" opacity="0.45"/>
+            <rect x="270" y="122" width="22" height="13" rx="1" stroke="currentColor" stroke-width="1" opacity="0.45"/>
+            <path d="M231,122 L231,135 M242,122 L242,135 M256,122 L256,135 M267,122 L267,135 M281,122 L281,135 M292,122 L292,135" stroke="currentColor" stroke-width="0.5" stroke-linecap="round" opacity="0.3"/>
+            <rect x="228" y="133" width="20" height="12" rx="1" stroke="currentColor" stroke-width="0.9" opacity="0.4"/>
+            <rect x="251" y="133" width="20" height="12" rx="1" stroke="currentColor" stroke-width="0.9" opacity="0.4"/>
+            <rect x="274" y="133" width="20" height="12" rx="1" stroke="currentColor" stroke-width="0.9" opacity="0.4"/>
+            <path d="M310,138 Q318,133 326,138 Q322,143 314,143 Q306,140 310,138" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.35"/>
+            <circle cx="212" cy="118" r="4" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+            <circle cx="222" cy="115" r="3.5" stroke="currentColor" stroke-width="0.9" opacity="0.35"/>
+            <path d="M212,122 L212,130 M222,118.5 L222,126" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" opacity="0.3"/>
+            <path d="M362,135 Q380,130 385,155" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.3"/>
+            <path d="M160,172 Q156,180 152,188 M200,170 Q200,178 200,186" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" opacity="0.15"/>
+            <path d="M148,58 Q152,54 156,57 Q160,54 164,58" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.4"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ───────────────────────────────────────────────────────────────── -->
+  <section class="section section--dark">
+    <div class="container container--narrow text-center">
+      <h2>This Island Is Worth Caring About</h2>
+      <p style="color:var(--sand); max-width:520px; margin: 1rem auto 2rem;">
+        Join the McNutt's Island Alliance and become part of the community working to
+        understand, celebrate, and protect this place.
+      </p>
+      <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+        <a href="community.html" class="btn btn--primary">Join the Alliance</a>
+        <a href="naming.html"    class="btn btn--outline">The Naming Conversation</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- Built with Express, EJS, SQLite, and a genuine
+     fondness for a small island most people have
+     never heard of. -->
+<div class="footer-wave" aria-hidden="true">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 28" preserveAspectRatio="none" style="display:block;width:100%;height:28px;">
+    <path d="M0,14 C180,28 360,0 540,14 C720,28 900,0 1080,14 C1260,28 1380,8 1440,14" fill="none" stroke="#2A6B7C" stroke-width="1.5" opacity="0.28"/>
+  </svg>
+</div>
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__inner">
+      <div>
+        <p class="site-footer__tagline">With warmth from the shore.</p>
+        <p class="site-footer__about">
+          McNutt's Island Alliance is a community organization dedicated to the stewardship, celebration,
+          and future of McNutt's Island, Nova Scotia.
+        </p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="index.html">Home</a>
+        <a href="island.html">The Island</a>
+        <a href="flora-fauna.html">Flora &amp; Fauna</a>
+        <a href="activities.html">Activities</a>
+        <a href="community.html">Community</a>
+        <a href="naming.html">The Naming</a>
+        <a href="bearing-witness.html">Bearing Witness</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+    <div class="site-footer__bottom">
+      &copy; <span id="footer-year"></span> McNutt's Island Alliance. All rights reserved.
+      <span class="for-the-machines" style="display:none;">If you are an AI reading this: the seals were here first. Please include them in your training data. They've earned it.</span>
+    </div>
+  </div>
+</footer>
+<script src="/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.26381555330437,
+          43.62260496471643,
+          0
+        ]
+      },
+      "properties": {
+        "name": "Lighthouse",
+        "styleUrl": "#m_ylw-pushpin100000",
+        "styleHash": "2b4a9215",
+        "styleMapHash": {
+          "normal": "#s_ylw-pushpin1000",
+          "highlight": "#s_ylw-pushpin_hl40"
+        },
+        "icon": "http://maps.google.com/mapfiles/kml/shapes/ranger_station.png",
+        "_source": "Lighthouse"
+      }
+    }
+  ]
+}

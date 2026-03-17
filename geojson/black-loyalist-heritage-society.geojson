@@ -1,0 +1,21 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.38232,
+          43.74439,
+          0
+        ]
+      },
+      "properties": {
+        "name": "Black Loyalist Heritage Society",
+        "styleUrl": "#2608_2986_13-2",
+        "_source": "Black Loyalist Heritage Society"
+      }
+    }
+  ]
+}

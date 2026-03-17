@@ -1,0 +1,27 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.26580165053538,
+          43.62507042909999,
+          0
+        ]
+      },
+      "properties": {
+        "name": "WWII Barracks",
+        "styleUrl": "#m_ylw-pushpin100000",
+        "styleHash": "2b4a9215",
+        "styleMapHash": {
+          "normal": "#s_ylw-pushpin1000",
+          "highlight": "#s_ylw-pushpin_hl40"
+        },
+        "icon": "http://maps.google.com/mapfiles/kml/shapes/ranger_station.png",
+        "_source": "WWII Barracks"
+      }
+    }
+  ]
+}

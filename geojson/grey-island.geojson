@@ -1,0 +1,27 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.30594750698894,
+          43.60227696314075,
+          0
+        ]
+      },
+      "properties": {
+        "name": "Grey Island",
+        "styleUrl": "#msn_ylw-pushpin",
+        "styleHash": "-55483632",
+        "styleMapHash": {
+          "normal": "#sn_ylw-pushpin",
+          "highlight": "#sh_ylw-pushpin"
+        },
+        "icon": "http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png",
+        "_source": "Grey Island"
+      }
+    }
+  ]
+}

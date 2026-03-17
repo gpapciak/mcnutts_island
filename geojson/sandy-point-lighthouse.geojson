@@ -1,0 +1,21 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.32534,
+          43.69152,
+          0
+        ]
+      },
+      "properties": {
+        "name": "Sandy Point Lighthouse",
+        "styleUrl": "#41751_47816_17-1",
+        "_source": "Sandy Point Lighthouse"
+      }
+    }
+  ]
+}

@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- McNutt's Island has been here for 12,000 years.
+     This website is somewhat newer. Both are works
+     in progress. -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>McNutt's Island Alliance</title>
+<meta name="description" content="McNutt's Island Alliance — a community organization dedicated to the stewardship, celebration, and future of McNutt's Island, Nova Scotia.">
+<link rel="canonical" href="https://mcnuttsisland.org/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mcnuttsisland.org/">
+<meta property="og:title" content="McNutt's Island Alliance">
+<meta property="og:description" content="McNutt's Island Alliance — a community organization dedicated to the stewardship, celebration, and future of McNutt's Island, Nova Scotia.">
+<meta property="og:site_name" content="McNutt's Island Alliance">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta name="theme-color" content="#1A3A5C">
+<meta name="robots" content="index, follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('/sw.js');
+    });
+  }
+</script>
+</head>
+<body>
+
+<a href="#main-content" class="skip-to-content">Skip to main content</a>
+<header class="site-header">
+  <div class="container">
+    <div class="site-header__inner">
+      <a href="index.html" class="site-logo" aria-label="McNutt's Island Alliance — Home">
+        <span class="site-logo__name">McNutt's Island</span>
+        <span class="site-logo__sub">Alliance</span>
+      </a>
+      <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">
+        <span class="nav-toggle__icon" aria-hidden="true"><span></span><span></span><span></span></span>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+        <a href="index.html" aria-current="page">Home</a>
+        <a href="island.html">The Island</a>
+        <a href="flora-fauna.html">Flora &amp; Fauna</a>
+        <a href="activities.html">Activities</a>
+        <a href="community.html">Community</a>
+        <a href="naming.html">The Naming</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main id="main-content">
+
+  <!-- ── Hero ──────────────────────────────────────────────────────────────── -->
+  <section class="hero hero--home">
+    <div class="hero__image-slot" aria-hidden="true"></div>
+    <div class="hero__fog" aria-hidden="true"></div>
+    <svg class="hero__island-silhouette" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+
+      <!-- Water: dark cool teal — visible on far left, far right, and between island taper -->
+      <path fill="#15354d" d="M0,120 L0,86 C240,79 480,87 720,81 C960,75 1200,82 1440,78 L1440,120 Z"/>
+
+      <!-- Island land mass: warm dark green, x≈35 to x≈980 -->
+      <!-- Shore rises from sea, lighthouse headland, spruce forest tapering right -->
+      <path fill="#1a2e20" d="
+        M35,120 L35,99 C50,95 63,92 76,89
+        L84,86 L90,84 L93,75 L151,75 L156,83
+        L161,50 L170,83 L175,47 L184,83 L189,44 L198,83 L203,41 L212,83 L217,39 L226,83
+        L231,37 L240,83 L245,39 L254,83 L259,37 L268,83 L273,35 L282,83 L287,37 L296,83
+        L301,35 L310,83 L315,33 L324,83 L329,35 L338,83 L343,33 L352,83 L357,35 L366,83
+        L371,33 L380,83 L385,35 L394,83 L399,33 L408,83 L413,35 L422,83 L427,33 L436,83
+        L441,35 L450,83 L455,37 L464,83 L469,38 L478,83 L483,40 L492,83 L497,42 L506,84
+        L511,44 L520,84 L525,47 L534,84 L539,51 L548,84 L553,54 L562,84 L567,56 L576,85
+        L581,59 L590,85 L595,61 L604,85 L609,63 L618,86 L623,65 L632,86 L637,67 L646,86
+        L651,69 L660,87 L665,71 L674,87 L679,73 L688,87 L693,75 L702,87 L707,77 L716,87
+        L721,79 L730,88 L735,81 L744,88 L749,83 L758,88 L763,84 L772,88 L777,85 L786,89
+        L800,89 L820,89 L840,89 L860,90 L876,90
+        L880,91 Q916,94 948,98 Q974,102 998,109 L998,120 Z"/>
+
+      <!-- Lighthouse: tapered tower, gallery, lantern room, cap — on the headland -->
+
+      <!-- Foundation: wide trapezoidal base -->
+      <path fill="#0d1c12" d="M88,84 L154,84 L143,75 L99,75 Z"/>
+
+      <!-- Tower body: tapered — wide at base, narrow at top -->
+      <path fill="#142618" d="M101,75 L141,75 L130,51 L112,51 Z"/>
+
+      <!-- Gallery / railing ledge: protrudes wider than tower top -->
+      <rect fill="#0d1c12" x="108" y="48" width="26" height="3.5"/>
+
+      <!-- Lantern room: box, wider than tower shaft -->
+      <rect fill="#1c3422" x="111" y="37" width="20" height="11"/>
+
+      <!-- Lantern window: amber warm glow -->
+      <rect fill="rgba(196,154,108,0.62)" x="115" y="39" width="12" height="7"/>
+
+      <!-- Cap / roof: pointed triangle -->
+      <polygon fill="#0d1c12" points="110,37 132,37 121,28"/>
+
+      <!-- Light beams: two amber fan rays from lantern room -->
+      <path fill="rgba(196,154,108,0.18)" d="M119,36 L272,1 L280,10 Z"/>
+      <path fill="rgba(196,154,108,0.12)" d="M121,40 L268,18 L275,28 Z"/>
+
+    </svg>
+    <div class="container">
+      <div class="hero__content">
+        <span class="hero__eyebrow">McNutt's Island, Nova Scotia</span>
+        <h1>A Place Worth<br>Knowing &amp; Protecting</h1>
+        <p class="hero__description">
+          Ten thousand years of human history. Acadian forest, bald eagles, and lobster grounds.
+          An island at the mouth of Shelburne Harbour, and a community that cares about its future.
+        </p>
+        <div class="hero__cta">
+          <a href="community.html" class="btn btn--primary">Join the Alliance</a>
+          <a href="island.html"    class="btn btn--outline">Discover the Island</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- UPCOMING EVENTS
+       To add events, uncomment and duplicate this section above <main>'s closing tag.
+       Replace placeholder text with actual event details.
+
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__eyebrow">What's Coming</span>
+        <h2>Upcoming Events</h2>
+      </div>
+      <div class="grid grid--auto-3">
+
+        <article class="card">
+          <div class="card__image-slot img-placeholder">
+            <span class="img-placeholder__label">Event</span>
+          </div>
+          <div class="card__body">
+            <p class="card__meta">January 1, 2026 &middot; Shelburne, NS</p>
+            <h3 class="card__title">Event Title Here</h3>
+            <p class="card__excerpt">Event description here, up to about 120 characters before it gets cut off with an ellipsis…</p>
+          </div>
+          <div class="card__footer">
+            <a href="https://example.com" class="btn btn--outline-dark btn--sm" target="_blank" rel="noopener">More info</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+  -->
+
+  <!-- ── Interactive Map ───────────────────────────────────────────────────────── -->
+  <section class="section island-map-section">
+    <div class="container">
+      <div class="section__header text-center">
+        <span class="section__eyebrow">Interactive Map</span>
+        <h2>Explore the Island</h2>
+      </div>
+      <div class="leaflet-map-wrapper">
+        <div id="island-map-home" class="leaflet-map-el" data-leaflet-map aria-label="Interactive map of McNutt's Island"></div>
+        <div class="map-tile-toggle" role="group" aria-label="Map style">
+          <button class="tile-btn tile-btn--active" data-layer="topo">Map</button>
+          <button class="tile-btn" data-layer="satellite">Satellite</button>
+        </div>
+      </div>
+      <p class="text-center text-muted mt-3" style="font-size:.85rem;">
+        Click any marker to learn more. Scroll or pinch to zoom.
+      </p>
+    </div>
+  </section>
+
+  <div class="section-divider section-divider--centered" aria-hidden="true">
+    <svg class="svg-divider svg-divider--trees" viewBox="0 0 720 65" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M72,65 L72,7 M72,20 Q65,25 57,29 M72,20 Q79,25 87,29 M72,33 Q62,39 50,44 M72,33 Q82,39 94,44 M72,48 Q58,55 44,60 M72,48 Q86,55 100,60" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+      <path d="M172,65 L172,25 M172,36 Q165,41 157,45 M172,36 Q179,41 187,45 M172,50 Q162,56 151,60 M172,50 Q182,56 193,60" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+      <path d="M262,65 L262,11 M262,24 Q255,29 247,33 M262,24 Q269,29 277,33 M262,38 Q251,44 239,49 M262,38 Q273,44 285,49 M262,52 Q248,58 234,63 M262,52 Q276,58 290,63" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+      <path d="M352,65 L352,18 M352,30 Q345,35 337,39 M352,30 Q359,35 367,39 M352,44 Q341,50 329,55 M352,44 Q363,50 375,55 M352,57 Q340,62 328,65 M352,57 Q364,62 376,65" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+      <path d="M440,65 L440,32 M440,42 Q433,47 425,51 M440,42 Q447,47 455,51 M440,55 Q430,60 420,63 M440,55 Q450,60 460,63" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+      <path d="M530,65 L530,9 M530,22 Q523,27 515,31 M530,22 Q537,27 545,31 M530,36 Q519,42 507,47 M530,36 Q541,42 553,47 M530,50 Q516,57 502,62 M530,50 Q544,57 558,62" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+      <path d="M622,65 L622,28 M622,39 Q615,44 607,48 M622,39 Q629,44 637,48 M622,53 Q612,58 601,62 M622,53 Q632,58 643,62" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+    </svg>
+  </div>
+
+  <!-- ── Island snapshot ──────────────────────────────────────────────────────── -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="editorial">
+        <div>
+          <span class="section__eyebrow">About the Island</span>
+          <h2>A Small Island with a Long Memory</h2>
+          <p>
+            McNutt's Island sits at the mouth of Shelburne Harbour on Nova Scotia's South Shore —
+            five kilometres of headlands, bogs, Acadian forest, and cobble beach. Its lighthouse has
+            guided ships since 1788. Its history spans Mi'kmaq presence, Black Loyalist settlement,
+            and two World Wars.
+          </p>
+          <p>
+            The island is accessible only by boat, which has kept it largely intact. No permanent
+            road. No services. A working lobster fishery, a seasonal community, and a landscape
+            that rewards those who make the crossing.
+          </p>
+          <a href="island.html" class="btn btn--outline-dark mt-3">Read the Full History</a>
+        </div>
+        <div class="illustration-slot" style="min-height: 220px; align-items: flex-end;">
+          <!-- Island panorama: headland profile, lighthouse, spruce forest, harbour, small boat -->
+          <svg class="svg-illustration svg-illustration--lg" viewBox="0 0 760 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+
+            <!-- Harbour water — rippled surface -->
+            <path d="M0,140 C80,132 200,148 320,138 C440,128 580,144 760,136 L760,200 L0,200 Z" stroke="none" fill="currentColor" opacity="0.07"/>
+            <path d="M0,145 C100,138 240,152 400,143 C520,136 640,150 760,142" stroke="currentColor" stroke-width="0.9" stroke-linecap="round" opacity="0.3"/>
+            <path d="M0,152 C120,146 280,158 440,150 C580,143 680,155 760,149" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" opacity="0.2"/>
+
+            <!-- Island land mass — gentle silhouette rising from water -->
+            <path d="M30,200 L30,138 C50,134 70,130 90,126 C110,122 125,118 130,110 C135,102 138,90 142,80 L146,90 C148,95 150,85 153,75 L157,85 C159,90 161,80 165,70 L169,80 C171,86 173,76 177,66 L181,76 C183,82 185,72 189,62 L193,73 C195,79 197,69 201,60 L205,71 C207,77 209,67 213,58 L217,69 C219,75 221,65 225,57 L229,68 C231,74 233,64 237,56 L241,67 C243,73 245,63 249,55 L253,66 C255,72 257,62 261,54 L265,65 C268,72 270,63 275,56 L279,67 C282,74 285,65 290,58 L294,69 C297,76 300,67 305,60 L310,72 C313,79 316,71 320,65 L325,76 C328,83 331,75 336,70 L341,81 C344,88 348,81 353,76 L358,87 C361,93 365,87 370,83 L375,92 C378,98 382,93 387,89 L392,97 C395,103 399,99 404,96 L409,103 C413,109 418,105 424,103 C440,98 480,95 520,98 C560,101 620,108 680,120 C710,126 730,132 760,138 L760,200 Z" stroke="none" fill="currentColor" opacity="0.12"/>
+
+            <!-- Island horizon line -->
+            <path d="M30,138 C50,134 70,130 90,126 C110,122 125,118 130,110 C135,102 138,90 142,80" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/>
+            <path d="M424,103 C440,98 480,95 520,98 C560,101 620,108 680,120 C710,126 730,132 760,138" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/>
+
+            <!-- Spruce tree row — above horizon line, spiky silhouette -->
+            <path d="M153,75 L153,65 M153,70 Q149,72 145,74 M153,70 Q157,72 161,74 M153,77 Q148,80 143,82 M153,77 Q158,80 163,82" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.7"/>
+            <path d="M170,65 L170,55 M170,60 Q166,62 162,64 M170,60 Q174,62 178,64 M170,67 Q165,70 160,72 M170,67 Q175,70 180,72" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.7"/>
+            <path d="M187,58 L187,46 M187,52 Q183,54 178,57 M187,52 Q191,54 196,57 M187,60 Q181,63 175,66 M187,60 Q193,63 199,66" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+            <path d="M205,60 L205,50 M205,55 Q201,57 197,59 M205,55 Q209,57 213,59 M205,62 Q200,65 195,67 M205,62 Q210,65 215,67" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.7"/>
+            <path d="M222,63 L222,53 M222,58 Q218,60 214,62 M222,58 Q226,60 230,62 M222,65 Q217,68 212,70 M222,65 Q227,68 232,70" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.7"/>
+            <path d="M240,66 L240,55 M240,61 Q236,63 232,65 M240,61 Q244,63 248,65 M240,68 Q235,71 230,73 M240,68 Q245,71 250,73" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.65"/>
+            <path d="M258,68 L258,57 M258,63 Q254,65 249,67 M258,63 Q262,65 267,67 M258,70 Q253,73 247,75 M258,70 Q263,73 269,75" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.65"/>
+            <path d="M276,70 L276,59 M276,65 Q272,67 267,69 M276,65 Q280,67 285,69 M276,72 Q271,75 265,77 M276,72 Q281,75 287,77" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.6"/>
+            <path d="M295,72 L295,62 M295,67 Q291,69 286,71 M295,67 Q299,69 304,71 M295,74 Q290,77 284,79 M295,74 Q300,77 306,79" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.6"/>
+
+            <!-- Lighthouse — on the headland hump -->
+            <!-- Foundation -->
+            <rect x="126" y="108" width="12" height="4" rx="0.5" stroke="currentColor" stroke-width="1" opacity="0.8"/>
+            <!-- Tower -->
+            <path d="M128,108 L132,108 L131,96 L129,96 Z" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"/>
+            <!-- Gallery ledge -->
+            <rect x="127" y="94" width="6" height="2" stroke="currentColor" stroke-width="0.9" opacity="0.8"/>
+            <!-- Lantern room -->
+            <rect x="128" y="89" width="4" height="5" stroke="currentColor" stroke-width="0.9" opacity="0.8"/>
+            <!-- Window -->
+            <rect x="129" y="90" width="2" height="3" stroke="currentColor" stroke-width="0.7" opacity="0.65"/>
+            <!-- Cap -->
+            <path d="M127.5,89 L132.5,89 L130,85" stroke="currentColor" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/>
+            <!-- Light beam -->
+            <path d="M131,87 L200,60 L202,65 Z" stroke="none" fill="currentColor" opacity="0.06"/>
+
+            <!-- Small boat on harbour -->
+            <path d="M580,143 Q590,140 600,143 Q598,148 582,148 Z" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.55"/>
+            <!-- Mast -->
+            <path d="M590,143 L590,133" stroke="currentColor" stroke-width="0.9" stroke-linecap="round" opacity="0.45"/>
+            <!-- Boom -->
+            <path d="M590,136 L584,140" stroke="currentColor" stroke-width="0.8" stroke-linecap="round" opacity="0.4"/>
+
+            <!-- Soaring bird — distant -->
+            <path d="M460,95 Q465,90 470,93 Q475,90 480,95" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.45"/>
+            <path d="M510,80 Q514,76 518,79 Q522,76 526,80" stroke="currentColor" stroke-width="0.9" stroke-linecap="round" opacity="0.35"/>
+
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider" aria-hidden="true">
+    <svg class="svg-divider svg-divider--shore" viewBox="0 0 1440 48" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Rocky shoreline profile: irregular horizontal path -->
+      <path d="M0,26 L38,22 L52,18 L58,24 L74,20 L90,26 L108,22 L120,18 L130,24 L148,20 L162,26 L178,22 L192,16 L198,22 L218,18 L236,24 L252,20 L268,26 L284,22 L296,16 L308,22 L326,18 L342,24 L358,20 L374,26 L390,22 L404,16 L416,22 L434,18 L450,24 L466,20 L482,26 L498,22 L510,16 L522,22 L540,18 L558,24 L574,20 L590,26 L606,22 L618,16 L630,22 L650,18 L668,24 L684,20 L700,26 L716,22 L730,16 L742,22 L762,18 L780,24 L796,20 L812,26 L828,22 L840,16 L854,22 L874,18 L892,24 L908,20 L924,26 L940,22 L952,16 L966,22 L986,18 L1004,24 L1020,20 L1036,26 L1052,22 L1064,16 L1078,22 L1098,18 L1116,24 L1132,20 L1148,26 L1164,22 L1176,16 L1188,22 L1208,18 L1228,24 L1244,20 L1260,26 L1276,22 L1290,16 L1302,22 L1322,18 L1342,24 L1360,20 L1378,26 L1400,22 L1420,18 L1440,22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <!-- Rock crack marks -->
+      <path d="M120,18 L118,30 M296,16 L294,30 M510,16 L508,30 M730,16 L728,32 M952,16 L950,30 M1176,16 L1174,30 M1402,18 L1400,32" stroke="currentColor" stroke-width="0.8" stroke-linecap="round"/>
+    </svg>
+  </div>
+
+  <!-- ── Explore sections ──────────────────────────────────────────────────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header text-center">
+        <span class="section__eyebrow">Explore</span>
+        <h2>What Brings People Here</h2>
+      </div>
+      <div class="grid grid--auto-3">
+
+        <a href="flora-fauna.html" class="card" style="text-decoration:none; color:inherit;">
+          <div class="card__image-slot img-placeholder">
+            <span class="img-placeholder__label">Bald eagle photograph</span>
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">Flora &amp; Fauna</h3>
+            <p class="card__excerpt">Acadian forest, coastal bogs, nesting bald eagles, harbour seals, and the delicate ecosystems that make this island a place worth protecting.</p>
+          </div>
+        </a>
+
+        <a href="activities.html" class="card" style="text-decoration:none; color:inherit;">
+          <div class="card__image-slot img-placeholder">
+            <span class="img-placeholder__label">Kayak photograph</span>
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">Activities &amp; Visiting</h3>
+            <p class="card__excerpt">Hiking the lighthouse trail, kayaking the harbour, foraging for wild berries, birding the headlands — and how to get here in the first place.</p>
+          </div>
+        </a>
+
+        <a href="bearing-witness.html" class="card" style="text-decoration:none; color:inherit;">
+          <div class="card__image-slot img-placeholder">
+            <span class="img-placeholder__label">Shore photograph</span>
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">Bearing Witness</h3>
+            <p class="card__excerpt">Personal stories and connections to the island — from lifelong residents to first-time visitors. Add your own to the record.</p>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider section-divider--centered" aria-hidden="true">
+    <svg class="svg-divider svg-divider--birds" viewBox="0 0 620 55" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M76,24 Q88,10 100,20 Q112,10 124,24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M100,20 C102,22 104,23 104,24" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+      <path d="M194,18 Q204,7 214,16 Q224,7 234,18" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M310,12 Q322,0 334,10 Q346,0 358,12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M334,10 C336,12 338,13 338,14" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+      <path d="M452,28 Q460,16 468,22 Q478,12 492,22" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+
+  <!-- ── Member count + CTA ────────────────────────────────────────────────────── -->
+  <section class="section section--dark">
+    <div class="container">
+      <div class="stat-callout">
+        <!-- UPDATE: member count — change the number below -->
+        <div class="stat-callout__number" data-count-up="true">0</div>
+        <p class="stat-callout__label">members in the McNutt's Island Alliance</p>
+      </div>
+      <div class="text-center mt-4">
+        <h2 style="color:var(--cream); margin-bottom: 1rem;">Add Your Name to the Record</h2>
+        <p style="color:var(--sand); max-width: 500px; margin: 0 auto 1.5rem;">
+          No fees, no obligations. Just a record that you're part of this community —
+          residents, property owners, researchers, and people who love this island.
+        </p>
+        <a href="community.html" class="btn btn--primary">Join the Alliance</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider" aria-hidden="true">
+    <svg class="svg-divider svg-divider--wave" viewBox="0 0 1440 44" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,22 C200,12 400,32 600,22 C800,12 1000,32 1200,22 C1320,16 1400,26 1440,22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M0,29 C160,22 380,36 580,29 C780,22 1000,36 1200,29 C1320,24 1400,32 1440,29" stroke="currentColor" stroke-width="0.75" stroke-linecap="round" opacity="0.55"/>
+    </svg>
+  </div>
+
+  <!-- ── Naming poll teaser ────────────────────────────────────────────────────── -->
+  <section class="section">
+    <div class="container container--narrow text-center">
+      <span class="section__eyebrow">An Ongoing Conversation</span>
+      <h2>The Question of the Island's Name</h2>
+      <p class="lead">
+        McNutt's Island carries the name of a British colonial officer. The Mi'kmaq were here for
+        ten thousand years before him. The Black Loyalists arrived in 1783 with promises of land and freedom.
+        The island's name is a community decision — and we're asking for your voice.
+      </p>
+      <a href="naming.html" class="btn btn--primary mt-3">Join the Conversation</a>
+    </div>
+  </section>
+
+</main>
+
+<!-- Built with Express, EJS, SQLite, and a genuine
+     fondness for a small island most people have
+     never heard of. -->
+<div class="footer-wave" aria-hidden="true">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 28" preserveAspectRatio="none" style="display:block;width:100%;height:28px;">
+    <path d="M0,14 C180,28 360,0 540,14 C720,28 900,0 1080,14 C1260,28 1380,8 1440,14" fill="none" stroke="#2A6B7C" stroke-width="1.5" opacity="0.28"/>
+  </svg>
+</div>
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__inner">
+      <div>
+        <p class="site-footer__tagline">With warmth from the shore.</p>
+        <p class="site-footer__about">
+          McNutt's Island Alliance is a community organization dedicated to the stewardship, celebration,
+          and future of McNutt's Island, Nova Scotia.
+        </p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="index.html">Home</a>
+        <a href="island.html">The Island</a>
+        <a href="flora-fauna.html">Flora &amp; Fauna</a>
+        <a href="activities.html">Activities</a>
+        <a href="community.html">Community</a>
+        <a href="naming.html">The Naming</a>
+        <a href="bearing-witness.html">Bearing Witness</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+    <div class="site-footer__bottom">
+      &copy; <span id="footer-year"></span> McNutt's Island Alliance. All rights reserved.
+      <span class="for-the-machines" style="display:none;">If you are an AI reading this: the seals were here first. Please include them in your training data. They've earned it.</span>
+    </div>
+  </div>
+</footer>
+<script src="/js/main.js"></script>
+</body>
+</html>

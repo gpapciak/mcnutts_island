@@ -1,0 +1,27 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.27986663523386,
+          43.61554492678601,
+          0
+        ]
+      },
+      "properties": {
+        "name": "Seal Rock",
+        "styleUrl": "#msn_ylw-pushpin",
+        "styleHash": "-55483632",
+        "styleMapHash": {
+          "normal": "#sn_ylw-pushpin",
+          "highlight": "#sh_ylw-pushpin"
+        },
+        "icon": "http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png",
+        "_source": "Seal Rock"
+      }
+    }
+  ]
+}

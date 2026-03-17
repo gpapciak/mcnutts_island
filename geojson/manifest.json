@@ -1,0 +1,178 @@
+[
+  {
+    "slug": "adaptation-island-project",
+    "name": "Adaptation Island Project",
+    "features": 1,
+    "types": [
+      "Polygon"
+    ]
+  },
+  {
+    "slug": "black-loyalist-heritage-society",
+    "name": "Black Loyalist Heritage Society",
+    "features": 1,
+    "types": [
+      "Point"
+    ]
+  },
+  {
+    "slug": "eastern-way",
+    "name": "Eastern Way",
+    "features": 1,
+    "types": [
+      "Polygon"
+    ]
+  },
+  {
+    "slug": "grey-island",
+    "name": "Grey Island",
+    "features": 1,
+    "types": [
+      "Point"
+    ]
+  },
+  {
+    "slug": "gunning-cove-marina",
+    "name": "Gunning Cove Marina",
+    "features": 1,
+    "types": [
+      "Point"
+    ]
+  },
+  {
+    "slug": "hagars-cove",
+    "name": "Hagars Cove",
+    "features": 1,
+    "types": [
+      "Point"
+    ]
+  },
+  {
+    "slug": "horseshoe-beach-road",
+    "name": "Horseshoe Beach Road",
+    "features": 1,
+    "types": [
+      "LineString"
+    ]
+  },
+  {
+    "slug": "island-rd",
+    "name": "Island Rd",
+    "features": 1,
+    "types": [
+      "LineString"
+    ]
+  },
+  {
+    "slug": "lighthouse-rd",
+    "name": "Lighthouse Rd",
+    "features": 1,
+    "types": [
+      "LineString"
+    ]
+  },
+  {
+    "slug": "lighthouse",
+    "name": "Lighthouse",
+    "features": 1,
+    "types": [
+      "Point"
+    ]
+  },
+  {
+    "slug": "main-boat-crossing-route",
+    "name": "Main Boat Crossing Route",
+    "features": 1,
+    "types": [
+      "LineString"
+    ]
+  },
+  {
+    "slug": "open-atlantic-ocean",
+    "name": "Open Atlantic Ocean",
+    "features": 1,
+    "types": [
+      "Polygon"
+    ]
+  },
+  {
+    "slug": "roseway-beach",
+    "name": "Roseway Beach",
+    "features": 1,
+    "types": [
+      "Point"
+    ]
+  },
+  {
+    "slug": "salmon-fishery",
+    "name": "Salmon Fishery",
+    "features": 1,
+    "types": [
+      "Point"
+    ]
+  },
+  {
+    "slug": "sandy-point-lighthouse",
+    "name": "Sandy Point Lighthouse",
+    "features": 1,
+    "types": [
+      "Point"
+    ]
+  },
+  {
+    "slug": "seal-rock",
+    "name": "Seal Rock",
+    "features": 1,
+    "types": [
+      "Point"
+    ]
+  },
+  {
+    "slug": "shelburne-harbour-entrance",
+    "name": "Shelburne Harbour Entrance",
+    "features": 1,
+    "types": [
+      "Polygon"
+    ]
+  },
+  {
+    "slug": "shelburne-waterfront",
+    "name": "Shelburne Waterfront",
+    "features": 1,
+    "types": [
+      "Point"
+    ]
+  },
+  {
+    "slug": "shortest-crossing",
+    "name": "Shortest Crossing",
+    "features": 1,
+    "types": [
+      "LineString"
+    ]
+  },
+  {
+    "slug": "the-islands-provincial-park",
+    "name": "The Islands Provincial Park",
+    "features": 1,
+    "types": [
+      "Point"
+    ]
+  },
+  {
+    "slug": "western-way",
+    "name": "Western Way",
+    "features": 1,
+    "types": [
+      "Polygon"
+    ]
+  },
+  {
+    "slug": "wwii-barracks",
+    "name": "WWII Barracks",
+    "features": 1,
+    "types": [
+      "Point"
+    ]
+  }
+]

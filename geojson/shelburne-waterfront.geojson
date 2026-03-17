@@ -1,0 +1,27 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.32374071034924,
+          43.75991321260563,
+          0
+        ]
+      },
+      "properties": {
+        "name": "Shelburne Waterfront",
+        "styleUrl": "#msn_ylw-pushpin",
+        "styleHash": "-55483632",
+        "styleMapHash": {
+          "normal": "#sn_ylw-pushpin",
+          "highlight": "#sh_ylw-pushpin"
+        },
+        "icon": "http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png",
+        "_source": "Shelburne Waterfront"
+      }
+    }
+  ]
+}

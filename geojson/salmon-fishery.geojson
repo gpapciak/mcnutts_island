@@ -1,0 +1,27 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -65.2836289724353,
+          43.65457877778978,
+          0
+        ]
+      },
+      "properties": {
+        "name": "Salmon Fishery",
+        "styleUrl": "#msn_fishing",
+        "styleHash": "-14fb9bad",
+        "styleMapHash": {
+          "normal": "#sn_fishing",
+          "highlight": "#sh_fishing"
+        },
+        "icon": "http://maps.google.com/mapfiles/kml/shapes/fishing.png",
+        "_source": "Salmon Fishery"
+      }
+    }
+  ]
+}

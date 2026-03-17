@@ -1,0 +1,63 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -65.3227583770165,
+              43.66399805688115,
+              0
+            ],
+            [
+              -65.31048544275144,
+              43.66422839316708,
+              0
+            ],
+            [
+              -65.30389893423133,
+              43.66358746327958,
+              0
+            ],
+            [
+              -65.29502170238287,
+              43.66844908422572,
+              0
+            ],
+            [
+              -65.3026604001127,
+              43.67567225634757,
+              0
+            ],
+            [
+              -65.32342849564665,
+              43.67471497359997,
+              0
+            ],
+            [
+              -65.3227583770165,
+              43.66399805688115,
+              0
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Shelburne Harbour Entrance",
+        "styleUrl": "#m_ylw-pushpin",
+        "styleHash": "-10ad310b",
+        "styleMapHash": {
+          "normal": "#s_ylw-pushpin",
+          "highlight": "#s_ylw-pushpin_hl"
+        },
+        "icon": "http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png",
+        "fill": "#ffffff",
+        "fill-opacity": 0.10196078431372549,
+        "_source": "Shelburne Harbour Entrance"
+      }
+    }
+  ]
+}
