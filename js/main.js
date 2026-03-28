@@ -549,7 +549,7 @@
     }
 
     function makeKmzPopup(name, slug, desc, link) {
-      var imgPath = '/images/places/' + slug + '.jpg';
+      var imgPath = 'images/places/' + slug + '.jpg';
       var html = '<div class="map-popup">';
       html += '<div class="map-popup__img-wrap">' +
               '<img class="map-popup__img" src="' + imgPath + '" alt="" ' +
@@ -670,11 +670,11 @@
         return { color: '#2A6B7C', weight: 1.5, opacity: 0.45, fillColor: '#2A6B7C', fillOpacity: 0.05 };
       }
 
-      fetch('/geojson/manifest.json')
+      fetch('geojson/manifest.json')
         .then(function(r) { return r.json(); })
         .then(function(manifest) {
           manifest.forEach(function(entry) {
-            fetch('/geojson/' + entry.slug + '.geojson')
+            fetch('geojson/' + entry.slug + '.geojson')
               .then(function(r) { return r.json(); })
               .then(function(gj) {
                 // Detect line-only layers so we can add a wide hit area
