@@ -535,17 +535,52 @@
       'shelburne-waterfront': true
     };
 
+    var lighthouseIcon = L.divIcon({
+      className:   'island-marker',
+      html:        '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="11" fill="#f5f1e8" stroke="#3a3a3a" stroke-width="1.5"/><path d="M10 7 L10 17 L14 17 L14 7 Z M9 7 L15 7 L14 5 L10 5 Z M11 9 L13 9 M11 11 L13 11 M11 13 L13 13" fill="none" stroke="#3a3a3a" stroke-width="1" stroke-linecap="round"/></svg>',
+      iconSize:    [28, 28],
+      iconAnchor:  [14, 14],
+      popupAnchor: [0, -16]
+    });
+
+    var dotIcon = L.divIcon({
+      className:   'island-marker',
+      html:        '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="6" fill="#c8553d" stroke="#f5f1e8" stroke-width="2"/></svg>',
+      iconSize:    [28, 28],
+      iconAnchor:  [14, 14],
+      popupAnchor: [0, -8]
+    });
+
+    var townIcon = L.divIcon({
+      className:   'island-marker',
+      html:        '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="7" fill="#f5f1e8" stroke="#3a3a3a" stroke-width="1.5"/><circle cx="12" cy="12" r="2" fill="#3a3a3a"/></svg>',
+      iconSize:    [28, 28],
+      iconAnchor:  [14, 14],
+      popupAnchor: [0, -16]
+    });
+
+    var LIGHTHOUSE_SLUGS = { 'lighthouse': true, 'sandy-point-lighthouse': true };
+
+    var TOOLTIP_DIRS = {
+      'lighthouse':                      'right',
+      'wwii-barracks':                   'right',
+      'seal-rock':                       'right',
+      'gunning-cove-marina':             'bottom',
+      'hagars-cove':                     'right',
+      'roseway-beach':                   'bottom',
+      'black-loyalist-heritage-society': 'right',
+      'grey-island':                     'bottom',
+      'salmon-fishery':                  'left',
+      'sandy-point-lighthouse':          'left',
+      'shelburne-waterfront':            'top',
+      'the-islands-provincial-park':     'right',
+      'adaptation-island-project':       'right'
+    };
+
     function makeKmzPointIcon(slug) {
-      var fill = MAINLAND_SLUGS[slug] ? '#8a6a3a' : '#2A6B7C';
-      var inner = POINT_ICONS[slug] || '<circle cx="8" cy="8" r="3" fill="white" opacity="0.9"/>';
-      return L.divIcon({
-        html: '<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" width="34" height="34">' +
-              '<circle cx="8" cy="8" r="8" fill="' + fill + '"/>' + inner + '</svg>',
-        className: 'leaflet-poi-icon',
-        iconSize:    [34, 34],
-        iconAnchor:  [17, 17],
-        popupAnchor: [0, -20]
-      });
+      if (LIGHTHOUSE_SLUGS[slug]) return lighthouseIcon;
+      if (MAINLAND_SLUGS[slug]) return townIcon;
+      return dotIcon;
     }
 
     function makeKmzPopup(name, slug, desc, link) {
@@ -607,24 +642,23 @@
         maxBoundsViscosity: 0.85
       });
 
-      var topoLayer = L.tileLayer(
-        'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
-        {
-          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-          subdomains: 'abcd',
-          maxZoom: 20
-        }
-      );
       var satLayer = L.tileLayer(
         'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
         {
-          attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP',
+          attribution: 'Tiles &copy; Esri &mdash; Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community',
           maxZoom: 18
         }
       );
-      topoLayer.addTo(map);
+      var topoLayer = L.tileLayer(
+        'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
+        {
+          attribution: 'Map data: &copy; OpenStreetMap contributors, SRTM | Map style: &copy; OpenTopoMap (CC-BY-SA)',
+          maxZoom: 17
+        }
+      );
+      satLayer.addTo(map);
 
-      var currentLayer = 'topo';
+      var currentLayer = 'satellite';
       var wrapper = el.closest('.leaflet-map-wrapper');
       var toggle  = wrapper ? wrapper.querySelector('.map-tile-toggle') : null;
       if (toggle) {
@@ -700,11 +734,19 @@
                     interactive:  !isLineLayer,
                     pointToLayer: function(feature, latlng) {
                       var props = feature.properties || {};
-                      return L.marker(latlng, {
+                      var name  = NAMES[entry.slug] || props.name || entry.name;
+                      var m = L.marker(latlng, {
                         icon:  makeKmzPointIcon(entry.slug),
-                        title: props.name || entry.name,
-                        alt:   props.name || entry.name
+                        title: name,
+                        alt:   name
                       });
+                      m.bindTooltip(name, {
+                        permanent:  true,
+                        direction:  TOOLTIP_DIRS[entry.slug] || 'right',
+                        offset:     [10, 0],
+                        className:  'island-label'
+                      });
+                      return m;
                     },
                     onEachFeature: isLineLayer ? undefined : bindLayerPopup
                   }).addTo(map);

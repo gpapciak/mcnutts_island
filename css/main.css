@@ -1613,6 +1613,41 @@ main { flex: 1; }
 .leaflet-poi-icon:hover,
 .leaflet-poi-icon:focus { transform: scale(1.12); }
 
+/* SVG divIcon markers */
+.island-marker {
+  background: transparent;
+  border: none;
+}
+
+.island-marker svg {
+  width: 28px;
+  height: 28px;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3));
+}
+
+/* Permanent always-on marker labels */
+.island-label {
+  background: rgba(245, 241, 232, 0.92);
+  border: 1px solid rgba(58, 58, 58, 0.2);
+  border-radius: 2px;
+  color: #2a2a2a;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  padding: 2px 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+  white-space: nowrap;
+}
+
+.island-label::before,
+.leaflet-tooltip-right.island-label::before,
+.leaflet-tooltip-left.island-label::before,
+.leaflet-tooltip-top.island-label::before,
+.leaflet-tooltip-bottom.island-label::before {
+  display: none;
+}
+
 /* Permanent place-name labels for polygon features */
 .map-place-label-wrap {
   overflow: visible !important;
