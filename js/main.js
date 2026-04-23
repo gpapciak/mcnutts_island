@@ -75,8 +75,8 @@
       const remaining = max - field.value.length;
       countEl.textContent = remaining + ' characters remaining';
       countEl.className = 'char-count';
-      if (remaining <= 20) countEl.classList.add('at-limit');
-      else if (remaining <= max * 0.15) countEl.classList.add('near-limit');
+      if      (remaining <= 20)                                    countEl.classList.add('at-limit');
+      else if (remaining <= Math.max(Math.floor(max * 0.15), 40)) countEl.classList.add('near-limit');
     }
 
     field.addEventListener('input', updateCount);
@@ -142,6 +142,15 @@
   // ─── Scroll reveal ────────────────────────────────────────────────────────────
   (function initScrollReveal() {
     if (!('IntersectionObserver' in window)) return;
+
+    var statNum = document.querySelector('.stat-callout__number');
+    if (statNum) {
+      var rawCount = parseInt(statNum.textContent.replace(/\D/g, ''), 10) || 0;
+      statNum.dataset.countTarget = rawCount;
+      statNum.dataset.countDone = '0';
+      if (reducedMotion) statNum.textContent = rawCount.toLocaleString();
+    }
+
     if (reducedMotion) return;
 
     document.querySelectorAll('.editorial').forEach(function(el) {
@@ -176,12 +185,6 @@
     });
 
     var statNum = document.querySelector('.stat-callout__number');
-    if (statNum) {
-      var rawCount = parseInt(statNum.textContent.replace(/\D/g, ''), 10) || 0;
-      statNum.dataset.countTarget = rawCount;
-      statNum.dataset.countDone = '0';
-    }
-
     document.querySelectorAll('.svg-illustration').forEach(function(svg) {
       var pathEls = svg.querySelectorAll('path, line, polyline, ellipse, circle');
       var hasStrokes = false;
@@ -257,6 +260,7 @@
       var href = link.getAttribute('href');
       if (!href || href.charAt(0) === '#' || href.indexOf('://') > -1 ||
           href.indexOf('mailto:') === 0 || href.indexOf('tel:') === 0 ||
+          href.toLowerCase().indexOf('javascript:') === 0 ||
           link.target || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
       e.preventDefault();
       document.body.classList.add('page-leaving');
@@ -439,67 +443,6 @@
       'lighthouse-rd':              'Lighthouse Trail',
       'shelburne-harbour-entrance': 'Shelburne Harbour Entrance',
       'adaptation-island-project':  'Adaptation Island Project'
-    };
-
-    // SVG inner paths per KMZ Point slug (white on teal circle, viewBox 0 0 16 16)
-    var POINT_ICONS = {
-      'lighthouse':
-        '<path d="M8,3.5 L5.5,1.2 M8,3.5 L10.5,1.2" stroke="white" stroke-width="0.9" stroke-linecap="round" opacity="0.7"/>' +
-        '<path d="M6.2,3.8 L8,2.6 L9.8,3.8 Z" fill="white"/>' +
-        '<rect x="6.3" y="3.8" width="3.4" height="1.8" rx="0.2" fill="white"/>' +
-        '<path d="M5.8,13 L10.2,13 L9.1,5.6 L6.9,5.6 Z" fill="white" opacity="0.9"/>' +
-        '<rect x="6.15" y="9.3" width="3.7" height="0.9" rx="0.2" fill="#2A6B7C" opacity="0.8"/>' +
-        '<rect x="4.8" y="13" width="6.4" height="1.4" rx="0.3" fill="white" opacity="0.85"/>',
-      'sandy-point-lighthouse':
-        '<path d="M8,3.5 L5.5,1.2 M8,3.5 L10.5,1.2" stroke="white" stroke-width="0.9" stroke-linecap="round" opacity="0.7"/>' +
-        '<path d="M6.2,3.8 L8,2.6 L9.8,3.8 Z" fill="white"/>' +
-        '<rect x="6.3" y="3.8" width="3.4" height="1.8" rx="0.2" fill="white"/>' +
-        '<path d="M5.8,13 L10.2,13 L9.1,5.6 L6.9,5.6 Z" fill="white" opacity="0.9"/>' +
-        '<rect x="6.15" y="9.3" width="3.7" height="0.9" rx="0.2" fill="#2A6B7C" opacity="0.8"/>' +
-        '<rect x="4.8" y="13" width="6.4" height="1.4" rx="0.3" fill="white" opacity="0.85"/>',
-      'wwii-barracks':
-        '<path d="M3,13 L3,8 L8,5 L13,8 L13,13 Z" fill="white" opacity="0.85"/>' +
-        '<rect x="6.3" y="9" width="3.4" height="4" fill="#2A6B7C"/>' +
-        '<line x1="8" y1="5" x2="8" y2="3" stroke="white" stroke-width="1.4" stroke-linecap="round"/>',
-      'seal-rock':
-        '<path d="M3,13.5 Q2,10.5 4.5,7.5 Q6,5.5 8,5.5 Q10,5.5 11.5,7.5 Q14,10.5 13,13.5 Z" fill="white" opacity="0.92"/>' +
-        '<path d="M6.5,9.5 Q8,7.8 9.5,9.5" stroke="#2A6B7C" stroke-width="0.8" fill="none" stroke-linecap="round" opacity="0.7"/>' +
-        '<path d="M2,13.5 Q5,12 8,13 Q11,12 14,13.5" stroke="white" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.6"/>',
-      'gunning-cove-marina':
-        '<line x1="8" y1="2" x2="8" y2="13" stroke="white" stroke-width="1.6" stroke-linecap="round"/>' +
-        '<line x1="4.5" y1="5.2" x2="11.5" y2="5.2" stroke="white" stroke-width="1.4" stroke-linecap="round"/>' +
-        '<path d="M4,11 C4,14 12,14 12,11" stroke="white" stroke-width="1.4" fill="none" stroke-linecap="round"/>',
-      'black-loyalist-heritage-society':
-        '<rect x="3.5" y="8" width="9" height="6" fill="white" opacity="0.85"/>' +
-        '<path d="M2,8 L8,4 L14,8 Z" fill="white" opacity="0.9"/>' +
-        '<rect x="6.5" y="10" width="3" height="4" fill="#2A6B7C"/>',
-      'grey-island':
-        '<ellipse cx="8" cy="9.5" rx="4.5" ry="2.5" fill="white" opacity="0.85"/>' +
-        '<path d="M3,11.5 Q8,14 13,11.5" stroke="white" stroke-width="1.2" fill="none" stroke-linecap="round"/>',
-      'hagars-cove':
-        '<rect x="2" y="9" width="12" height="2" fill="white" opacity="0.9"/>' +
-        '<line x1="4" y1="9" x2="4" y2="13.5" stroke="white" stroke-width="1.5" stroke-linecap="round"/>' +
-        '<line x1="8" y1="9" x2="8" y2="13.5" stroke="white" stroke-width="1.5" stroke-linecap="round"/>' +
-        '<line x1="12" y1="9" x2="12" y2="13.5" stroke="white" stroke-width="1.5" stroke-linecap="round"/>' +
-        '<path d="M3,7 C4.5,5 11.5,5 13,7 C11.5,9.5 4.5,9.5 3,7 Z" fill="white" opacity="0.8"/>',
-      'roseway-beach':
-        '<path d="M1,12 Q4,8.5 8,10.5 Q12,12.5 15,9" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/>' +
-        '<path d="M1,9 Q4,5.5 8,7.5 Q12,9.5 15,6" stroke="white" stroke-width="1.1" fill="none" stroke-linecap="round" opacity="0.65"/>',
-      'salmon-fishery':
-        '<path d="M3,8 C5,5 11,5 13,8 C11,11 5,11 3,8 Z" fill="white" opacity="0.88"/>' +
-        '<path d="M13,8 L16,6 L16,10 Z" fill="white" opacity="0.88"/>' +
-        '<circle cx="5.5" cy="8" r="1.1" fill="#2A6B7C"/>',
-      'shelburne-waterfront':
-        '<rect x="1.5" y="9" width="4" height="5" fill="white" opacity="0.8"/>' +
-        '<rect x="6.5" y="7" width="5" height="7" fill="white" opacity="0.9"/>' +
-        '<rect x="12.5" y="10.5" width="2.5" height="3.5" fill="white" opacity="0.7"/>' +
-        '<line x1="1" y1="14" x2="15" y2="14" stroke="white" stroke-width="0.8" opacity="0.5"/>',
-      'the-islands-provincial-park':
-        '<line x1="8" y1="14" x2="8" y2="7.5" stroke="white" stroke-width="1.6" stroke-linecap="round"/>' +
-        '<path d="M8,8.5 Q5,6.5 4,4.5 Q6.5,4 8,6.5" fill="white" opacity="0.9"/>' +
-        '<path d="M8,8.5 Q11,6.5 12,4.5 Q9.5,4 8,6.5" fill="white" opacity="0.9"/>' +
-        '<path d="M8,11 Q4.5,9.5 3,7.5 Q6,7 8,9.5" fill="white" opacity="0.75"/>' +
-        '<path d="M8,11 Q11.5,9.5 13,7.5 Q10,7 8,9.5" fill="white" opacity="0.75"/>'
     };
 
     // Polygon slugs rendered as permanent clickable text labels instead of click-on-shape
@@ -736,9 +679,7 @@
                       var props = feature.properties || {};
                       var name  = NAMES[entry.slug] || props.name || entry.name;
                       var m = L.marker(latlng, {
-                        icon:  makeKmzPointIcon(entry.slug),
-                        title: name,
-                        alt:   name
+                        icon: makeKmzPointIcon(entry.slug)
                       });
                       m.bindTooltip(name, {
                         permanent:  true,
@@ -792,10 +733,10 @@
                   }
                 }
               })
-              .catch(function() {});
+              .catch(function(err) { console.warn('GeoJSON fetch failed:', entry.slug, err); });
           });
         })
-        .catch(function() {});
+        .catch(function(err) { console.warn('GeoJSON manifest fetch failed:', err); });
 
       // Keep map sized correctly if container resizes
       if (window.ResizeObserver) {
@@ -847,36 +788,5 @@
     widgets.forEach(function(w) { w.innerHTML = html; });
   }());
 
-  // ── Naming page results toggle ────────────────────────────────────────────────
-  (function initResultsToggle() {
-    function setupToggle(toggleId, contentId, labelId) {
-      var btn     = document.getElementById(toggleId);
-      var content = document.getElementById(contentId);
-      if (!btn || !content) return;
-      btn.addEventListener('click', function () {
-        var expanded = btn.getAttribute('aria-expanded') === 'true';
-        var nowOpen  = !expanded;
-        btn.setAttribute('aria-expanded', String(nowOpen));
-        content.hidden = !nowOpen;
-        if (labelId) {
-          var lbl = document.getElementById(labelId);
-          if (lbl) lbl.textContent = nowOpen ? 'Hide results \u25b2' : 'See current results \u25bc';
-        }
-        if (nowOpen) content.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
-    }
-    setupToggle('results-toggle', 'results-content', 'results-toggle-label');
-
-    var resultsLink = document.getElementById('results-link');
-    if (resultsLink) {
-      resultsLink.addEventListener('click', function(e) {
-        e.preventDefault();
-        var toggle = document.getElementById('results-toggle');
-        if (toggle && toggle.getAttribute('aria-expanded') !== 'true') toggle.click();
-        var sec = document.getElementById('results-section');
-        if (sec) sec.scrollIntoView({ behavior: 'smooth' });
-      });
-    }
-  }());
 
 })();
